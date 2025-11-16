@@ -28,8 +28,30 @@ export default function Pharmaceuticals() {
       </div>
 
 
+      {/* background part */}
+
+      <div
+        className="relative bg-cover bg-center bg-no-repeat py-12 md:py-20 lg:py-36 px-4 rounded-3xl overflow-hidden w-full"
+        style={{ backgroundImage: "url('/dental_image.jpeg')" }}
+      >
+        {/* Blue Overlay */}
+        <div className="absolute inset-0 bg-blue-600/40"></div>
+
+        {/* Content */}
+        <div className="relative text-center flex flex-col gap-4 p-6 rounded-lg max-w-2xl mx-auto">
+          <h2 className="text-6xl font-bold text-white">Our Vision</h2>
+
+          <p className="text-center leading-8 text-white">
+            "To create a world where no life is lost due to medication unavailability.
+            We believe in breaking down barriers to healthcare access and ensuring
+            that life-saving medicines reach every corner of the globe."
+          </p>
+        </div>
+      </div>
+
+
       {/* key focus area */}
-      <div className="">
+      <div className="py-16">
         <div className="flex flex-col gap-12 ">
           <h3 className="text-center text-3xl font-semibold"> Key Focus Areas </h3>
 
@@ -103,7 +125,7 @@ export default function Pharmaceuticals() {
 
 
       {/* Our Process */}
-      <div className="border p-4 rounded-2xl py-12">
+      <div className="border p-4 rounded-2xl py-16">
         <div className="flex flex-col gap-12 ">
           <h3 className="text-center text-3xl font-semibold"> Our Process</h3>
 
@@ -159,18 +181,18 @@ export default function Pharmaceuticals() {
       </div>
 
       {/* Join Our Mission */}
-      <div className="">
-        <div className="flex flex-col gap-12 ">
-         <div className="flex flex-col justify-center items-center gap-5 max-w-2xl mx-auto">
-             <h3 className="text-center text-3xl font-semibold"> Join Our Mission </h3>
-          <p className="text-center text-sm md:text-base">
-           Together, we can make a significant impact on global healthcare accessibility. Partner with us to bring essential medicines to those who need them most.
-          </p>
+      <div className="py-16">
+        <div className="flex flex-col gap-24 ">
+          <div className="flex flex-col justify-center items-center gap-5 max-w-2xl mx-auto">
+            <h3 className="text-center text-3xl font-semibold"> Join Our Mission </h3>
+            <p className="text-center text-sm md:text-base">
+              Together, we can make a significant impact on global healthcare accessibility. Partner with us to bring essential medicines to those who need them most.
+            </p>
 
-          <div className="bg-[#136bfb] rounded-3xl py-2 px-4">
-            <p className="text-center">Contact Our Pharmaceutical Division</p>
+            <div className="bg-[#136bfb] rounded-3xl py-2 px-4">
+              <p className="text-center">Contact Our Pharmaceutical Division</p>
+            </div>
           </div>
-         </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md: gap-6 w-full">
             {/* first caard */}
@@ -178,38 +200,38 @@ export default function Pharmaceuticals() {
             <div className="border rounded-lg w-full">
               {/* Header */}
               <div className="flex p-12 flex-col justify-center gap-2 items-center mb-4">
-                
+
                 <p className="text-6xl font-bold ">50+ </p>
                 <p>Countries Served</p>
               </div>
 
-             
+
             </div>
             {/* Second caard */}
 
             <div className="border rounded-lg w-full">
               {/* Header */}
               <div className="flex p-12 flex-col justify-center gap-2 items-center mb-4">
-                
+
                 <p className="text-6xl font-bold ">1M+ </p>
                 <p>Lives Impacted</p>
               </div>
 
-             
+
             </div>
             {/* Third caard */}
 
             <div className="border rounded-lg w-full">
               {/* Header */}
               <div className="flex p-12 flex-col justify-center gap-2 items-center mb-4">
-                
+
                 <p className="text-6xl font-bold ">200+ </p>
                 <p>Medicine Types</p>
               </div>
 
-             
+
             </div>
-         
+
 
           </div>
         </div>
