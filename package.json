@@ -20,7 +20,8 @@
     "recharts": "^3.2.1",
     "sonner": "^2.0.7",
     "stripe": "^19.1.0",
-    "sweetalert2": "^11.25.0"
+    "sweetalert2": "^11.25.0",
+    "swiper": "^12.0.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
