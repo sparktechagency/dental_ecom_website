@@ -2,25 +2,11 @@ import React from 'react'
 import { FaAngleRight } from "react-icons/fa6";
 import { FaCartArrowDown } from "react-icons/fa6";
 import Link from 'next/link'
+import CustomButton from "../CustomButton/CustomButton"
 
 const Hero = () => {
   return (
     <div>
- <style>
-    {`
-      @keyframes bgPipPop {
-        0%   { background-color: #1E40AF; }
-        25%  { background-color: #2563EB;  }
-        50%  { background-color: #3B82F6; }
-        75%  { background-color: #60A5FA; }
-        100% { background-color: #1E40AF; }
-      }
-
-      .bg-pip-pop {
-        animation: bgPipPop 2.2s infinite ease-in-out;
-      }
-    `}
-  </style>
 
 
       <div
@@ -53,17 +39,35 @@ const Hero = () => {
               px-6 py-3 rounded-3xl cursor-pointer
               transition-all duration-500 
               hover:bg-gradient-to-r hover:from-[#1f68bb] hover:to-[#6fb8ff]
-               hover:scale-105 hover:shadow-lg"
+               hover:scale-105 hover:shadow-lg font-bold"
   >
     Explore Products <FaAngleRight />
   </Link>
 </div>
+
+
               <div>
- <Link href="/product" className="bg-pip-pop text-white px-6 py-3 rounded-3xl flex items-center gap-3 cursor-pointer">
- <FaCartArrowDown />   Shop Now 
+
+                <div> 
+                   <Link
+                    href="/product"
+                   > <CustomButton 
+  icon={<FaCartArrowDown className="text-xl" />}
+  text="Shop Now"
+/>
   </Link>
+
+                </div>
+ {/* <Link
+        href="/product"
+        className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-[#74b95c] to-[#5e99ca] text-white font-semibold rounded-full shadow-lg hover:scale-105 transition-transform duration-300"
+      >
+        <FaCartArrowDown className="text-xl" />
+        Shop Now
+      </Link> */}
 </div>
           </div>
+        
          
         </div>
       </div>

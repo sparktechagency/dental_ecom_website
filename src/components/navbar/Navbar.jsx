@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
-import { useMemo } from "react";
 import React, { useRef, useState, useEffect } from "react";
 import { CiSearch } from "react-icons/ci";
 import { FaRegUser, FaTimes, FaBars } from "react-icons/fa";
@@ -34,9 +33,9 @@ export default function Navbar() {
     if (path === '/') {
       return pathname === path; 
     }
-    
     return pathname.startsWith(path);
   };
+
   const searchParams = useSearchParams();
   const dispatch = useDispatch();
   const [logoutApi, { isLoading: isLoggingOut }] = useLogoutMutation();
@@ -60,6 +59,7 @@ export default function Navbar() {
     setIsSearchOpen(false);
   };
 
+  // Debounced search effect
   useEffect(() => {
     const q = (searchText || '').trim();
     if (debounceRef.current) clearTimeout(debounceRef.current);
@@ -73,21 +73,33 @@ export default function Navbar() {
     };
   }, [searchText, navigate]);
 
+  // Handle responsive behavior
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      
+      // Close mobile menu when switching to desktop
+      if (!mobile && isMenuOpen) {
+        setIsMenuOpen(false);
+      }
+      
+      // Close search when switching to mobile if menu is open
+      if (mobile && isSearchOpen && isMenuOpen) {
+        setIsSearchOpen(false);
+      }
     };
 
     handleResize();
-
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [isMenuOpen, isSearchOpen]);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
+  // Clear cart on success pages
   useEffect(() => {
     if (!pathname) return;
     const isSuccess = pathname.startsWith('/checkout/success') || pathname === '/congratulations';
@@ -114,6 +126,7 @@ export default function Navbar() {
     }
   };
 
+  // Close menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -138,6 +151,7 @@ export default function Navbar() {
     };
   }, [isMenuOpen]);
 
+  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -167,88 +181,73 @@ export default function Navbar() {
   return (
     <nav className="bg-[#171716] text-white px-2 sm:px-4 md:px-6 py-3 sticky top-0 z-50">
       <div className="container mx-auto relative">
-        {/* Mobile Header */}
+        {/* Main Header */}
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center justify-center">
+          <Link href="/" className="flex items-center justify-center flex-shrink-0">
             <img
               src="/logo.svg"
               alt="company logo"
-              className="h-8 w-auto sm:h-10 md:h-12 lg:h-14"
+              className="h-8 w-auto sm:h-10 md:h-12 lg:h-14 transition-all duration-200"
             />
           </Link>
 
-          {/* Mobile Menu Button */}
-          <div className="flex items-center space-x-2 md:hidden">
-            {authUser ? (
-              <Link href="/my_cart" className="text-white p-2">
-                <RiShoppingCart2Line className="h-5 w-5" />
-              </Link>
-            ) : (
-              <button onClick={() => navigate.push('/sign_in')} className="text-white px-3 py-1 border border-[#136BFB] rounded">
-                Log in
-              </button>
-            )}
-            <button onClick={toggleSearch} className="text-white p-2">
-              <CiSearch className="h-5 w-5" />
-            </button>
-            <button
-              onClick={toggleMenu}
-              className="menu-button text-white p-2 focus:outline-none"
-              aria-label="Toggle menu"
-            >
-              {isMenuOpen ? (
-                <FaTimes className="h-5 w-5" />
-              ) : (
-                <FaBars className="h-5 w-5" />
-              )}
-            </button>
-          </div>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
+          {/* Desktop Navigation - Center */}
+          <div className="hidden lg:flex items-center space-x-6 xl:space-x-8 mx-4 flex-1 justify-center">
             <Link
               href="/"
-              className={`${isLinkActive('/') ? 'text-[#136BFB] font-medium' : 'text-white hover:text-gray-300'} transition-colors`}
+              className={`px-2 py-1 ${isLinkActive('/') ? 'text-[#136BFB] font-medium' : 'text-white hover:text-gray-300'} transition-colors duration-200 text-sm xl:text-base`}
             >
               Home
             </Link>
          
             <Link
               href="/product"
-              className={`${isLinkActive('/product') ? 'text-[#136BFB] font-medium' : 'text-white hover:text-gray-300'} transition-colors`}
+              className={`px-2 py-1 ${isLinkActive('/product') ? 'text-[#136BFB] font-medium' : 'text-white hover:text-gray-300'} transition-colors duration-200 text-sm xl:text-base`}
             >
-              Product
+              Dental Products Shop
             </Link>
-            <Link
-              href="/allcategory"
-              className={`${isLinkActive('/allcategory') ? 'text-[#136BFB] font-medium' : 'text-white hover:text-gray-300'} transition-colors`}
-            >
-              Category
-            </Link>
+          
             <Link
               href="/procedure_guide"
-              className={`${isLinkActive('/procedure_guide') ? 'text-[#136BFB] font-medium' : 'text-white hover:text-gray-300'} transition-colors`}
+              className={`px-2 py-1 ${isLinkActive('/procedure_guide') ? 'text-[#136BFB] font-medium' : 'text-white hover:text-gray-300'} transition-colors duration-200 text-sm xl:text-base`}
             >
-              Procedure Guide
+              Dental Procedure
             </Link>
+         
+            <Link
+              href="/about_us"
+              className={`px-2 py-1 ${isLinkActive('/about_us') ? 'text-[#136BFB] font-medium' : 'text-white hover:text-gray-300'} transition-colors duration-200 text-sm xl:text-base`}
+            >
+              About Us
+            </Link>
+            
+            <Link
+              href="/contact_us"
+              className={`px-2 py-1 ${isLinkActive('/contact_us') ? 'text-[#136BFB] font-medium' : 'text-white hover:text-gray-300'} transition-colors duration-200 text-sm xl:text-base`}
+            >
+              Contact Us
+            </Link>
+            
             <Link
               href="/pharmaceuticals"
-              className={`${isLinkActive('/pharmaceuticals') ? 'text-[#136BFB] font-medium' : 'text-white hover:text-gray-300'} transition-colors`}
+              className={`px-2 py-1 ${isLinkActive('/pharmaceuticals') ? 'text-[#136BFB] font-medium' : 'text-white hover:text-gray-300'} transition-colors duration-200 text-sm xl:text-base`}
             >
               Pharmaceuticals
             </Link>
+            
             <Link
               href="/blog"
-              className={`${isLinkActive('/blog') ? 'text-[#136BFB] font-medium' : 'text-white hover:text-gray-300'} transition-colors`}
+              className={`px-2 py-1 ${isLinkActive('/blog') ? 'text-[#136BFB] font-medium' : 'text-white hover:text-gray-300'} transition-colors duration-200 text-sm xl:text-base`}
             >
               Blog
             </Link>
           </div>
 
-          {/* Desktop Actions */}
-          <div className="hidden md:flex items-center justify-end space-x-2">
-              <div className="relative">
+          {/* Desktop Actions - Right Side */}
+          <div className="hidden md:flex items-center space-x-3 lg:space-x-4 flex-shrink-0">
+            {/* Search Bar - Visible on md and above */}
+            <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <CiSearch className="h-4 w-4 text-[#136BFB]" />
               </div>
@@ -257,72 +256,81 @@ export default function Navbar() {
                 placeholder="Search..."
                 value={searchText}
                 onChange={handleSearchChange}
-                onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); performSearch(); } }}
-                className="bg-black border border-[#136BFB] rounded-xl pl-10 pr-10 py-2 text-white placeholder-[#136BFB] focus:outline-none w-40 sm:w-48 md:w-64"
+                onKeyDown={(e) => { 
+                  if (e.key === 'Enter') { 
+                    e.preventDefault(); 
+                    performSearch(); 
+                  } 
+                }}
+                className="bg-black border border-[#136BFB] rounded-xl pl-10 pr-3 py-2 text-white placeholder-[#136BFB] focus:outline-none focus:ring-2 focus:ring-[#136BFB] focus:border-transparent w-40 sm:w-48 md:w-56 lg:w-64 transition-all duration-200 text-sm"
               />
-              {/* <button className="absolute inset-y-0 right-0 pr-3 flex items-center" onClick={performSearch}>
-                <VscSettings className="h-5 w-5 text-[#136BFB]" />
-              </button> */}
             </div>
-            <div className="flex-1 flex items-center justify-end space-x-2">
+
+            {/* User Actions */}
+            <div className="flex items-center space-x-2 lg:space-x-3">
               {authUser ? (
                 <>
-                  <div className="w-full relative flex">
+                  {/* Cart with badge */}
+                  <div className="relative">
                     <Link
                       href="/my_cart"
-                      className="w-full flex items-center justify-center px-3 py-2 border border-[#136BFB] text-[#136BFB] rounded-lg"
+                      className="flex items-center justify-center p-2 border border-[#136BFB] text-[#136BFB] rounded-lg hover:bg-[#136BFB] hover:text-white transition-colors duration-200"
                     >
-                      <RiShoppingCart2Line className="h-5 w-5" />
+                      <RiShoppingCart2Line className="h-5 w-5 lg:h-6 lg:w-6" />
                     </Link>
-                    <div className="absolute top-0 right-0 -mt-2 -mr-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
-                      <p>{mounted ? totalProduct : 0}</p>
-                    </div>
+                    {mounted && totalProduct > 0 && (
+                      <div className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-medium">
+                        {totalProduct > 99 ? '99+' : totalProduct}
+                      </div>
+                    )}
                   </div>
+
+                  {/* User Dropdown */}
                   <div className="relative" ref={dropdownRef}>
-                    <div
-                      className="flex items-center cursor-pointer group"
+                    <button
                       onClick={toggleDropdown}
+                      className="flex items-center focus:outline-none"
                     >
                       <img
                         src="https://i.ibb.co.com/RvFgZC8/aman.png"
                         alt="profile"
-                        height={70}
-                        width={70}
-                        className=" rounded-full"
+                        className="w-8 h-8 lg:w-10 lg:h-10 rounded-full border-2 border-[#136BFB] hover:border-white transition-colors duration-200"
                       />
-                    </div>
+                    </button>
+                    
                     {isDropdownOpen && (
-                      <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+                      <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl py-2 z-50 border border-gray-200">
                         <Link
                           href="/profile"
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-[#136BFB] transition-colors duration-200"
                           onClick={() => setIsDropdownOpen(false)}
                         >
                           My Profile
                         </Link>
                         <Link
                           href="/my_order"
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-[#136BFB] transition-colors duration-200"
                           onClick={() => setIsDropdownOpen(false)}
                         >
                           My Orders
                         </Link>
                         <Link
                           href="/favourite"
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-[#136BFB] transition-colors duration-200"
                           onClick={() => setIsDropdownOpen(false)}
                         >
                           Favourite
                         </Link>
                         <Link
                           href="/ai_support"
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-[#136BFB] transition-colors duration-200"
                           onClick={() => setIsDropdownOpen(false)}
                         >
                           Support
                         </Link>
+                        <div className="border-t border-gray-100 my-1"></div>
                         <button
-                          className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
+                          className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors duration-200"
                           onClick={handleLogout}
                           disabled={isLoggingOut}
                         >
@@ -333,157 +341,303 @@ export default function Navbar() {
                   </div>
                 </>
               ) : (
-                <div className="flex items-center gap-2">
-                  <button onClick={() => navigate.push('/sign_in')} className="px-4 py-2 border border-[#136BFB] text-[#136BFB] rounded-lg">Log in</button>
-                  <button onClick={() => navigate.push('/signup')} className="px-4 py-2 bg-[#136BFB] text-white rounded-lg">Sign up</button>
+                /* Login/Signup Buttons */
+                <div className="flex items-center space-x-2 lg:space-x-3">
+                  <button 
+                    onClick={() => navigate.push('/sign_in')} 
+                    className="px-3 py-2 lg:px-4 lg:py-2 border border-[#136BFB] text-[#136BFB] rounded-lg hover:bg-[#136BFB] hover:text-white transition-colors duration-200 text-sm lg:text-base"
+                  >
+                    Log in
+                  </button>
+                  <button 
+                    onClick={() => navigate.push('/signup')} 
+                    className="px-3 py-2 lg:px-4 lg:py-2 bg-[#136BFB] text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 text-sm lg:text-base"
+                  >
+                    Sign up
+                  </button>
                 </div>
               )}
             </div>
+          </div>
+
+          {/* Mobile Actions */}
+          <div className="flex items-center space-x-3 md:hidden">
+            {/* Search Icon - Mobile */}
+            <button 
+              onClick={toggleSearch} 
+              className="text-white p-2 hover:text-[#136BFB] transition-colors duration-200"
+              aria-label="Search"
+            >
+              <CiSearch className="h-5 w-5" />
+            </button>
+
+            {/* Cart - Mobile (only for logged in users) */}
+            {authUser && (
+              <div className="relative">
+                <Link 
+                  href="/my_cart" 
+                  className="text-white p-2 hover:text-[#136BFB] transition-colors duration-200 block"
+                >
+                  <RiShoppingCart2Line className="h-5 w-5" />
+                </Link>
+                {mounted && totalProduct > 0 && (
+                  <div className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-4 h-4 flex items-center justify-center text-xs">
+                    {totalProduct > 9 ? '9+' : totalProduct}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={toggleMenu}
+              className="menu-button text-white p-2 hover:text-[#136BFB] transition-colors duration-200 focus:outline-none"
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? (
+                <FaTimes className="h-5 w-5" />
+              ) : (
+                <FaBars className="h-5 w-5" />
+              )}
+            </button>
           </div>
         </div>
 
         {/* Mobile Search Bar */}
         {isSearchOpen && (
-          <div className="mt-3 md:hidden">
+          <div className="mt-3 md:hidden animate-fadeIn">
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <CiSearch className="h-4 w-4 text-[#136BFB]" />
               </div>
               <input
                 type="text"
-                placeholder="Search..."
+                placeholder="Search products..."
                 value={searchText}
                 onChange={handleSearchChange}
-                onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); performSearch(); } }}
-                className="w-full bg-black border border-[#136BFB] rounded-xl pl-10 pr-10 py-2 text-white placeholder-[#136BFB] focus:outline-none"
+                onKeyDown={(e) => { 
+                  if (e.key === 'Enter') { 
+                    e.preventDefault(); 
+                    performSearch(); 
+                  } 
+                }}
+                className="w-full bg-black border border-[#136BFB] rounded-xl pl-10 pr-10 py-3 text-white placeholder-[#136BFB] focus:outline-none focus:ring-2 focus:ring-[#136BFB] focus:border-transparent text-base"
               />
-              <button className="absolute inset-y-0 right-0 pr-3 flex items-center" onClick={performSearch}>
+              <button 
+                className="absolute inset-y-0 right-0 pr-3 flex items-center hover:text-white transition-colors duration-200" 
+                onClick={performSearch}
+              >
                 <VscSettings className="h-5 w-5 text-[#136BFB]" />
               </button>
             </div>
           </div>
         )}
+
+        {/* Tablet Navigation - Below header */}
+        <div className="hidden md:flex lg:hidden justify-center mt-3">
+          <div className="flex items-center space-x-4 overflow-x-auto py-2 scrollbar-hide">
+            <Link
+              href="/"
+              className={`whitespace-nowrap px-3 py-1 rounded-lg ${isLinkActive('/') ? 'text-[#136BFB] font-medium bg-blue-50 bg-opacity-10' : 'text-white hover:text-gray-300'} transition-colors duration-200 text-sm`}
+            >
+              Home
+            </Link>
+            <Link
+              href="/product"
+              className={`whitespace-nowrap px-3 py-1 rounded-lg ${isLinkActive('/product') ? 'text-[#136BFB] font-medium bg-blue-50 bg-opacity-10' : 'text-white hover:text-gray-300'} transition-colors duration-200 text-sm`}
+            >
+              Products
+            </Link>
+            <Link
+              href="/procedure_guide"
+              className={`whitespace-nowrap px-3 py-1 rounded-lg ${isLinkActive('/procedure_guide') ? 'text-[#136BFB] font-medium bg-blue-50 bg-opacity-10' : 'text-white hover:text-gray-300'} transition-colors duration-200 text-sm`}
+            >
+              Procedures
+            </Link>
+            <Link
+              href="/about_us"
+              className={`whitespace-nowrap px-3 py-1 rounded-lg ${isLinkActive('/about_us') ? 'text-[#136BFB] font-medium bg-blue-50 bg-opacity-10' : 'text-white hover:text-gray-300'} transition-colors duration-200 text-sm`}
+            >
+              About
+            </Link>
+            <Link
+              href="/contact_us"
+              className={`whitespace-nowrap px-3 py-1 rounded-lg ${isLinkActive('/contact_us') ? 'text-[#136BFB] font-medium bg-blue-50 bg-opacity-10' : 'text-white hover:text-gray-300'} transition-colors duration-200 text-sm`}
+            >
+              Contact
+            </Link>
+            <Link
+              href="/pharmaceuticals"
+              className={`whitespace-nowrap px-3 py-1 rounded-lg ${isLinkActive('/pharmaceuticals') ? 'text-[#136BFB] font-medium bg-blue-50 bg-opacity-10' : 'text-white hover:text-gray-300'} transition-colors duration-200 text-sm`}
+            >
+              Pharma
+            </Link>
+            <Link
+              href="/blog"
+              className={`whitespace-nowrap px-3 py-1 rounded-lg ${isLinkActive('/blog') ? 'text-[#136BFB] font-medium bg-blue-50 bg-opacity-10' : 'text-white hover:text-gray-300'} transition-colors duration-200 text-sm`}
+            >
+              Blog
+            </Link>
+          </div>
+        </div>
       </div>
 
-      {/* Mobile Menu Overlay and Content */}
+      {/* Mobile Menu Overlay */}
       <div
         className={`fixed inset-0 z-40 transition-opacity duration-300 ${
           isMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-        }`}
+        } md:hidden`}
         onClick={toggleMenu}
       >
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Sidebar */}
       <div
         className={`mobile-menu-container fixed top-0 left-0 h-full w-4/5 max-w-xs bg-[#171716] z-50 transform transition-transform duration-300 ease-in-out ${
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+        } md:hidden`}
       >
         <div className="p-6 h-full flex flex-col">
+          {/* Menu Header */}
           <div className="flex justify-between items-center mb-8">
-            <div className="w-24">
+            <Link href="/" onClick={() => setIsMenuOpen(false)}>
               <img
                 src="/logo.svg"
                 alt="company logo"
-                className="w-full h-auto"
+                className="w-24 h-auto"
               />
-            </div>
+            </Link>
             <button
               onClick={toggleMenu}
-              className="text-white p-2 -mr-2"
+              className="text-white p-2 -mr-2 hover:text-[#136BFB] transition-colors duration-200"
               aria-label="Close menu"
             >
               <FaTimes className="h-6 w-6" />
             </button>
           </div>
 
+          {/* Menu Navigation */}
           <nav className="flex-1 overflow-y-auto">
-            <div className="flex flex-col space-y-5">
+            <div className="flex flex-col space-y-1">
               <Link
                 href="/"
-                className={`block py-2 px-4 ${isLinkActive('/') ? 'text-[#136BFB] font-medium' : 'text-white hover:bg-gray-700'}`}
+                className={`block py-3 px-4 rounded-lg ${isLinkActive('/') ? 'text-[#136BFB] font-medium bg-blue-50 bg-opacity-10' : 'text-white hover:bg-gray-800'} transition-colors duration-200`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Home
               </Link>
+              
+              <Link
+                href="/product"
+                className={`block py-3 px-4 rounded-lg ${isLinkActive('/product') ? 'text-[#136BFB] font-medium bg-blue-50 bg-opacity-10' : 'text-white hover:bg-gray-800'} transition-colors duration-200`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Dental Products Shop
+              </Link>
+              
+              <Link
+                href="/procedure_guide"
+                className={`block py-3 px-4 rounded-lg ${isLinkActive('/procedure_guide') ? 'text-[#136BFB] font-medium bg-blue-50 bg-opacity-10' : 'text-white hover:bg-gray-800'} transition-colors duration-200`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Dental Procedure
+              </Link>
+              
               <Link
                 href="/about_us"
-                className={`block py-2 px-4 ${isLinkActive('/about_us') ? 'text-[#136BFB] font-medium' : 'text-white hover:bg-gray-700'}`}
+                className={`block py-3 px-4 rounded-lg ${isLinkActive('/about_us') ? 'text-[#136BFB] font-medium bg-blue-50 bg-opacity-10' : 'text-white hover:bg-gray-800'} transition-colors duration-200`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 About Us
               </Link>
+              
               <Link
-                href="/product"
-                className="text-white hover:text-gray-300 transition-colors"
-                onClick={toggleMenu}
+                href="/contact_us"
+                className={`block py-3 px-4 rounded-lg ${isLinkActive('/contact_us') ? 'text-[#136BFB] font-medium bg-blue-50 bg-opacity-10' : 'text-white hover:bg-gray-800'} transition-colors duration-200`}
+                onClick={() => setIsMenuOpen(false)}
               >
-                Product
+                Contact Us
               </Link>
-              <Link
-                href="/allcategory"
-                className="text-white hover:text-gray-300 transition-colors"
-                onClick={toggleMenu}
-              >
-                Category
-              </Link>
-              <Link
-                href="/procedure-guide"
-                className="text-white hover:text-gray-300 transition-colors"
-                onClick={toggleMenu}
-              >
-                Procedure Guide
-              </Link>
+              
               <Link
                 href="/pharmaceuticals"
-                className="text-white hover:text-gray-300 transition-colors"
-                onClick={toggleMenu}
+                className={`block py-3 px-4 rounded-lg ${isLinkActive('/pharmaceuticals') ? 'text-[#136BFB] font-medium bg-blue-50 bg-opacity-10' : 'text-white hover:bg-gray-800'} transition-colors duration-200`}
+                onClick={() => setIsMenuOpen(false)}
               >
                 Pharmaceuticals
               </Link>
+              
               <Link
                 href="/blog"
-                className={`block py-2 px-4 ${isLinkActive('/blog') ? 'text-[#136BFB] font-medium' : 'text-white hover:bg-gray-700'}`}
+                className={`block py-3 px-4 rounded-lg ${isLinkActive('/blog') ? 'text-[#136BFB] font-medium bg-blue-50 bg-opacity-10' : 'text-white hover:bg-gray-800'} transition-colors duration-200`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Blog
               </Link>
             </div>
 
+            {/* User Actions in Mobile Menu */}
             <div className="mt-8 pt-6 border-t border-gray-700">
-              <div className="flex flex-col space-y-4">
-                <button
-                  onClick={() => {
-                    navigate("/sign_in");
-                    toggleMenu();
-                  }}
-                  className="cursor-pointer w-full flex items-center justify-center space-x-2 px-4 py-3 border border-[#136BFB] text-[#136BFB] rounded-lg"
-                >
-                  <FaRegUser className="h-4 w-4" />
-                  <span>Log in</span>
-                </button>
-                <button
-                  onClick={() => {
-                    navigate("/signup");
-                    toggleMenu();
-                  }}
-                  className="cursor-pointer w-full flex items-center justify-center space-x-2 px-4 py-3 bg-[#136BFB] text-white rounded-lg"
-                >
-                  <FiUserPlus className="h-4 w-4" />
-                  <span>Sign up</span>
-                </button>
-                <button
-                  onClick={() => {
-                    navigate("/shopping-cart");
-                    toggleMenu();
-                  }}
-                  className="cursor-pointer w-full flex items-center justify-center space-x-2 px-4 py-3 border border-[#136BFB] text-[#136BFB] rounded-lg"
+              <div className="flex flex-col space-y-3">
+                {authUser ? (
+                  <>
+                    <Link
+                      href="/profile"
+                      className="flex items-center space-x-3 px-4 py-3 text-white hover:bg-gray-800 rounded-lg transition-colors duration-200"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <FaRegUser className="h-4 w-4" />
+                      <span>My Profile</span>
+                    </Link>
+                    <Link
+                      href="/my_order"
+                      className="flex items-center space-x-3 px-4 py-3 text-white hover:bg-gray-800 rounded-lg transition-colors duration-200"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <span>My Orders</span>
+                    </Link>
+                    <button
+                      onClick={handleLogout}
+                      disabled={isLoggingOut}
+                      className="flex items-center space-x-3 px-4 py-3 text-red-500 hover:bg-red-50 hover:bg-opacity-10 rounded-lg transition-colors duration-200 text-left"
+                    >
+                      <span>{isLoggingOut ? "Logging out..." : "Logout"}</span>
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      onClick={() => {
+                        navigate("/sign_in");
+                        setIsMenuOpen(false);
+                      }}
+                      className="flex items-center justify-center space-x-2 px-4 py-3 border border-[#136BFB] text-[#136BFB] rounded-lg hover:bg-[#136BFB] hover:text-white transition-colors duration-200"
+                    >
+                      <FaRegUser className="h-4 w-4" />
+                      <span>Log in</span>
+                    </button>
+                    <button
+                      onClick={() => {
+                        navigate("/signup");
+                        setIsMenuOpen(false);
+                      }}
+                      className="flex items-center justify-center space-x-2 px-4 py-3 bg-[#136BFB] text-white rounded-lg hover:bg-blue-700 transition-colors duration-200"
+                    >
+                      <FiUserPlus className="h-4 w-4" />
+                      <span>Sign up</span>
+                    </button>
+                  </>
+                )}
+                
+                <Link
+                  href="/my_cart"
+                  className="flex items-center justify-center space-x-2 px-4 py-3 border border-[#136BFB] text-[#136BFB] rounded-lg hover:bg-[#136BFB] hover:text-white transition-colors duration-200"
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   <RiShoppingCart2Line className="h-5 w-5" />
-                  <span>Cart</span>
-                </button>
+                  <span>Cart {mounted && totalProduct > 0 ? `(${totalProduct})` : ''}</span>
+                </Link>
               </div>
             </div>
           </nav>

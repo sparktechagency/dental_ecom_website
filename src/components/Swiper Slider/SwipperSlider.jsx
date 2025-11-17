@@ -12,19 +12,24 @@ const SwipperSlider = () => {
   return (
      <div className="container mx-auto overflow-hidden bg-transparent py-6">
       <Swiper
-
-        slidesPerView={5}
-        spaceBetween={30}
-        loop={true}
-
-        autoplay={{
-          delay: 3000, 
-          disableOnInteraction: false,
-        }}
-        speed={800}
-        modules={[Pagination, Autoplay]}
-        className="mySwiper h-42"
-      >
+  slidesPerView={5} // default
+  spaceBetween={30}
+  loop={true}
+  autoplay={{
+    delay: 3000,
+    disableOnInteraction: false,
+  }}
+  speed={800}
+  modules={[Pagination, Autoplay]}
+  className="mySwiper h-42"
+  breakpoints={{
+    320: { slidesPerView: 2, spaceBetween: 10 },   
+    480: { slidesPerView: 2, spaceBetween: 15 },   
+    768: { slidesPerView: 3, spaceBetween: 20 },  
+    1024: { slidesPerView: 4, spaceBetween: 25 },  
+    1280: { slidesPerView: 5, spaceBetween: 30 }, 
+  }}
+>
         <SwiperSlide className="  flex items-center justify-center border border-[#136bfb] shadow-lg hover:shadow-[#136BFB]/20">
           <div className="flex items-center justify-center  h-full">
              <Image src="/first_slider.png"
