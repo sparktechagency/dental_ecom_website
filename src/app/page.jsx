@@ -1,6 +1,7 @@
 // app/page.js
 import React from "react"; 
 import Slider from "../components/home/Slider";
+import Hero from "../components/home/Hero";
 import ExploreByCategory from "../components/home/ExploreByCategory";
 import HotSelling from "../components/home/HotSelling";
 import MagicMoney from "../components/home/MagicMoney";
@@ -10,7 +11,8 @@ import Subscribe from "../components/home/Subscribe";
 export default function Home() {
   return (
     <div>
-      <Slider />
+      <Hero/>
+      {/* <Slider /> */}
       <ExploreByCategory />
       <HotSelling />
       <MagicMoney />
