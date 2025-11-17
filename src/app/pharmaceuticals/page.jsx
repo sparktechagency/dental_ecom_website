@@ -5,6 +5,8 @@ import { FaMicroscope } from "react-icons/fa";
 import { FaEarthAmericas } from "react-icons/fa6";
 import { HiOutlineUsers } from "react-icons/hi2";
 import { MdOutlineMonitorHeart } from "react-icons/md";
+import CountUpOnScroll from "../../components/Counter 1M/CountUpOnScroll"
+import CountUp from "../../components/Counter 1M/CountUp"
 
 
 export default function Pharmaceuticals() {
@@ -201,7 +203,7 @@ export default function Pharmaceuticals() {
               {/* Header */}
               <div className="flex p-12 flex-col justify-center gap-2 items-center mb-4">
 
-                <p className="text-6xl font-bold ">50+ </p>
+                 <CountUp  endValue={50} finalText="50+"/>
                 <p>Countries Served</p>
               </div>
 
@@ -213,7 +215,7 @@ export default function Pharmaceuticals() {
               {/* Header */}
               <div className="flex p-12 flex-col justify-center gap-2 items-center mb-4">
 
-                <p className="text-6xl font-bold ">1M+ </p>
+                 <CountUp  endValue={1000000} finalText="1M+"/>
                 <p>Lives Impacted</p>
               </div>
 
@@ -225,7 +227,7 @@ export default function Pharmaceuticals() {
               {/* Header */}
               <div className="flex p-12 flex-col justify-center gap-2 items-center mb-4">
 
-                <p className="text-6xl font-bold ">200+ </p>
+                <CountUp  endValue={200} finalText="200+"/>
                 <p>Medicine Types</p>
               </div>
 

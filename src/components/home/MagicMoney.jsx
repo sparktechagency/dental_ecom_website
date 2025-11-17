@@ -15,13 +15,13 @@ export default function MagicMoney() {
           {/* Star decorations */}
           <div className="relative mb-6">
             <div className="absolute md:-top-4 -top-8 md:left-60 -left-6">
-              <img src="https://i.ibb.co/Q3kZpXGG/greenstar.png" alt="Green star" className="size-12" />
+              <img src="https://i.ibb.co/Q3kZpXGG/greenstar.png" alt="Green star" className="size-12 animate-pulse" />
             </div>
-            <div className="absolute md:-top-2 -top-5 md:right-60 -right-7">
-              <img src="https://i.ibb.co/XrC6xTDR/bluestar.png" alt="Blue star" className="size-12" />
+            <div className="absolute animate-pulse md:-top-2 -top-5 md:right-60 -right-7">
+              <img src="https://i.ibb.co/XrC6xTDR/bluestar.png" alt="Blue star" className="size-12 animate-pulse" />
             </div>
             
-            <h1 className="text-4xl font-bold text-white mb-4">
+            <h1 className="text-4xl font-bold text-white mb-4 animate-pulse">
               Unlock Growth with the Magic Money Formula
             </h1>
           </div>
