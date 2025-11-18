@@ -166,7 +166,7 @@ function ProcedureDetailsImpl({ id, searchParams }) {
         </div>
 
         {/* Select All Header */}
-        <div className="flex justify-between items-center mt-10">
+        {/* <div className="flex justify-between items-center mt-10">
           <h2 className="text-2xl font-bold text-white">
             Products ({products.length})
           </h2>
@@ -193,10 +193,10 @@ function ProcedureDetailsImpl({ id, searchParams }) {
               </div>
             </label>
           )}
-        </div>
+        </div> */}
         
         {/* Divider */}
-        <div className="border-b-2 border-gray-700 my-5"></div>
+        {/* <div className="border-b-2 border-gray-700 my-5"></div> */}
 
         {/* Product Grid */}
      
