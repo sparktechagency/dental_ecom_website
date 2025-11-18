@@ -5,6 +5,7 @@ import { useGetPageByKeyQuery } from "@/redux/feature/pages/pagesApi";
 
 export default function PrivacyPolicy() {
   const { data, isFetching, error } = useGetPageByKeyQuery("privacy");
+  console.log("ksdjflksflkasdj",data)
   
   const title = data?.data?.title || data?.title || "Privacy Policy";
   const content = data?.data?.content || data?.content || data?.data || "";

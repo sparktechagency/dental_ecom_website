@@ -42,7 +42,7 @@ export default function CategoryContent() {
           <CategoryCard
             key={idx}
             title={category?.name}
-            image={`${getBaseUrl()}${category.imageUrl}`}
+            image={`${category.imageUrl}`}
             link="/product"
           />
         ))}

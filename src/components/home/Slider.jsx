@@ -91,7 +91,7 @@ export default function Slider({
               <div
                 key={index}
                 style={{
-                  backgroundImage: `url('${getBaseUrl()}${image.imageUrl}')`,
+                  backgroundImage: `url('${image.imageUrl}')`,
                 }}
                 className="w-full h-full flex-shrink-0 bg-cover bg-center bg-no-repeat rounded-lg"
               ></div>

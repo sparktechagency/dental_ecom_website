@@ -6,10 +6,10 @@ import { FaCheck } from "react-icons/fa";
 const ProductCard = ({ product, isSelected, onSelect }) => {
   const getProductImage = () => {
     if (product?.images && product?.images.length > 0) {
-      return `${getBaseUrl()}${product.images[0]}`;
+      return `${product.images[0]}`;
     }
     if (product?.image) {
-      return `${getBaseUrl()}${product.image}`;
+      return `${product.image}`;
     }
     return '/image.png';
   };

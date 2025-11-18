@@ -44,7 +44,7 @@ export default function ProcedureGuide() {
             <div className="relative h-[20rem] md:h-[25rem] overflow-hidden">
               <img
                 title={procedure?.name}
-                src={`${getBaseUrl()}${procedure.imageUrl}`}
+                src={`${procedure.imageUrl}`}
                 alt={procedure.title}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />

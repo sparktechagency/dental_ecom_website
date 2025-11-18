@@ -62,7 +62,7 @@ export default function AllOrder() {
         || first?.product?.image
         || (Array.isArray(first?.product?.images) ? first.product.images[0] : "");
       if (img && !/^https?:\/\//i.test(img)) {
-        img = `${getBaseUrl()}${img}`;
+        img = `${img}`;
       }
       return {
         key: order._id || order.id || `#${idx + 1}`,

@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import { toast } from "sonner";
 
 export default function HotSellingCard({ product, image, title, description, id }) {
+  console.log("producttt",product)
   const router = useRouter();
   const dispatch = useDispatch();
   const user = useSelector((state) => state?.auth?.user);
@@ -74,18 +75,18 @@ export default function HotSellingCard({ product, image, title, description, id 
     }
   };
 
-  const handleWishlistClick = () => {
-    router.push("/favourite");
-  };
+  // const handleWishlistClick = () => {
+  //   router.push("/favourite");
+  // };
 
   const productImage =
     image ||
-    product?.images?.[0] ||
+    product?.images ||
     "https://placehold.co/300x300/171717/ffffff?text=No+Image";
   const productTitle = title || product?.name || "Default Title";
   const productDescription =
     description || product?.description || "Default Description";
-  const productId = id || product?._id;
+  const productId = product?._id || product?._id;
 
   return (
     <div className="bg-[#1E1E1E] rounded-lg p-4 shadow-lg flex flex-col h-full transition-all duration-300 hover:shadow-xl hover:shadow-[#136BFB]/20 hover:-translate-y-1">
@@ -100,14 +101,14 @@ export default function HotSellingCard({ product, image, title, description, id 
               "https://placehold.co/300x300/171717/ffffff?text=No+Image";
           }}
         />
-        <div className="absolute top-2 right-2">
+        {/* <div className="absolute top-2 right-2">
           <img
             src="/favourite.svg"
             alt="heart"
             className="cursor-pointer hover:scale-110 transition-all duration-300"
             onClick={handleWishlistClick}
           />
-        </div>
+        </div> */}
       </div>
 
       <div className="flex flex-col gap-3 mt-4 flex-1 group-hover:text-white">

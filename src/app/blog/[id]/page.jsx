@@ -31,7 +31,7 @@ const BlogDetails = () => {
       <div className="relative rounded-lg shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300 group mb-6">
         <div className="relative h-[20rem] md:h-[25rem] overflow-hidden">
           <img
-            src={`${getBaseUrl()}${blogDetails?.imageUrl?.[0]}`}
+            src={`${blogDetails?.imageUrl?.[0]}`}
             alt={blogDetails?.title}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />

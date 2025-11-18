@@ -31,7 +31,6 @@ const ProductDetails = () => {
 
   const { data, isLoading, isError } = useFetchProductbyIdQuery(id);
   const product = data?.data;
-  console.log(product);
   const user = useSelector((state) => state?.auth?.user);
   const IsLogin = !!user;
   const isInCart = (() => {
@@ -42,7 +41,7 @@ const ProductDetails = () => {
 
   useEffect(() => {
     if (product && product.images && product.images.length > 0) {
-      setSelectedImage(`${getBaseUrl()}${product.images[0]}`);
+      setSelectedImage(`${product.images[0]}`);
     }
   }, [product]);
 
@@ -191,11 +190,11 @@ const ProductDetails = () => {
               product.images.map((img, i) => (
                 <img
                   key={i}
-                  src={`${getBaseUrl()}${img}`}
+                  src={`${img}`}
                   alt={`thumb-${i}`}
-                  onClick={() => setSelectedImage(`${getBaseUrl()}${img}`)}
+                  onClick={() => setSelectedImage(`${img}`)}
                   className={`w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-md cursor-pointer object-cover ${
-                    selectedImage === `${getBaseUrl()}${img}`
+                    selectedImage === `${img}`
                       ? "ring-2 ring-blue-500"
                       : ""
                   }`}

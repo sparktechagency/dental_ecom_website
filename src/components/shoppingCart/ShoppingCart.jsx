@@ -243,10 +243,10 @@ const ShoppingCart = () => {
 
   const getProductImage = (product) => {
     if (product?.images && product.images.length > 0 && product.images[0]) {
-      return `${getBaseUrl()}${product.images[0]}`;
+      return `${product.images[0]}`;
     }
     if (product?.image) {
-      return `${getBaseUrl()}${product.image}`;
+      return `${product.image}`;
     }
     return "/image/icons/noproduct.png";
   };

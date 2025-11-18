@@ -76,7 +76,7 @@ export default function BlogContent() {
         {filteredBlogs?.map((blog, idx) => (
           <BlogCard
             key={idx}
-            image={`${getBaseUrl()}${blog.imageUrl?.[0]}`}
+            image={`${blog.imageUrl?.[0]}`}
             id={blog?._id}
             title={blog?.title}
             description={blog?.description}

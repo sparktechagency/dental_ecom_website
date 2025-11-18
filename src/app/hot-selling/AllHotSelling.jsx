@@ -51,7 +51,7 @@ const AllHotSelling = () => {
             key={product._id}
             product={product} 
             id={product._id}
-            image={`${getBaseUrl()}${product?.images?.[0]}`}
+            image={`${product?.images?.[0]}`}
             title={product?.name}
             description={product?.description}
           />

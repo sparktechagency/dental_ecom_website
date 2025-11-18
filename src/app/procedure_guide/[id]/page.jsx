@@ -148,7 +148,7 @@ function ProcedureDetailsImpl({ id, searchParams }) {
         <div className="relative bg-white rounded-2xl shadow-sm overflow-hidden mb-8">
           <div className="aspect-w-16 aspect-h-9">
             <img
-              src={`${getBaseUrl()}${procedureDetails?.imageUrl}`}
+              src={`${procedureDetails?.imageUrl}`}
               alt="Endodontic procedure equipment"
               className="w-full h-80 object-cover"
             />
@@ -199,52 +199,7 @@ function ProcedureDetailsImpl({ id, searchParams }) {
         <div className="border-b-2 border-gray-700 my-5"></div>
 
         {/* Product Grid */}
-        {products.length === 0 ? (
-          <div className="text-center py-10">
-            <p className="text-gray-400 text-xl">No products found for this procedure</p>
-          </div>
-        ) : (
-          <>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 mb-8">
-              {products.map((product) => (
-                <ProductCard
-                  key={product._id}
-                  product={product}
-                  isSelected={selectedItems.has(product._id)}
-                  onSelect={() => handleItemSelect(product._id)}
-                />
-              ))}
-            </div>
-
-            {/* Add to Cart Button */}
-            <div className="flex justify-center">
-              <button
-                onClick={handleAddToCart}
-                disabled={selectedCount === 0 || isAddingToCart}
-                aria-busy={isAddingToCart}
-                className={`flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold text-white transition-all duration-200 ${
-                  selectedCount > 0 && !isAddingToCart
-                    ? "bg-blue-500 hover:bg-blue-600 transform hover:scale-105 shadow-lg hover:shadow-xl"
-                    : "bg-gray-500 cursor-not-allowed opacity-80"
-                }`}
-              >
-                {isAddingToCart ? (
-                  <svg className="w-5 h-5 animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M21 12a9 9 0 1 1-6.219-8.56" />
-                  </svg>
-                ) : (
-                  <PiShoppingCartBold className="w-5 h-5" />
-                )}
-                <span>
-                  {isAddingToCart 
-                    ? "Adding..." 
-                    : `Add To Cart ${selectedCount > 0 ? `(${selectedCount})` : ''}`
-                  }
-                </span>
-              </button>
-            </div>
-          </>
-        )}
+     
       </div>
     </div>
    </Suspense>

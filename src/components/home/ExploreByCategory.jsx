@@ -26,7 +26,7 @@ const ExploreByCategory = () => {
           <CategoryCard
             key={idx}
             title={category?.name}
-            image={`${getBaseUrl()}${category?.imageUrl}`}
+            image={`${category?.imageUrl}`}
             link={`/product?category=${encodeURIComponent(category?._id || '')}`}
           />
         ))}

@@ -24,7 +24,7 @@ const HotSelling = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5 container mx-auto px-5 md:px-0">
         {products.map((product) => (
           <HotSellingCard
-            image={`${getBaseUrl()}${product?.images?.[0]}`}
+            image={`${product?.images?.[0]}`}
             key={product._id}
             id={product?.productId}
             product={product}

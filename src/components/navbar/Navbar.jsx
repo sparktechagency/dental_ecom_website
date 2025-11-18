@@ -314,13 +314,13 @@ export default function Navbar() {
                         >
                           My Orders
                         </Link>
-                        <Link
+                        {/* <Link
                           href="/favourite"
                           className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-[#136BFB] transition-colors duration-200"
                           onClick={() => setIsDropdownOpen(false)}
                         >
                           Favourite
-                        </Link>
+                        </Link> */}
                         <Link
                           href="/ai_support"
                           className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-[#136BFB] transition-colors duration-200"

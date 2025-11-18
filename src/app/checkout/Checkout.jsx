@@ -100,7 +100,7 @@ export default function Checkout() {
         let img = candidates.find(Boolean) || '';
         if (!img) return '/image.png';
         if (/^https?:\/\//i.test(img)) return img;
-        return `${getBaseUrl()}${img}`;
+        return `${img}`;
     };
 
     return (
