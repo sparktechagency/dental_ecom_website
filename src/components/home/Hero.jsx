@@ -2,7 +2,7 @@ import React from 'react'
 import { FaAngleRight } from "react-icons/fa6";
 import { FaCartArrowDown } from "react-icons/fa6";
 import Link from 'next/link'
-import CustomButton from "../CustomButton/CustomButton"
+import CustomButton from "../customButton/CustomButton"
 
 const Hero = () => {
   return (
