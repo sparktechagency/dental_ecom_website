@@ -42,7 +42,7 @@ const SaveOverTime = () => {
   ];
 
   return (
-    <div className="rounded-2xl py-6 sm:py-8 md:py-12 border border-neutral-600">
+    <div className="rounded-2xl py-6 sm:py-8 md:py-12 border border-[#d3e4fd]">
       {/* Header */}
       <div className="flex items-center mb-4 sm:mb-6 ml-4 sm:ml-6 md:ml-8 px-2 sm:px-0">
         <FiDollarSign className="text-[#4a90e2] text-2xl mr-2" />

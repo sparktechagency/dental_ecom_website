@@ -86,7 +86,7 @@ export default function MagicMoney() {
               </div>
 
               {/* Magic Money Formula Card */}
-              <div className="rounded-2xl p-6 border border-gray-700 text-center">
+              <div className="rounded-2xl p-6 border border-[#d3e4fd] text-center">
                 <div>
                   <div className="text-[#666e7a] text-xl mb-2">
                     Enhanced Business Value
@@ -164,28 +164,24 @@ export default function MagicMoney() {
                     ) : item.isResult ? (
                       <div
                         key={idx}
-                        className="flex flex-col box-animation items-center justify-center border border-[#6F6F6F] w-[280px] md:w-[150px] h-[160px] rounded-lg"
+                        className="flex flex-col box-animation items-center justify-center bg-[#7ac142] w-[280px] md:w-[150px] h-[160px] rounded-lg px-2 "
                       >
-                        <div className="text-green-400 text-2xl font-bold">
+                        <div className="text-white text-2xl font-bold">
                           {item.value}
                         </div>
-                        <div className="text-gray-400 text-sm">
+                        <div className="text-white text-sm">
                           {item.label}
                         </div>
                       </div>
                     ) : (
                       <div
                         key={idx}
-                        className="flex flex-col items-center justify-center border border-[#6F6F6F] mx-auto w-[280px] md:w-[150px] h-[160px] p-3 rounded-lg"
+                        className="flex flex-col items-center justify-center mx-auto w-[280px] md:w-[150px] h-[160px] p-3 rounded-lg shadow-xl"
                       >
                         <div
-                          className={`w-10 h-10 ${item.bg} rounded-full flex items-center justify-center mb-2`}
+                          className="w-10 h-10 text-[#5999e4] rounded-full flex items-center justify-center mb-2 text-xl font-bold"
                         >
-                          <img
-                            src={item.icon}
-                            alt={item.label}
-                            className="w-8 h-8"
-                          />
+                         <p>{item.value}</p>
                         </div>
                         <div className="text-white font-bold">{item.value}</div>
                         <div className="text-gray-400 text-sm">
