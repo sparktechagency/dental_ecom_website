@@ -7,7 +7,7 @@ import { MdLocalShipping } from 'react-icons/md'
 const FreeShipping = () => {
   return (
     <div className='container mx-auto'>
-        <div className='flex  gap-24 justify-center items-center py-12'>
+        <div className='flex  gap-24 justify-center items-center py-12 flex-wrap'>
             <div className='flex text-center gap-4 text-black items-center
             font-semibold text-base
             ' >

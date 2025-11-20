@@ -9,6 +9,7 @@ import TextWrappper from "../components/home/TextWrappper";
 import Buttonsgradiants from "../components/home/Buttonsgradiants";
 import FreeShipping from "../components/home/FreeShipping";
 import PaymentCards from "../components/home/PaymentCards";
+import FeaturedEquipment from "../components/home/FeaturedEquipment";
 import BgImage from "../components/bgImage/BgImage";
 import AboutUs from "../components/home/AboutUs";
 import Subscribe from "../components/home/Subscribe";
@@ -25,6 +26,7 @@ export default function Home() {
       <MagicMoney />
       <TextWrappper/>
       <Buttonsgradiants/>
+      <FeaturedEquipment/>
       <FreeShipping/>
       <BgImage/>
       <PaymentCards/>

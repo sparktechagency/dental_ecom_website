@@ -108,7 +108,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex-shrink-0">
           <img
-            src="/logo.svg"
+            src="/logo.png"
             alt="company logo"
             className="h-9 w-auto sm:h-10 md:h-12"
           />
