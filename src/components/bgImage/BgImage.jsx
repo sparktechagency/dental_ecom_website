@@ -11,7 +11,7 @@ const BgImage = () => {
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         width: "100%",
-        height: "100vh",
+        // height: "100vh",
       }}
       className="bg-fixed"
     >
