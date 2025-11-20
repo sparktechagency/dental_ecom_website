@@ -8,7 +8,6 @@ import { getBaseUrl } from '@/utils/getBaseUrl';
 
 const AllHotSelling = () => {
   const { data: products = [], isLoading, error } = useFetchAllHotSellingQuery();
-  console.log("Hot Products --->", products); 
 
   if (isLoading) {
     return (

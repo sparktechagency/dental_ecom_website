@@ -9,7 +9,6 @@ import Swal from "sweetalert2";
 import { toast } from "sonner";
 
 export default function HotSellingCard({ product, image, title, description, id }) {
-  console.log("producttt",product)
   const router = useRouter();
   const dispatch = useDispatch();
   const user = useSelector((state) => state?.auth?.user);

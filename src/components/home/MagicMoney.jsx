@@ -104,14 +104,14 @@ export default function MagicMoney() {
                     to sell.
                   </div>
                 </div>
-{/* 
+
                 <div className="flex items-center justify-center my-6">
-                  <span className="text-white font-medium mr-2">✨</span>
-                  <span className="text-white font-semibold">
+                  <span className="text-black font-medium mr-2 animate-bounce">✨</span>
+                  <span className="text-black font-semibold ">
                     Magic Money Formula
                   </span>
-                  <span className="text-white font-medium ml-2">✨</span>
-                </div> */}
+                  {/* <span className="text-white font-medium ml-2">✨</span> */}
+                </div>
 
                 {/* Formula Visualization */}
                 <div className="flex flex-col md:flex-row items-center justify-center space-x-4 text-center">
@@ -156,7 +156,7 @@ export default function MagicMoney() {
                       <div
                         key={idx}
                         className="text-blue-400 text-2xl font-bold 
-                  ml-4
+                  ml-4 spin
                   "
                       >
                         {item.symbol}
@@ -164,7 +164,7 @@ export default function MagicMoney() {
                     ) : item.isResult ? (
                       <div
                         key={idx}
-                        className="flex flex-col items-center justify-center border border-[#6F6F6F] w-[280px] md:w-[150px] h-[160px] rounded-lg"
+                        className="flex flex-col box-animation items-center justify-center border border-[#6F6F6F] w-[280px] md:w-[150px] h-[160px] rounded-lg"
                       >
                         <div className="text-green-400 text-2xl font-bold">
                           {item.value}
