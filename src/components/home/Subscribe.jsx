@@ -65,18 +65,18 @@ export default function Subscribe() {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <div className="relative bg-[#171716] rounded-xl p-8 md:p-20 mx-auto w-full">
+      <div className="relative rounded-xl p-8 md:p-20 mx-auto w-full">
       <div className="absolute bottom-0 right-0 pointer-events-none">
         <div className="w-[500px] h-[500px] bg-[#136BFB] opacity-20 blur-3xl rounded-full"></div>
       </div>
 
       <div className="relative z-10">
         <div className="text-center mb-8">
-          <h2 className="text-2xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-black mb-4">
             Stay Sharp with the Latest in Dental Supplies
           </h2>
-          <p className="text-gray-300 text-lg md:text-xl py-4">
-            Join our newsletter to access smart savings and clinical insights.
+          <p className="text-[#777a80] text-sm py-1">
+          Subscribe to our newsletter for the latest products, special offers, and dental industry insights.
           </p>
         </div>
 
@@ -84,7 +84,7 @@ export default function Subscribe() {
           onSubmit={handleSubmit}
           className="flex flex-col items-center gap-4 w-full"
         >
-          <div className="w-full max-w-[50rem]">
+          <div className="w-full max-w-[30rem]">
             <input
               type="email"
               placeholder="Enter Your Email"
@@ -98,7 +98,7 @@ export default function Subscribe() {
           <button
             type="submit"
             disabled={isLoading}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-200 shadow-md text-lg w-full px-4 py-2 max-w-[20rem] disabled:opacity-60 disabled:cursor-not-allowed"
+            className="bg-gradient-to-r from-[#895df6] to-[#179fea] py-3 rounded-lg  text-white font-medium transition-colors duration-200 shadow-md text-lg w-full px-4 max-w-[12rem] disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
           >
             {isLoading ? "Subscribing..." : "Subscribe!"}
           </button>

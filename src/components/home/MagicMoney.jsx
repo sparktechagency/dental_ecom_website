@@ -156,7 +156,7 @@ export default function MagicMoney() {
                       <div
                         key={idx}
                         className="text-blue-400 text-2xl font-bold 
-                  ml-4 spin
+                          ml-4 spin
                   "
                       >
                         {item.symbol}
@@ -191,7 +191,10 @@ export default function MagicMoney() {
                     )
                   )}
                 </div>
+
+               
               </div>
+              
             </div>
           </div>
         </div>

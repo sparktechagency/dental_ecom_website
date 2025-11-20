@@ -5,6 +5,9 @@ import Hero from "../components/home/Hero";
 import ExploreByCategory from "../components/home/ExploreByCategory";
 import HotSelling from "../components/home/HotSelling";
 import MagicMoney from "../components/home/MagicMoney";
+import TextWrappper from "../components/home/TextWrappper";
+import Buttonsgradiants from "../components/home/Buttonsgradiants";
+import BgImage from "../components/bgImage/BgImage";
 import AboutUs from "../components/home/AboutUs";
 import Subscribe from "../components/home/Subscribe";
 import SwipperSlider from './../components/Swiper Slider/SwipperSlider';
@@ -18,8 +21,10 @@ export default function Home() {
       {/* <ExploreByCategory />
       <HotSelling /> */}
       <MagicMoney />
-      <AboutUs />
-      <Subscribe />
+      <TextWrappper/>
+      <Buttonsgradiants/>
+      <BgImage/>
+     
     </div>
   );
 }
