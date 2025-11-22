@@ -38,7 +38,7 @@ const CountUp = ({ endValue, finalText, speed = 50 }) => {
 
   return (
     <div ref={ref}>
-      <p className="text-6xl font-bold">
+      <p className="text-6xl font-bold text-[#4a90e2]">
         {showFinal ? finalText : count}
       </p>
     </div>

@@ -17,13 +17,13 @@ export default function Pharmaceuticals() {
 
       {/* tag */}
       <div className="pt-10 flex flex-col justify-center items-center w-full gap-10">
-        <div className="bg-[#136bfb] rounded-3xl py-2 px-4">
-          <p>Pharmaceutical Division</p>
+        <div className="bg-[#f2fce2] rounded-3xl py-2 px-4">
+          <p className="text-[#639f49]">Pharmaceutical Division</p>
         </div>
         <div className="flex flex-col gap-4">
-          <h1 className="text-center font-bold text-3xl lg:text-5xl">Revolutionizing Global Healthcare Access </h1>
+          <h1 className="text-center font-bold text-3xl lg:text-5xl text-[#4a90e2]">Revolutionizing Global Healthcare Access </h1>
 
-          <p className="text-center text-sm md:text-base">
+          <p className="text-center text-sm md:text-base text-[#515863]">
             RNA Supplies is expanding its mission to address critical medication shortages worldwide.
           </p>
         </div>
@@ -55,16 +55,16 @@ export default function Pharmaceuticals() {
       {/* key focus area */}
       <div className="py-16">
         <div className="flex flex-col gap-12 ">
-          <h3 className="text-center text-3xl font-semibold"> Key Focus Areas </h3>
+          <h3 className="text-center text-3xl font-semibold text-black"> Key Focus Areas </h3>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md: gap-6 w-full">
             {/* first caard */}
 
-            <div className="border pl-4 pr-12 pt-4 pb-6 rounded-lg w-full">
+            <div className="border border-[#d3e4fd] pl-4 pr-12 pt-4 pb-6 rounded-lg w-full">
               {/* Header */}
               <div className="flex gap-4 items-center mb-4">
-                <FaRegHeart className="text-xl font-semibold" />
-                <p className="text-xl font-semibold">Common Conditions</p>
+                <FaRegHeart className="text-xl font-semibold text-[#7ac142]" />
+                <p className="text-xl font-semibold text-black">Common Conditions</p>
               </div>
 
               {/* List Section */}
@@ -72,7 +72,7 @@ export default function Pharmaceuticals() {
                 {items.map((item, index) => (
                   <li
                     key={index}
-                    className="p-2 rounded-lg text-sm"
+                    className="p-2 rounded-lg text-sm text-[#616a76]"
                   >
                     {item}
                   </li>
@@ -83,8 +83,8 @@ export default function Pharmaceuticals() {
 
             <div className="border pl-4 pr-12 pt-4 pb-6 rounded-lg w-full">
               <div className="flex gap-4 items-center mb-4">
-                <FaMicroscope className="text-xl font-semibold" />
-                <p className="text-xl font-semibold">Rare Diseases</p>
+                <FaMicroscope className="text-xl font-semibold text-[#4a90e2]" />
+                <p className="text-xl font-semibold text-black">Rare Diseases</p>
               </div>
 
               {/* List Section */}
@@ -92,7 +92,7 @@ export default function Pharmaceuticals() {
                 {items.map((item, index) => (
                   <li
                     key={index}
-                    className="p-2 rounded-lg text-sm"
+                    className="p-2 rounded-lg text-sm text-[#616a76]"
                   >
                     {item}
                   </li>
@@ -104,8 +104,8 @@ export default function Pharmaceuticals() {
             <div className="border pl-4 pr-12 pt-4 pb-6 rounded-lg w-full">
               {/* Header */}
               <div className="flex gap-4 items-center mb-4">
-                <FaEarthAmericas className="text-xl font-semibold" />
-                <p className="text-xl font-semibold">Global Access</p>
+                <FaEarthAmericas className="text-xl font-semibold text-[#7ac142]" />
+                <p className="text-xl font-semibold text-black">Global Access</p>
               </div>
 
               {/* List Section */}
@@ -113,7 +113,7 @@ export default function Pharmaceuticals() {
                 {items.map((item, index) => (
                   <li
                     key={index}
-                    className="p-2 rounded-lg text-sm"
+                    className="p-2 rounded-lg text-sm text-[#616a76]"
                   >
                     {item}
                   </li>
@@ -129,7 +129,7 @@ export default function Pharmaceuticals() {
       {/* Our Process */}
       <div className="border p-4 rounded-2xl py-16">
         <div className="flex flex-col gap-12 ">
-          <h3 className="text-center text-3xl font-semibold"> Our Process</h3>
+          <h3 className="text-center text-3xl font-semibold text-black"> Our Process</h3>
 
           <div className="flex flex-wrap md: gap-6 w-full">
             {/* first caard */}
@@ -137,9 +137,9 @@ export default function Pharmaceuticals() {
             <div className="w-64">
               {/* Header */}
               <div className="flex flex-col gap-2 items-center mb-4">
-                <FaRegHeart className="text-xl font-semibold" />
-                <p className="text-xl font-semibold">Partnership</p>
-                <p className="text-sm text-center">Collaborate with governments and healthcare providers</p>
+                <FaRegHeart className="text-xl font-semibold text-black" />
+                <p className="text-xl font-semibold text-black">Partnership</p>
+                <p className="text-sm text-center text-black">Collaborate with governments and healthcare providers</p>
               </div>
 
             </div>
@@ -148,9 +148,9 @@ export default function Pharmaceuticals() {
             <div className="w-64">
               {/* Header */}
               <div className="flex flex-col gap-2 items-center mb-4">
-                <MdOutlineMonitorHeart className="text-xl font-semibold" />
-                <p className="text-xl font-semibold">Assessment</p>
-                <p className="text-sm text-center">Analyze regional healthcare needs and gaps</p>
+                <MdOutlineMonitorHeart className="text-xl font-semibold text-black" />
+                <p className="text-xl font-semibold text-black">Assessment</p>
+                <p className="text-sm text-center text-black">Analyze regional healthcare needs and gaps</p>
               </div>
 
             </div>
@@ -159,9 +159,9 @@ export default function Pharmaceuticals() {
             <div className="w-64">
               {/* Header */}
               <div className="flex flex-col gap-2 items-center mb-4">
-                <BiInjection className="text-xl font-semibold" />
-                <p className="text-xl font-semibold">Distribution</p>
-                <p className="text-sm text-center">Implement efficient supply chain solutions</p>
+                <BiInjection className="text-xl font-semibold text-black" />
+                <p className="text-xl font-semibold text-black">Distribution</p>
+                <p className="text-sm text-center text-black">Implement efficient supply chain solutions</p>
               </div>
 
             </div>
@@ -170,9 +170,9 @@ export default function Pharmaceuticals() {
             <div className="w-64">
               {/* Header */}
               <div className="flex flex-col gap-2 items-center mb-4">
-                <HiOutlineUsers className="text-xl font-semibold" />
-                <p className="text-xl font-semibold">Impact</p>
-                <p className="text-sm text-center">Monitor and measure healthcare outcomes</p>
+                <HiOutlineUsers className="text-xl font-semibold text-black" />
+                <p className="text-xl font-semibold text-black">Impact</p>
+                <p className="text-sm text-center text-black">Monitor and measure healthcare outcomes</p>
               </div>
 
             </div>
@@ -186,12 +186,12 @@ export default function Pharmaceuticals() {
       <div className="py-16">
         <div className="flex flex-col gap-24 ">
           <div className="flex flex-col justify-center items-center gap-5 max-w-2xl mx-auto">
-            <h3 className="text-center text-3xl font-semibold"> Join Our Mission </h3>
-            <p className="text-center text-sm md:text-base">
+            <h3 className="text-center text-3xl font-semibold text-black"> Join Our Mission </h3>
+            <p className="text-center text-sm md:text-base text-black">
               Together, we can make a significant impact on global healthcare accessibility. Partner with us to bring essential medicines to those who need them most.
             </p>
 
-            <div className="bg-[#136bfb] rounded-3xl py-2 px-4">
+            <div className="bg-[#4a90e2] rounded-3xl py-2 px-4">
               <p className="text-center">Contact Our Pharmaceutical Division</p>
             </div>
           </div>
@@ -204,7 +204,7 @@ export default function Pharmaceuticals() {
               <div className="flex p-12 flex-col justify-center gap-2 items-center mb-4">
 
                  <CountUp  endValue={50} finalText="50+"/>
-                <p>Countries Served</p>
+                <p className="text-[#727a85]">Countries Served</p>
               </div>
 
 
@@ -216,7 +216,7 @@ export default function Pharmaceuticals() {
               <div className="flex p-12 flex-col justify-center gap-2 items-center mb-4">
 
                  <CountUp  endValue={1000000} finalText="1M+"/>
-                <p>Lives Impacted</p>
+                <p className="text-[#727a85]">Lives Impacted</p>
               </div>
 
 
@@ -228,7 +228,7 @@ export default function Pharmaceuticals() {
               <div className="flex p-12 flex-col justify-center gap-2 items-center mb-4">
 
                 <CountUp  endValue={200} finalText="200+"/>
-                <p>Medicine Types</p>
+                <p className="text-[#727a85]">Medicine Types</p>
               </div>
 
 
