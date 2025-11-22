@@ -13,7 +13,7 @@ const BlogCard = ({ id,image, title, description, date, blogId }) => {
   return (
     <Link
       href={`/blog/${id}`}
-      className="border-[#6F6F6F] border-[1.5px] bg-[#1c1c1c] rounded-md overflow-hidden max-w-[365px] cursor-pointer transition-all duration-300 hover:shadow-lg hover:shadow-[#136BFB]/20 hover:-translate-y-1"
+      className="border-[#d3e4fd] border-[1.5px] rounded-md overflow-hidden max-w-[365px] cursor-pointer transition-all duration-300 hover:shadow-lg hover:shadow-[#136BFB]/20 hover:-translate-y-1"
     >
       <div className="overflow-hidden group">
         <img
@@ -29,7 +29,7 @@ const BlogCard = ({ id,image, title, description, date, blogId }) => {
 
       {/* content */}
       <div className="p-5 flex flex-col gap-2">
-        <p className="text-white text-xl font-semibold cursor-pointer">
+        <p className="text-black text-xl font-semibold cursor-pointer">
           {title}
         </p>
         <p className="text-[#9F9C96] text-sm">{description}</p>
