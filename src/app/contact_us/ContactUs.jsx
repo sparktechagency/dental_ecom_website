@@ -55,8 +55,10 @@ export default function ContactUs() {
         <BreadCrumb name="Home" title="Contact Us" />
       </div>
       <div className="container mx-auto py-5 rounded-lg">
-        <div className="max-w-5xl mx-auto p-5">
-          <div className="flex flex-col md:flex-col lg:flex-row gap-10">
+        <div className="max-w-5xl mx-auto p-5 flex flex-col md:flex-row gap-11">
+
+
+          <div className="flex flex-col ">
             {/* information */}
             <div className="flex flex-col w-full shadow-2xl p-8 rounded-2xl">
               <div>
@@ -125,14 +127,7 @@ export default function ContactUs() {
               </div>
             </div>
             {/* map */}
-            <div className=" p-2 w-full shadow-2xl rounded-2xl">
-              <MapComponent />
-            </div>
-          </div>
-
-          {/* RNA Supplies */}
-
-          <div className="flex flex-col w-full shadow-2xl p-8 rounded-2xl max-w-xl mt-12">
+            <div className="flex flex-col w-full shadow-2xl p-8 rounded-2xl max-w-xl">
             <div>
               <Image
                 src={logo}
@@ -146,6 +141,14 @@ export default function ContactUs() {
               quality products and exceptional customer service.
             </p>
           </div>
+           
+          </div>
+
+          {/* RNA Supplies */}
+          <div className=" p-2 w-full rounded-2xl">
+              <MapComponent />
+            </div>
+          
         </div>
       </div>
     </div>
