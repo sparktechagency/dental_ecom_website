@@ -10,13 +10,13 @@ export default function TermsAndCondition() {
   const content = data?.data?.content || data?.content || data?.data || "";
 
   return (
-    <div className="min-h-screen bg-[#171717] text-white py-5">
+    <div className="min-h-screen text-black py-5">
       <div className="container mx-auto flex justify-start items-center">
         <BreadCrumb name="Home" title="Terms & Condition" />
       </div>
-      <div className="container mx-auto p-5 shadow-lg rounded-lg bg-[#1c1c1c]">
+      <div className="container mx-auto p-5">
         <section className="px-6 py-12 text-slate-700 leading-relaxed">
-          <h1 className="text-2xl font-bold mb-5 text-white">{title}</h1>
+          <h1 className="text-2xl font-bold mb-5 text-black">{title}</h1>
 
           {isFetching && (
             <div className="flex justify-center items-center py-10">
@@ -30,7 +30,7 @@ export default function TermsAndCondition() {
 
           {!isFetching && !error && (
             typeof content === "string" ? (
-              <div className="prose prose-invert max-w-none text-white" dangerouslySetInnerHTML={{ __html: content }} />
+              <div className="prose prose-invert max-w-none text-black" dangerouslySetInnerHTML={{ __html: content }} />
             ) : (
               <pre className="text-white whitespace-pre-wrap">{JSON.stringify(content, null, 2)}</pre>
             )
