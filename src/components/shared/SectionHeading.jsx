@@ -18,7 +18,7 @@ const SectionHeading = ({
         </div>
         
         {/* Title text */}
-        <h2 className="text-white text-3xl font-semibold">
+        <h2 className="text-black text-3xl font-semibold">
           {title}
         </h2>
       </div>

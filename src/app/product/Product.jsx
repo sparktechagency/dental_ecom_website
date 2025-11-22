@@ -92,16 +92,16 @@ export default function Product() {
   }
 
   return (
-    <div className="mx-auto container text-white">
+    <div className="mx-auto container text-black">
       <div className="container mx-auto flex justify-start items-center px-2 sm:px-5 md:px-0">
         <BreadCrumb title="Product" name="Home" />
       </div>
 
-      <SectionHeading title="All Products" showButton={false} />
+      <SectionHeading title="All Products" showButton={false}  className="text-black"/>
 
       <div className="flex flex-col md:flex-row gap-4 sm:gap-5 md:gap-6 min-h-screen px-2 sm:px-4 md:px-0 pb-16 md:pb-24">
         {/* Filter Sidebar */}
-        <div className="bg-gray-800 px-3 sm:px-4 rounded-lg w-full md:w-1/4 lg:w-1/5 xl:w-1/5 md:h-[90vh] h-auto mb-6 md:mb-0 overflow-y-auto no-scrollbar">
+        <div className="border border-[#d3e4fd] px-3 sm:px-4 rounded-lg w-full md:w-1/4 lg:w-1/5 xl:w-1/5 md:h-[90vh] h-auto mb-6 md:mb-0 overflow-y-auto no-scrollbar">
           <div className="space-y-5">
 
             {/* Price Filter */}

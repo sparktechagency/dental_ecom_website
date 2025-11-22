@@ -174,7 +174,7 @@ const ProductDetails = () => {
           {selectedImage && (
             <div
               onClick={() => setShowModal(true)}
-              className="rounded-md overflow-hidden w-full h-[250px] sm:h-[350px] md:h-[400px] lg:h-[450px] xl:h-[500px] cursor-pointer"
+              className="rounded-md overflow-hidden w-full h-[150px] sm:h-[180px] md:h-[200px] lg:h-[250px] xl:h-[300px] cursor-pointer"
             >
               <img
                 src={selectedImage}
@@ -193,7 +193,7 @@ const ProductDetails = () => {
                   src={`${img}`}
                   alt={`thumb-${i}`}
                   onClick={() => setSelectedImage(`${img}`)}
-                  className={`w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-md cursor-pointer object-cover ${
+                  className={`w-10 h-10 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-md cursor-pointer object-cover ${
                     selectedImage === `${img}`
                       ? "ring-2 ring-blue-500"
                       : ""
@@ -221,9 +221,9 @@ const ProductDetails = () => {
                 {product.availability}
               </span>
             </p>
-            <p className="text-[#9F9C96]">{product.description}</p>
+            <p className="text-[#9F9C96] text-base">{product.description}</p>
 
-            <div className="space-y-1">
+            <div className="space-y-1 text-base">
               <p>
                 Brand:{" "}
                 <span className="text-[#136BFB] cursor-pointer hover:underline">
@@ -244,7 +244,7 @@ const ProductDetails = () => {
               </p>
             </div>
 
-            <p className="pt-1">
+            <p className="pt-1 text-base">
               {IsLogin ? (
                 <span className="text-white font-medium text-base">
                   ${product.price}
@@ -265,7 +265,7 @@ const ProductDetails = () => {
           {/* Quantity + Buttons */}
           <div>
             <div className="flex justify-between">
-              <label className="block mb-2 text-white font-medium">
+              <label className="block mb-2 font-medium">
                 Quantity
               </label>
               <div className="flex items-center gap-2">
@@ -281,7 +281,7 @@ const ProductDetails = () => {
                   disabled
                   value={quantity}
                   onChange={handleQuantityChange}
-                  className="w-16 px-3 py-1 rounded-md bg-transparent border border-gray-500 text-white text-center"
+                  className="w-16 px-3 py-1 rounded-md bg-transparent border border-gray-500 text-center"
                 />
                 <button
                   onClick={incrementQuantity}

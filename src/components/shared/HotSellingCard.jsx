@@ -88,12 +88,12 @@ export default function HotSellingCard({ product, image, title, description, id 
   const productId = product?._id || product?._id;
 
   return (
-    <div className="bg-[#1E1E1E] rounded-lg p-4 shadow-lg flex flex-col h-full transition-all duration-300 hover:shadow-xl hover:shadow-[#136BFB]/20 hover:-translate-y-1">
-      <div className="relative rounded-md overflow-hidden cursor-pointer aspect-square sm:aspect-[4/5] bg-[#0f0f0f] flex items-center justify-center group">
+    <div className="border border-[#d3e4fd] rounded-lg p-4 shadow-sm flex flex-col h-full transition-all duration-300 hover:shadow-xl hover:shadow-[#136BFB]/20 hover:-translate-y-1">
+      <div className="relative rounded-md overflow-hidden cursor-pointer aspect-square flex items-center justify-center group">
         <img
           src={productImage}
           alt={productTitle}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
           onError={(e) => {
             e.target.onerror = null;
             e.target.src =
@@ -111,7 +111,7 @@ export default function HotSellingCard({ product, image, title, description, id 
       </div>
 
       <div className="flex flex-col gap-3 mt-4 flex-1 group-hover:text-white">
-        <p className="text-white text-base sm:text-lg font-semibold line-clamp-2 min-h-[2.5rem] sm:min-h-[2.75rem] group-hover:text-[#136BFB] transition-colors">
+        <p className=" text-base sm:text-lg font-semibold line-clamp-2 min-h-[2.5rem] sm:min-h-[2.75rem] group-hover:text-[#136BFB] transition-colors">
           {productTitle}
         </p>
         <p className="text-gray-400 text-xs sm:text-sm line-clamp-2 min-h-[2.5rem]">

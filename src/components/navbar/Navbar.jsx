@@ -132,7 +132,6 @@ export default function Navbar() {
               onClick={performSearch}
               className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-white"
             >
-              <VscSettings className="h-5 w-5" />
             </button>
           </div>
         </div>
