@@ -66,9 +66,7 @@ export default function Subscribe() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <div className="relative rounded-xl p-8 md:p-20 mx-auto w-full">
-      <div className="absolute bottom-0 right-0 pointer-events-none">
-        <div className="w-[500px] h-[500px] bg-[#136BFB] opacity-20 blur-3xl rounded-full"></div>
-      </div>
+    
 
       <div className="relative z-10">
         <div className="text-center mb-8">
