@@ -7,12 +7,13 @@ import {
 } from "@/redux/feature/contact/contactInfoApi";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react"; // Suspense remove koro
+import React, { useState } from "react";
 import { BiMapPin } from "react-icons/bi";
 import { FaInstagram } from "react-icons/fa";
 import { MdMail, MdPhone } from "react-icons/md";
 import Swal from "sweetalert2";
 import logo from "../../../public/logo.png";
+import { IMAGE } from "../../../public/image.index";
 
 export default function ContactUs() {
   const [subject, setSubject] = useState("");
@@ -50,105 +51,116 @@ export default function ContactUs() {
   };
   console.log(emails);
   return (
-    <div className="min-h-screen py-5">
-      <div className="container mx-auto flex justify-start items-center">
-        <BreadCrumb name="Home" title="Contact Us" />
-      </div>
-      <div className="container mx-auto py-5 rounded-lg">
-        <div className="max-w-5xl mx-auto p-5 flex flex-col md:flex-row gap-11">
+    <div 
+    style={{
+      backgroundImage: `url(${IMAGE.image.src})`,
+      backgroundPosition: "center",
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
+      width: "100%",
+      // height: "100vh",
+    }}
+    >
+      <div className="min-h-screen py-5">
+        <div className="container mx-auto flex justify-start items-center">
+          <BreadCrumb name="Home" title="Contact Us" />
+        </div>
+        <div className="container mx-auto py-5 rounded-lg">
+          <div className="max-w-5xl mx-auto p-5 flex flex-col md:flex-row gap-11">
+            <div className="flex flex-col gap-8">
+              {/* information */}
+              <div className="flex flex-col w-full shadow-2xl p-8 rounded-2xl bg-white">
+                <div>
+                  <p className="text-[#4a90e2] text-xl font-semibold">
+                    Contact Information
+                  </p>
+                </div>
 
+                {/* emails */}
+                <div className="flex flex-col gap-4">
+                  <div className="flex items-center gap-3 text-gray-300 mt-12">
+                    <MdMail className="text-xl text-black" />
 
-          <div className="flex flex-col ">
-            {/* information */}
-            <div className="flex flex-col w-full shadow-2xl p-8 rounded-2xl">
-              <div>
-                <p className="text-[#4a90e2] text-xl font-semibold">
-                  Contact Information
+                    <div>
+                      {isFetching && (
+                        <div className="text-white">Loading...</div>
+                      )}
+                      {error && (
+                        <div className="text-red-400">Failed to load</div>
+                      )}
+                      {!isFetching && !error && (
+                        <div className="flex flex-col">
+                          {emails.map((em) => (
+                            <span key={em} className="text-xl text-black">
+                              {em}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* phone */}
+
+                  <div className="flex items-center gap-3 text-gray-300">
+                    <MdPhone className="text-xl text-black" />
+
+                    <div>
+                      {isFetching && (
+                        <div className="text-white">Loading...</div>
+                      )}
+                      {error && (
+                        <div className="text-red-400">Failed to load</div>
+                      )}
+                      {!isFetching && !error && (
+                        <div className="flex flex-col">
+                          {phones.map((ph) => (
+                            <span key={ph} className="text-black text-xl">
+                              {ph}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* map pin */}
+                  <div className="flex items-center gap-3">
+                    <BiMapPin className="text-black text-xl " />
+                    <p className="text-black text-xl">London, United Kingdom</p>
+                  </div>
+                  <Link
+                    href="https://www.instagram.com/rnasupplies/#"
+                    isExternal
+                    className="flex items-center gap-3"
+                  >
+                    <FaInstagram className="text-black text-xl " />
+                    <p className="text-black text-xl">@rnasupplies</p>
+                  </Link>
+                </div>
+              </div>
+              {/* map */}
+              <div className="flex flex-col w-full shadow-2xl p-8 rounded-2xl max-w-xl bg-white">
+                <div>
+                  <Image
+                    src={logo}
+                    width={400}
+                    className="rounded-2xl overflow-hidden"
+                  />
+                </div>
+                <p className="text-[#606162]">
+                  Visit our modern facility equipped with state-of-the-art
+                  dental supplies and equipment. We're committed to providing
+                  the highest quality products and exceptional customer service.
                 </p>
               </div>
-
-              {/* emails */}
-              <div className="flex flex-col gap-4">
-                <div className="flex items-center gap-3 text-gray-300 mt-12">
-                  <MdMail className="text-xl text-black" />
-
-                  <div>
-                    {isFetching && <div className="text-white">Loading...</div>}
-                    {error && (
-                      <div className="text-red-400">Failed to load</div>
-                    )}
-                    {!isFetching && !error && (
-                      <div className="flex flex-col">
-                        {emails.map((em) => (
-                          <span key={em} className="text-xl text-black">
-                            {em}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* phone */}
-
-                <div className="flex items-center gap-3 text-gray-300">
-                  <MdPhone className="text-xl text-black" />
-
-                  <div>
-                    {isFetching && <div className="text-white">Loading...</div>}
-                    {error && (
-                      <div className="text-red-400">Failed to load</div>
-                    )}
-                    {!isFetching && !error && (
-                      <div className="flex flex-col">
-                        {phones.map((ph) => (
-                          <span key={ph} className="text-black text-xl">
-                            {ph}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* map pin */}
-                <div className="flex items-center gap-3">
-                  <BiMapPin className="text-black text-xl " />
-                  <p className="text-black text-xl">London, United Kingdom</p>
-                </div>
-                <Link
-                  href="https://www.instagram.com/rnasupplies/#"
-                  isExternal
-                  className="flex items-center gap-3"
-                >
-                  <FaInstagram className="text-black text-xl " />
-                  <p className="text-black text-xl">@rnasupplies</p>
-                </Link>
-              </div>
             </div>
-            {/* map */}
-            <div className="flex flex-col w-full shadow-2xl p-8 rounded-2xl max-w-xl">
-            <div>
-              <Image
-                src={logo}
-                width={400}
-                className="rounded-2xl overflow-hidden"
-              />
-            </div>
-            <p className="text-[#606162]">
-              Visit our modern facility equipped with state-of-the-art dental
-              supplies and equipment. We're committed to providing the highest
-              quality products and exceptional customer service.
-            </p>
-          </div>
-           
-          </div>
 
-          {/* RNA Supplies */}
-          <div className=" p-2 w-full rounded-2xl">
+            {/* RNA Supplies */}
+            <div className=" p-2 w-full rounded-2xl">
               <MapComponent />
             </div>
-          
+          </div>
         </div>
       </div>
     </div>

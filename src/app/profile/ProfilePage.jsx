@@ -15,6 +15,7 @@ export default function ProfilePage() {
   const authUser = useSelector((state) => state?.auth?.user);
   const { data, isLoading, isFetching, error } = useGetMyProfileQuery();
   const profile = data?.data || data || {};
+  console.log("pfofiledata", profile.imageUrl)
 
   if (isLoading || isFetching) {
     return (
@@ -50,7 +51,7 @@ export default function ProfilePage() {
                   email={profile?.email || authUser?.email || '—'}
                   phone={profile?.phone || profile?.mobile || '—'}
                   gdc={profile?.gdcNumber || profile?.gdc || '—'}
-                  avatar={profile?.avatar || profile?.image || profile?.profileImage || "https://images.pexels.com/photos-2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400"}
+                  avatar={profile?.imageUrl || profile?.image || profile?.profileImage || "https://images.pexels.com/photos-2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400"}
                   onChangePassword={handleChangePassword}
                 />
               </div>

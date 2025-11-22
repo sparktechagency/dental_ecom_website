@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLogoutMutation } from "@/redux/feature/auth/authApi";
 import { logout as authLogout } from "@/redux/feature/auth/authSlice";
 import { clearCartLocal } from "@/redux/feature/cart/cartSlice";
+import { useGetMyProfileQuery } from "@/redux/feature/users/usersApi";
 
 export default function Navbar() {
   const products = useSelector((state) => state.cart);
@@ -27,6 +28,10 @@ export default function Navbar() {
   const searchParams = useSearchParams();
   const dispatch = useDispatch();
   const [logoutApi, { isLoading: isLoggingOut }] = useLogoutMutation();
+  const { data, isLoading, isFetching, error } = useGetMyProfileQuery();
+  const profile = data?.data || data || {};
+  console.log("pfofiledata", profile.imageUrl)
+
 
   // Active link checker
   const isLinkActive = (path) => {
@@ -264,7 +269,8 @@ export default function Navbar() {
           {authUser && (
             <Link href="/profile">
               <img
-                src="https://i.ibb.co.com/RvFgZC8/aman.png"
+                src={profile?.imageUrl || "https://i.ibb.co.com/RvFgZC8/aman.png"}
+             
                 alt="profile"
                 className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border-2 border-[#136BFB] object-cover"
               />

@@ -45,9 +45,9 @@ export default function AddressSection() {
 
   if (isLoading) {
     return (
-      <div className="bg-[#202020] rounded-lg p-5">
+      <div className=" rounded-lg p-5">
         <div className="flex items-center justify-center mb-5">
-          <h2 className="text-2xl font-bold text-white underline">
+          <h2 className="text-2xl font-bold text-black underline">
             Address information
           </h2>
         </div>
@@ -58,9 +58,9 @@ export default function AddressSection() {
 
   if (error) {
     return (
-      <div className="bg-[#202020] rounded-lg p-5">
+      <div className=" rounded-lg p-5">
         <div className="flex items-center justify-center mb-5">
-          <h2 className="text-2xl font-bold text-white underline">
+          <h2 className="text-2xl font-bold text-black underline">
             Address information
           </h2>
         </div>
@@ -73,9 +73,9 @@ export default function AddressSection() {
   }
 
   return (
-    <div className="bg-[#202020] rounded-lg p-5">
+    <div className="border border-[#e2e8f0] rounded-lg p-5">
       <div className="flex items-center justify-center mb-5">
-        <h2 className="text-2xl font-bold text-white underline">
+        <h2 className="text-2xl font-bold text-black underline">
           Address information
         </h2>
       </div>

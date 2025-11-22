@@ -29,10 +29,10 @@ const AddressCard = ({
     const typeColor = getTypeColor(type);
 
     return (
-        <div className="bg-[#2a2a2a] rounded-lg p-5 text-white border border-gray-700 mb-4">
+        <div className=" rounded-lg p-5 text-black border border-[#e2e8f0] mb-4">
             <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center gap-3">
-                    <span className="text-lg font-semibold text-[#9F9C96]">{name}</span>
+                    <span className="text-lg font-semibold text-black">{name}</span>
                     <span className={`px-3 py-1 rounded-lg text-xs font-medium ${typeColor}`}>
                         {type?.charAt(0).toUpperCase() + type?.slice(1)}
                     </span>
@@ -61,15 +61,15 @@ const AddressCard = ({
                 </div>
             </div>
 
-            <div className="space-y-2 text-gray-300">
+            <div className="space-y-2 text-black">
                 <p className="text-sm">
-                    <span className="font-medium text-[#9F9C96]">Email:</span> {mobile}
+                    <span className="font-medium text-black">Email:</span> {mobile}
                 </p>
                 <p className="text-sm">
-                    <span className="font-medium text-[#9F9C96]">Street:</span> {address}
+                    <span className="font-medium text-black">Street:</span> {address}
                 </p>
                 <p className="text-sm">
-                    <span className="font-medium text-[#9F9C96]">Location:</span> {city}
+                    <span className="font-medium text-black">Location:</span> {city}
                 </p>
             </div>
 

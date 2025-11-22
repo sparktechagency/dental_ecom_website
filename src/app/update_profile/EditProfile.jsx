@@ -20,9 +20,13 @@ export default function EditProfile() {
         firstName: '',
         lastName: '',
         mobile: '',
-        gdc: ''
+        gdc: '',
+        clinicName: ''
     });
     const [countryCode, setCountryCode] = useState('+880');
+    const [imageFile, setImageFile] = useState(null);
+    const [imagePreview, setImagePreview] = useState('');
+    const [isUploading, setIsUploading] = useState(false);
 
     useEffect(() => {
         if (!isLoading && !isFetching && profile) {
@@ -39,8 +43,10 @@ export default function EditProfile() {
                 firstName: profile.firstName || profile.name?.split(' ')?.[0] || '',
                 lastName: profile.lastName || (profile.name?.split(' ')?.slice(1).join(' ') || ''),
                 mobile: local || '',
-                gdc: profile.gdcNumber || profile.gdc || ''
+                gdc: profile.gdcNumber || profile.gdc || '',
+                clinicName: profile.clinicName || ''
             });
+            setImagePreview(profile.imageUrl || '');
         }
     }, [profile, isLoading, isFetching]);
 
@@ -49,28 +55,80 @@ export default function EditProfile() {
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            // Validate file type
+            const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
+            if (!validTypes.includes(file.type)) {
+                Swal.fire({ 
+                    icon: 'error', 
+                    title: 'Invalid file type', 
+                    text: 'Please select JPEG, PNG, GIF or WebP image' 
+                });
+                return;
+            }
+
+            // Validate file size (max 5MB)
+            if (file.size > 5 * 1024 * 1024) {
+                Swal.fire({ 
+                    icon: 'error', 
+                    title: 'File too large', 
+                    text: 'Please select image smaller than 5MB' 
+                });
+                return;
+            }
+
+            setImageFile(file);
+            
+            // Create preview
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                setImagePreview(e.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const removeImage = () => {
+        setImageFile(null);
+        setImagePreview(profile.imageUrl || '');
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsUploading(true);
+        
         try {
             const digits = String(formData.mobile || '').replace(/\D/g, '');
             if (digits && (digits.length < 10 || digits.length > 15)) {
                 Swal.fire({ icon: 'warning', title: 'Invalid mobile number', text: 'Enter 10-15 digits.' });
+                setIsUploading(false);
                 return;
             }
            
-            const body = {};
-            if (formData.firstName) body.firstName = formData.firstName;
-            if (formData.lastName) body.lastName = formData.lastName;
+            // Create FormData for multipart upload
+            const formDataToSend = new FormData();
+            
+            // Add text fields
+            if (formData.firstName) formDataToSend.append('firstName', formData.firstName);
+            if (formData.lastName) formDataToSend.append('lastName', formData.lastName);
+            if (formData.clinicName) formDataToSend.append('clinicName', formData.clinicName);
             if (digits) {
                 const cc = String(countryCode || '').replace(/\D/g, '');
-                body.phone = `+${cc}${digits}`;
+                formDataToSend.append('phone', `+${cc}${digits}`);
             }
-            if (formData.gdc) body.gdcNumber = formData.gdc;
+            if (formData.gdc) formDataToSend.append('gdcNumber', formData.gdc);
             
-            const res = await updateUser({ body }).unwrap();
+            // Add image file if selected
+            if (imageFile) {
+                formDataToSend.append('image', imageFile);
+            }
+            
+            const res = await updateUser({ body: formDataToSend }).unwrap();
             
             // Update cached profile
-            const updated = res?.data || res || body;
+            const updated = res?.data || res || {};
             try {
                 dispatch(
                     usersApi.util.updateQueryData('getMyProfile', undefined, (draft) => {
@@ -82,12 +140,29 @@ export default function EditProfile() {
                         }
                     })
                 );
-            } catch {}
+            } catch (error) {
+                console.log('Cache update error:', error);
+            }
             
-            Swal.fire({ icon: 'success', title: res?.message || 'Profile updated' });
-            navigate.push('/profile');
+            Swal.fire({ 
+                icon: 'success', 
+                title: res?.message || 'Profile updated successfully',
+                timer: 2000,
+                showConfirmButton: false
+            });
+            
+            setTimeout(() => {
+                navigate.push('/profile');
+            }, 2000);
+            
         } catch (err) {
-            Swal.fire({ icon: 'error', title: 'Failed to update', text: err?.data?.message || 'Please try again' });
+            Swal.fire({ 
+                icon: 'error', 
+                title: 'Failed to update profile', 
+                text: err?.data?.message || 'Please try again' 
+            });
+        } finally {
+            setIsUploading(false);
         }
     };
 
@@ -123,6 +198,51 @@ export default function EditProfile() {
                 <h2 className="text-2xl font-bold text-white text-center mb-8">Edit Profile</h2>
 
                 <form className="space-y-5" onSubmit={handleSubmit}>
+                    {/* Profile Image Upload */}
+                    <div className="flex flex-col items-center mb-6">
+                        <div className="relative">
+                            <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-[#136BFB] bg-gray-700">
+                                {imagePreview ? (
+                                    <img 
+                                        src={imagePreview} 
+                                        alt="Profile preview" 
+                                        className="w-full h-full object-cover"
+                                    />
+                                ) : (
+                                    <div className="w-full h-full flex items-center justify-center text-white text-4xl">
+                                        {formData.firstName?.charAt(0) || 'U'}
+                                    </div>
+                                )}
+                            </div>
+                            
+                            {/* Remove Image Button */}
+                            {imagePreview && imagePreview !== profile.imageUrl && (
+                                <button
+                                    type="button"
+                                    onClick={removeImage}
+                                    className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-red-600 transition-colors"
+                                >
+                                    ×
+                                </button>
+                            )}
+                        </div>
+                        
+                        <div className="mt-4">
+                            <label className="cursor-pointer bg-[#136BFB] text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors inline-block">
+                                <span>{imageFile ? 'Change Image' : 'Upload Image'}</span>
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={handleImageChange}
+                                    className="hidden"
+                                />
+                            </label>
+                            <p className="text-xs text-gray-400 mt-2 text-center">
+                                JPEG, PNG, GIF, WebP • Max 5MB
+                            </p>
+                        </div>
+                    </div>
+
                     {/* First Name and Last Name Row */}
                     <div className="grid grid-cols-2 gap-4">
                         <div>
@@ -151,6 +271,21 @@ export default function EditProfile() {
                                 placeholder="Enter last name"
                             />
                         </div>
+                    </div>
+
+                    {/* Clinic Name Field */}
+                    <div>
+                        <label className="block text-gray-300 text-lg font-bold mb-2">
+                            Clinic Name
+                        </label>
+                        <input
+                            type="text"
+                            name="clinicName"
+                            value={formData.clinicName}
+                            onChange={handleChange}
+                            className="w-full px-4 py-3 border-2 border-[#136BFB] rounded-lg text-white placeholder-gray-400 bg-transparent"
+                            placeholder="Enter clinic name"
+                        />
                     </div>
 
                     {/* Mobile with Country Code */}
@@ -199,11 +334,26 @@ export default function EditProfile() {
                     {/* Action Buttons */}
                     <div className="flex gap-4 pt-4">
                         <button
-                            type="submit"
-                            disabled={saving}
-                            className="w-full px-6 py-3 bg-[#136BFB] text-white rounded-lg font-medium hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                            type="button"
+                            onClick={() => navigate.push('/profile')}
+                            disabled={isUploading || saving}
+                            className="w-1/3 px-6 py-3 bg-gray-600 text-white rounded-lg font-medium hover:bg-gray-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                            {saving ? 'Saving...' : 'Save Changes'}
+                            Cancel
+                        </button>
+                        <button
+                            type="submit"
+                            disabled={isUploading || saving}
+                            className="flex-1 px-6 py-3 bg-[#136BFB] text-white rounded-lg font-medium hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+                        >
+                            {isUploading || saving ? (
+                                <>
+                                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                                    Updating...
+                                </>
+                            ) : (
+                                'Save Changes'
+                            )}
                         </button>
                     </div>
                 </form>
