@@ -318,7 +318,7 @@ const ProductDetails = () => {
           <div className="flex items-center gap-4 p-4 border border-gray-700 rounded-md">
             <FaTruck className="text-gray-400 text-2xl" />
             <div>
-              <h3 className="font-semibold text-white">Fast Delivery</h3>
+              <h3 className="font-semibold text-black">Fast Delivery</h3>
               <p className="text-sm text-gray-400">
                 Enter your Delivery Address
               </p>
@@ -328,7 +328,7 @@ const ProductDetails = () => {
           <div className="flex items-center gap-4 p-4 border border-gray-700 rounded-md">
             <FaUndo className="text-gray-400 text-2xl" />
             <div>
-              <h3 className="font-semibold text-white">Return Delivery</h3>
+              <h3 className="font-semibold text-black">Return Delivery</h3>
               <p className="text-sm text-gray-400">
                 Free 30 Days Delivery Returns.
               </p>
@@ -338,7 +338,7 @@ const ProductDetails = () => {
           <div className="flex items-center gap-4 p-4 border border-gray-700 rounded-md">
             <FaMedal className="text-gray-400 text-2xl" />
             <div>
-              <h3 className="font-semibold text-white">Best Product Quality</h3>
+              <h3 className="font-semibold text-black">Best Product Quality</h3>
               <p className="text-sm text-gray-400">Customer Service Product</p>
             </div>
           </div>

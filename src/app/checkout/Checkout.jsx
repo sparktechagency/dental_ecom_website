@@ -292,10 +292,10 @@ export default function Checkout() {
 
                     {/* Payment Method */}
                     <div className="p-5 rounded-lg">
-                        <h3 className="text-xl text-black font-semibold mb-4">Payment Method</h3>
-                        <div className="border-b-2 border-[#d3e4fd] mb-4"></div>
+                        {/* <h3 className="text-xl text-black font-semibold mb-4">Payment Method</h3>
+                        <div className="border-b-2 border-[#d3e4fd] mb-4"></div> */}
 
-                        <div className="space-y-4">
+                        {/* <div className="space-y-4">
                             <div 
                                 className={`flex items-center justify-between p-3 rounded-lg cursor-pointer transition-colors ${
                                     selectedPayment === "bank" ? ' border border-[#d3e4fd]' : 'bg-neutral-700 hover:bg-neutral-600'
@@ -314,7 +314,7 @@ export default function Checkout() {
                                     ))}
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
                         <button
                             onClick={handlePlaceOrder}
