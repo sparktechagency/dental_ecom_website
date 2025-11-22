@@ -87,9 +87,9 @@ const CartItem = ({
       <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 p-3 sm:p-4 border-b border-gray-600 last:border-b-0">
         {/* Checkbox and Image */}
         <div className="flex items-start w-full sm:w-auto">
-          <div className="flex-shrink-0 mt-1">
+          {/* <div className="flex-shrink-0 mt-1">
             <Checkbox isSelected={isSelected} onSelect={handleToggle} />
-          </div>
+          </div> */}
           <div className="flex-shrink-0 ml-3">
             <img
               src={displaySrc}
@@ -103,7 +103,7 @@ const CartItem = ({
         <div className="flex-1 w-full min-w-0">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
             <div className="flex-1 min-w-0">
-              <h3 className="text-white font-medium text-base sm:text-sm mb-1 line-clamp-2">{name}</h3>
+              <h3 className="text-black font-medium text-base sm:text-sm mb-1 line-clamp-2">{name}</h3>
               <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
                 <p className="text-blue-300 text-sm font-semibold">
                   ${price.toFixed(2)}

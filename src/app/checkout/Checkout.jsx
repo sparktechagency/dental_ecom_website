@@ -111,9 +111,9 @@ export default function Checkout() {
             
             <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Shipping Address */}
-                <div className="space-y-5 bg-[#202020] p-5 rounded-lg">
+                <div className="space-y-5 border border-[#d3e4fd] p-5 rounded-lg">
                     <div className="flex items-center justify-between">
-                        <h2 className="text-xl text-white font-semibold">Select Shipping Address</h2>
+                        <h2 className="text-xl text-black font-semibold">Select Shipping Address</h2>
                         <button 
                             onClick={() => router.push("/profile")} 
                             className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm"
@@ -121,7 +121,7 @@ export default function Checkout() {
                             Add New Address
                         </button>
                     </div>
-                    <div className="border-b-2 border-gray-700 my-4"></div>
+                    <div className="border-b-2 border-[#d3e4fd] my-4"></div>
 
                     {addressesLoading ? (
                         <div className="text-center py-8">
@@ -153,8 +153,8 @@ export default function Checkout() {
                             {addresses.map((address) => (
                                 <div
                                     key={address._id}
-                                    className={`bg-neutral-700 border rounded-lg p-4 transition-colors ${
-                                        isSelected === address._id ? 'border-blue-500' : 'border-gray-700'
+                                    className={` border rounded-lg p-4 transition-colors ${
+                                        isSelected === address._id ? 'border-blue-500' : 'border-[#d3e4fd]'
                                     }`}
                                 >
                                     <div className="flex items-start justify-between">
@@ -167,7 +167,7 @@ export default function Checkout() {
                                             </div>
                                             <div className="space-y-1 flex-1">
                                                 <div className="flex items-center space-x-2">
-                                                    <span className="font-medium text-white">
+                                                    <span className="font-medium text-black">
                                                         {getFullName(address)}
                                                     </span>
                                                     <span
@@ -182,13 +182,13 @@ export default function Checkout() {
                                                         {address.type}
                                                     </span>
                                                 </div>
-                                                <p className="text-gray-300 text-sm">
+                                                <p className="text-black text-sm">
                                                     Email: {address.recipientEmail}
                                                 </p>
-                                                <p className="text-gray-300 text-sm">
+                                                <p className="text-black text-sm">
                                                     {address.streetNo}
                                                 </p>
-                                                <p className="text-gray-300 text-sm">
+                                                <p className="text-black text-sm">
                                                     {formatAddress(address)}
                                                 </p>
                                             </div>
@@ -215,9 +215,9 @@ export default function Checkout() {
 
                 {/* Order Summary + Payment */}
                 <div className="space-y-5">
-                    <div className="bg-[#202020] p-5 rounded-lg">
-                        <h3 className="text-xl text-white font-semibold mb-4">Order Summary</h3>
-                        <div className="border-b-2 border-gray-700 mb-4"></div>
+                    <div className=" p-5 rounded-lg">
+                        <h3 className="text-xl text-black font-semibold mb-4">Order Summary</h3>
+                        <div className="border-b-2 border-[#d3e4fd] mb-4"></div>
 
                         <div className="space-y-4">
                             {selectedProducts.length === 0 ? (
@@ -232,14 +232,14 @@ export default function Checkout() {
                                 </div>
                             ) : (
                                 <>
-                                    <div className="grid grid-cols-3 gap-4 text-sm font-medium text-gray-300 mb-2">
+                                    <div className="grid grid-cols-3 gap-4 text-sm font-medium text-black mb-2">
                                         <span>Product</span>
                                         <span className="text-center">Quantity</span>
                                         <span className="text-right">Price</span>
                                     </div>
                                     
                                     {selectedProducts.map((product) => (
-                                        <div key={product._id || product.id} className="grid grid-cols-3 gap-4 items-center py-3 border-b border-gray-700">
+                                        <div key={product._id || product.id} className="grid grid-cols-3 gap-4 items-center py-3 border-b border-[#d3e4fd]">
                                             <div className="flex items-center space-x-3">
                                                 <div className="w-12 h-12 bg-gray-600 rounded-lg flex items-center justify-center overflow-hidden flex-shrink-0">
                                                     <img
@@ -252,10 +252,10 @@ export default function Checkout() {
                                                     />
                                                 </div>
                                                 <div className="min-w-0">
-                                                    <p className="text-sm text-white font-medium truncate">
+                                                    <p className="text-sm text-black font-medium truncate">
                                                         {product.name}
                                                     </p>
-                                                    <p className="text-xs text-gray-400">
+                                                    <p className="text-xs text-black">
                                                         ${product.price?.toFixed(2)} each
                                                     </p>
                                                 </div>
@@ -266,7 +266,7 @@ export default function Checkout() {
                                                 </span>
                                             </div>
                                             <div className="text-right">
-                                                <p className="text-white font-semibold">
+                                                <p className="text-black font-semibold">
                                                     ${((product.price || 0) * (product.quantity || 1)).toFixed(2)}
                                                 </p>
                                             </div>
@@ -277,28 +277,28 @@ export default function Checkout() {
                         </div>
 
                         {/* Price Summary */}
-                        <div className="space-y-2 mt-6 pt-4 border-t border-gray-700">
-                            <div className="flex justify-between text-sm text-gray-300">
+                        <div className="space-y-2 mt-6 pt-4 border-t border-[#d3e4fd]">
+                            <div className="flex justify-between text-sm text-black">
                                 <span>Subtotal ({selectedProducts.length} items)</span>
                                 <span>${subtotal.toFixed(2)}</span>
                             </div>
                             
-                            <div className="flex justify-between text-lg font-semibold text-white pt-2 border-t border-gray-700">
+                            <div className="flex justify-between text-lg font-semibold text-black pt-2 border-t border-[#d3e4fd]">
                                 <span>Total Amount</span>
-                                <span className="text-blue-400">${total.toFixed(2)}</span>
+                                <span className="text-black">${total.toFixed(2)}</span>
                             </div>
                         </div>
                     </div>
 
                     {/* Payment Method */}
-                    <div className="bg-[#202020] p-5 rounded-lg">
-                        <h3 className="text-xl text-white font-semibold mb-4">Payment Method</h3>
-                        <div className="border-b-2 border-gray-700 mb-4"></div>
+                    <div className="p-5 rounded-lg">
+                        <h3 className="text-xl text-black font-semibold mb-4">Payment Method</h3>
+                        <div className="border-b-2 border-[#d3e4fd] mb-4"></div>
 
                         <div className="space-y-4">
                             <div 
                                 className={`flex items-center justify-between p-3 rounded-lg cursor-pointer transition-colors ${
-                                    selectedPayment === "bank" ? 'bg-blue-500/20 border border-blue-500' : 'bg-neutral-700 hover:bg-neutral-600'
+                                    selectedPayment === "bank" ? ' border border-[#d3e4fd]' : 'bg-neutral-700 hover:bg-neutral-600'
                                 }`}
                                 onClick={() => setSelectedPayment("bank")}
                             >

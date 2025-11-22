@@ -266,8 +266,8 @@ const ShoppingCart = () => {
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
           {/* Cart Items Section */}
-          <div className="lg:col-span-2">
-            <div className="bg-[#202020] rounded-lg p-5">
+          <div className="lg:col-span-2 border border-[#d3e4fd] rounded-xl">
+            <div className=" rounded-lg p-5">
               <CartHeader
                 selectedCount={selectedProducts.length}
                 onSelectAll={handleSelectAll}
@@ -280,7 +280,7 @@ const ShoppingCart = () => {
                   <span>Product</span>
                   <span>QTY</span>
                 </div>
-                <div className="border-t border-gray-600 pt-4"></div>
+                <div className="border-t border-[#d3e4fd] pt-4"></div>
               </div>
 
               <div className="space-y-0">
@@ -330,7 +330,7 @@ const ShoppingCart = () => {
           </div>
 
           {/* Order Summary Section */}
-          <div className="lg:col-span-1 bg-[#202020]">
+          <div className="lg:col-span-1 border border-[#d3e4fd] rounded-xl">
             <OrderSummary
               subtotal={subtotal}
               total={total}
