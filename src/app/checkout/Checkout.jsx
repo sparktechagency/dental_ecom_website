@@ -27,6 +27,8 @@ export default function Checkout() {
 
     const cart = useSelector(state => state.cart || {})
     const selectedProducts = cart.products?.filter(p => p.selected) || []
+
+    console.log("select productsss",selectedProducts)
     
     const subtotal = selectedProducts.reduce((total, product) => {
         return total + (product.price * product.quantity)
@@ -292,29 +294,7 @@ export default function Checkout() {
 
                     {/* Payment Method */}
                     <div className="p-5 rounded-lg">
-                        {/* <h3 className="text-xl text-black font-semibold mb-4">Payment Method</h3>
-                        <div className="border-b-2 border-[#d3e4fd] mb-4"></div> */}
-
-                        {/* <div className="space-y-4">
-                            <div 
-                                className={`flex items-center justify-between p-3 rounded-lg cursor-pointer transition-colors ${
-                                    selectedPayment === "bank" ? ' border border-[#d3e4fd]' : 'bg-neutral-700 hover:bg-neutral-600'
-                                }`}
-                                onClick={() => setSelectedPayment("bank")}
-                            >
-                                <div className="flex items-center space-x-3">
-                                    <Checkbox isSelected={selectedPayment === "bank"} />
-                                    <span className="text-gray-300">Bank Transfer</span>
-                                </div>
-                                <div className="flex space-x-2">
-                                    {["VISA", "MC", "PP", "GP"].map((method) => (
-                                        <div key={method} className="w-8 h-6 bg-white rounded flex items-center justify-center text-xs font-bold text-gray-800">
-                                            {method}
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </div> */}
+                      
 
                         <button
                             onClick={handlePlaceOrder}

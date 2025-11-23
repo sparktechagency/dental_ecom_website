@@ -12,7 +12,7 @@ import { FaTruck, FaUndo, FaMedal } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { useFetchAllProcedureQuery } from "@/redux/feature/procedure/procedure";
 import Link from "next/link";
-import { toast } from "sonner"; // Import toast from sonner
+import { toast } from "sonner";
 
 
 const ProductDetails = () => {
