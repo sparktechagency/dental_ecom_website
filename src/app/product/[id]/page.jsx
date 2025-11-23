@@ -12,6 +12,7 @@ import { FaTruck, FaUndo, FaMedal } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { useFetchAllProcedureQuery } from "@/redux/feature/procedure/procedure";
 import Link from "next/link";
+import { toast } from "sonner"; // Import toast from sonner
 
 
 const ProductDetails = () => {
@@ -33,11 +34,6 @@ const ProductDetails = () => {
   const product = data?.data;
   const user = useSelector((state) => state?.auth?.user);
   const IsLogin = !!user;
-  const isInCart = (() => {
-    const items = cartData?.data?.items || cartData?.items || [];
-    if (!product) return false;
-    return !!items.find((i) => (i.product?._id || i.productId || i._id) === product._id || i._id === product._id);
-  })();
 
   useEffect(() => {
     if (product && product.images && product.images.length > 0) {
@@ -46,15 +42,9 @@ const ProductDetails = () => {
   }, [product]);
 
   useEffect(() => {
-    if (!product) return;
-    const items = cartData?.data?.items || cartData?.items || [];
-    const found = items.find((i) => (i.product?._id || i.productId || i._id) === product._id || i._id === product._id);
-    if (found && typeof found.quantity === 'number') {
-      setQuantity(found.quantity);
-    } else {
-      setQuantity(1);
-    }
-  }, [cartData, product]);
+    // Always reset quantity to 1 when product changes
+    setQuantity(1);
+  }, [product]);
 
   useEffect(() => {
     const items = cartData?.data?.items || cartData?.items;
@@ -63,40 +53,48 @@ const ProductDetails = () => {
     }
   }, [cartData, dispatch]);
 
- const handleAddToCart = async (product) => {
-  if (!IsLogin) { navigate.push('/sign_in'); return; }
-  try {
-    setIsAddingToCart(true);
-    const items = cartData?.data?.items || cartData?.items || [];
-    const found = items.find((i) => (i.product?._id || i.productId || i._id) === product._id || i._id === product._id);
-    const currentQty = Number(found?.quantity || 0);
-
-    if (currentQty > 0) {
-      const nextQty = Math.max(1, currentQty + Number(quantity || 0));
-      await updateCartItem({ productId: product._id, quantity: nextQty }).unwrap();
-      dispatch(setItemQuantity({ id: product._id, quantity: nextQty }));
-      setQuantity(nextQty);
-    } else {
+  const handleAddToCart = async (product) => {
+    if (!IsLogin) { 
+      navigate.push('/sign_in'); 
+      return; 
+    }
+    
+    try {
+      setIsAddingToCart(true);
+      
+      // Always add the current quantity (from +/- buttons or manual input)
       await addToCartMutation({
         productId: product._id,
-        quantity,
+        quantity: quantity, // Use the current quantity state
       }).unwrap();
 
       dispatch(addToCart({
         _id: product._id,
         name: product.name,
         price: product.price,
-        quantity,
+        quantity: quantity,
       }));
+      
+      // Show success toast
+      toast.success("Product added to cart", {
+        description: `${quantity} ${product.name} has been added to your cart`
+      });
+
+      // Reset quantity to 1 after successful add
+      setQuantity(1);
+
+      // Refetch cart data to ensure sync
+      await refetch();
+
+    } catch (e) {
+      console.log("Cart API Error:", e);
+      toast.error("Failed to add to cart", {
+        description: "Please try again"
+      });
+    } finally {
+      setIsAddingToCart(false);
     }
-
-  } catch (e) {
-    console.log("Cart API Error:", e);
-  } finally {
-    setIsAddingToCart(false);
   }
-}
-
 
   if (isLoading)
     return (
@@ -112,51 +110,17 @@ const ProductDetails = () => {
       </div>
     );
 
-  const incrementQuantity = async () => {
-    const items = cartData?.data?.items || cartData?.items || [];
-    const found = product ? items.find((i) => (i.product?._id || i.productId || i._id) === product._id || i._id === product._id) : null;
-    const next = (quantity || 1) + 1;
-    const prev = quantity;
-    setQuantity(next);
-    if (found) {
-      try {
-        await updateCartItem({ productId: product._id, quantity: next }).unwrap();
-      } catch (e) {
-        setQuantity(prev);
-      }
-    }
+  const incrementQuantity = () => {
+    setQuantity(prev => prev + 1);
   };
 
- 
-
-  const decrementQuantity = async () => {
-    const items = cartData?.data?.items || cartData?.items || [];
-    const found = product ? items.find((i) => (i.product?._id || i.productId || i._id) === product._id || i._id === product._id) : null;
-    const next = Math.max(1, (quantity || 1) - 1);
-    const prev = quantity;
-    setQuantity(next);
-    if (found) {
-      try {
-        await updateCartItem({ productId: product._id, quantity: next }).unwrap();
-      } catch (e) {
-        setQuantity(prev);
-      }
-    }
+  const decrementQuantity = () => {
+    setQuantity(prev => Math.max(1, prev - 1));
   };
 
-  const handleQuantityChange = async (e) => {
+  const handleQuantityChange = (e) => {
     const value = Math.max(1, parseInt(e.target.value) || 1);
-    const items = cartData?.data?.items || cartData?.items || [];
-    const found = product ? items.find((i) => (i.product?._id || i.productId || i._id) === product._id || i._id === product._id) : null;
-    const prev = quantity;
     setQuantity(value);
-    if (found) {
-      try {
-        await updateCartItem({ productId: product._id, quantity: value }).unwrap();
-      } catch (e) {
-        setQuantity(prev);
-      }
-    }
   };
 
   return (
@@ -278,7 +242,6 @@ const ProductDetails = () => {
                 <input
                   type="number"
                   min={1}
-                  disabled
                   value={quantity}
                   onChange={handleQuantityChange}
                   className="w-16 px-3 py-1 rounded-md bg-transparent border border-gray-500 text-center"
@@ -293,9 +256,8 @@ const ProductDetails = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-3 md:pt-4">
-         
               <button
-                onClick={()=>handleAddToCart(product)}
+                onClick={() => handleAddToCart(product)}
                 disabled={isAddingToCart}
                 aria-busy={isAddingToCart}
                 className={`px-6 md:px-8 py-2.5 md:py-3 rounded-md font-medium w-full sm:w-auto whitespace-nowrap text-center flex items-center justify-center gap-2 transition border
@@ -308,7 +270,6 @@ const ProductDetails = () => {
                 )}
                 <span>{isAddingToCart ? 'Adding...' : 'Add To Cart'}</span>
               </button>
-             
             </div>
           </div>
         </div>
