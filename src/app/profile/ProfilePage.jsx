@@ -3,12 +3,24 @@ import AddressSection from "@/components/profile/AddressSection";
 import ProfileCard from "@/components/profile/ProfileCard";
 import BreadCrumb from "@/components/shared/BreadCrumb";
 import { useFetchUserAddressesByIdQuery } from "@/redux/feature/address/addressApi";
-import React from "react"; // Suspense remove koro
+import React, { useEffect } from "react"; // Suspense remove koro
 import { useSelector } from "react-redux";
 import { useGetMyProfileQuery } from "@/redux/feature/users/usersApi";
+import "aos/dist/aos.css";
+import AOS from 'aos';
 
 // Direct export koro, alada component er dorkar nai
 export default function ProfilePage() {
+
+
+  
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
+
+
+
   const handleChangePassword = () => {
     console.log("Change password clicked");
   };
@@ -45,7 +57,10 @@ export default function ProfilePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Profile Section */}
             <div className="flex justify-center lg:justify-end">
-              <div className="w-full max-w-md">
+              <div 
+                     data-aos="fade-up"
+               data-aos-duration="800"
+              className="w-full max-w-md">
                 <ProfileCard
                   name={profile?.name || `${profile?.firstName || ''} ${profile?.lastName || ''}`.trim() || authUser?.name || '—'}
                   email={profile?.email || authUser?.email || '—'}
@@ -59,7 +74,10 @@ export default function ProfilePage() {
 
             {/* Address Section */}
             <div className="flex justify-center lg:justify-start">
-              <div className="w-full max-w-md">
+              <div
+                     data-aos="fade-up"
+               data-aos-duration="1400"
+              className="w-full max-w-md">
                 <AddressSection />
               </div>
             </div>

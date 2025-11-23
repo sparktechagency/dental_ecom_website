@@ -2,24 +2,28 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 import BlogCard from "@/components/shared/BlogCard";
 import SectionHeading from "@/components/shared/SectionHeading";
 import { useFetchAllBlogsQuery } from "@/redux/feature/blog/blogApi";
-import { getBaseUrl } from "@/utils/getBaseUrl";
+import "aos/dist/aos.css";
+import AOS from "aos";
 
 export default function BlogContent() {
   const searchParams = useSearchParams();
   const category = searchParams.get("category") || "all";
-  
-  const { data: blogs, isLoading, error } = useFetchAllBlogsQuery({});
 
+  const { data: blogs, isLoading, error } = useFetchAllBlogsQuery({});
 
   const filteredBlogs = React.useMemo(() => {
     if (!blogs) return [];
     if (category === "all") return blogs;
-    return blogs?.filter(blog => blog.category === category);
+    return blogs?.filter((blog) => blog.category === category);
   }, [blogs, category]);
+
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
   if (isLoading) {
     return (
@@ -73,7 +77,11 @@ export default function BlogContent() {
       </div> */}
 
       {/* Blog cards */}
-      <div className="flex flex-wrap gap-5 px-5 md:px-0">
+      <div
+        data-aos="fade-up"
+        data-aos-duration="800"
+        className="flex flex-wrap gap-5 px-5 md:px-0"
+      >
         {blogs?.map((blog, idx) => (
           <BlogCard
             key={idx}

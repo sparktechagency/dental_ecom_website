@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect } from "react";
 import { BiInjection } from "react-icons/bi";
 import { FaRegHeart } from "react-icons/fa";
@@ -6,39 +6,44 @@ import { FaMicroscope } from "react-icons/fa";
 import { FaEarthAmericas } from "react-icons/fa6";
 import { HiOutlineUsers } from "react-icons/hi2";
 import { MdOutlineMonitorHeart } from "react-icons/md";
-import CountUp from "../../components/Counter 1M/CountUp"
+import CountUp from "../../components/Counter 1M/CountUp";
 import "aos/dist/aos.css";
-import AOS from 'aos';
+import AOS from "aos";
 
 export default function Pharmaceuticals() {
-  const items = ["Diabetes Management", "Cardiovascular Health", "Respiratory Care", "Mental Health"];
+  const items = [
+    "Diabetes Management",
+    "Cardiovascular Health",
+    "Respiratory Care",
+    "Mental Health",
+  ];
 
-  
   useEffect(() => {
     AOS.init();
   }, []);
 
-
   return (
     <div className="flex flex-col gap-24 justify-between items-center container mx-auto py-10 px-5 md:px-0">
-
       {/* tag */}
       <div
-             data-aos="fade-up"
-               data-aos-duration="800"
-      className="pt-10 flex flex-col justify-center items-center w-full gap-10">
+        data-aos="fade-up"
+        data-aos-duration="800"
+        className="pt-10 flex flex-col justify-center items-center w-full gap-10"
+      >
         <div className="bg-[#f2fce2] rounded-3xl py-2 px-4">
           <p className="text-[#639f49]">Pharmaceutical Division</p>
         </div>
         <div className="flex flex-col gap-4">
-          <h1 className="text-center font-bold text-3xl lg:text-5xl text-[#4a90e2]">Revolutionizing Global Healthcare Access </h1>
+          <h1 className="text-center font-bold text-3xl lg:text-5xl text-[#4a90e2]">
+            Revolutionizing Global Healthcare Access{" "}
+          </h1>
 
           <p className="text-center text-sm md:text-base text-[#515863]">
-            RNA Supplies is expanding its mission to address critical medication shortages worldwide.
+            RNA Supplies is expanding its mission to address critical medication
+            shortages worldwide.
           </p>
         </div>
       </div>
-
 
       {/* background part */}
 
@@ -51,39 +56,47 @@ export default function Pharmaceuticals() {
 
         {/* Content */}
         <div
-               data-aos="fade-up"
-               data-aos-duration="1200"
-        className="relative text-center flex flex-col gap-4 p-6 rounded-lg max-w-2xl mx-auto">
+          data-aos="fade-up"
+          data-aos-duration="1200"
+          className="relative text-center flex flex-col gap-4 p-6 rounded-lg max-w-2xl mx-auto"
+        >
           <h2 className="text-6xl font-bold text-white">Our Vision</h2>
 
           <p className="text-center leading-8 text-white">
-            "To create a world where no life is lost due to medication unavailability.
-            We believe in breaking down barriers to healthcare access and ensuring
-            that life-saving medicines reach every corner of the globe."
+            "To create a world where no life is lost due to medication
+            unavailability. We believe in breaking down barriers to healthcare
+            access and ensuring that life-saving medicines reach every corner of
+            the globe."
           </p>
         </div>
       </div>
-
 
       {/* key focus area */}
       <div className="py-16">
         <div className="flex flex-col gap-12 ">
           <h3
-                 data-aos="fade-up"
-               data-aos-duration="400"
-          className="text-center text-3xl font-semibold text-black"> Key Focus Areas </h3>
+            data-aos="fade-up"
+            data-aos-duration="400"
+            className="text-center text-3xl font-semibold text-black"
+          >
+            {" "}
+            Key Focus Areas{" "}
+          </h3>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md: gap-6 w-full">
             {/* first caard */}
 
             <div
-                   data-aos="fade-up"
-               data-aos-duration="800"
-            className="border border-[#d3e4fd] pl-4 pr-12 pt-4 pb-6 rounded-lg w-full">
+              data-aos="fade-up"
+              data-aos-duration="800"
+              className="border border-[#d3e4fd] pl-4 pr-12 pt-4 pb-6 rounded-lg w-full"
+            >
               {/* Header */}
               <div className="flex gap-4 items-center mb-4">
                 <FaRegHeart className="text-xl font-semibold text-[#7ac142]" />
-                <p className="text-xl font-semibold text-black">Common Conditions</p>
+                <p className="text-xl font-semibold text-black">
+                  Common Conditions
+                </p>
               </div>
 
               {/* List Section */}
@@ -101,12 +114,15 @@ export default function Pharmaceuticals() {
             {/* second caard */}
 
             <div
-                   data-aos="fade-up"
-               data-aos-duration="1200"
-            className="border pl-4 pr-12 pt-4 pb-6 rounded-lg w-full">
+              data-aos="fade-up"
+              data-aos-duration="1200"
+              className="border pl-4 pr-12 pt-4 pb-6 rounded-lg w-full"
+            >
               <div className="flex gap-4 items-center mb-4">
                 <FaMicroscope className="text-xl font-semibold text-[#4a90e2]" />
-                <p className="text-xl font-semibold text-black">Rare Diseases</p>
+                <p className="text-xl font-semibold text-black">
+                  Rare Diseases
+                </p>
               </div>
 
               {/* List Section */}
@@ -124,13 +140,16 @@ export default function Pharmaceuticals() {
             {/* first caard */}
 
             <div
-                   data-aos="fade-up"
-               data-aos-duration="1600"
-            className="border pl-4 pr-12 pt-4 pb-6 rounded-lg w-full">
+              data-aos="fade-up"
+              data-aos-duration="1600"
+              className="border pl-4 pr-12 pt-4 pb-6 rounded-lg w-full"
+            >
               {/* Header */}
               <div className="flex gap-4 items-center mb-4">
                 <FaEarthAmericas className="text-xl font-semibold text-[#7ac142]" />
-                <p className="text-xl font-semibold text-black">Global Access</p>
+                <p className="text-xl font-semibold text-black">
+                  Global Access
+                </p>
               </div>
 
               {/* List Section */}
@@ -145,24 +164,27 @@ export default function Pharmaceuticals() {
                 ))}
               </ul>
             </div>
-
           </div>
         </div>
       </div>
 
-
       {/* Our Process */}
       <div className="border p-4 rounded-2xl py-16">
         <div className="flex flex-col gap-12 ">
-          <h3 
-                 data-aos="fade-up"
-               data-aos-duration="400"
-          className="text-center text-3xl font-semibold text-black"> Our Process</h3>
+          <h3
+            data-aos="fade-up"
+            data-aos-duration="400"
+            className="text-center text-3xl font-semibold text-black"
+          >
+            {" "}
+            Our Process
+          </h3>
 
           <div
-                 data-aos="fade-up"
-               data-aos-duration="800"
-          className="flex flex-wrap md: gap-6 w-full">
+            data-aos="fade-up"
+            data-aos-duration="800"
+            className="flex flex-wrap md: gap-6 w-full"
+          >
             {/* first caard */}
 
             <div className="w-64">
@@ -170,9 +192,10 @@ export default function Pharmaceuticals() {
               <div className="flex flex-col gap-2 items-center mb-4">
                 <FaRegHeart className="text-xl font-semibold text-black" />
                 <p className="text-xl font-semibold text-black">Partnership</p>
-                <p className="text-sm text-center text-black">Collaborate with governments and healthcare providers</p>
+                <p className="text-sm text-center text-black">
+                  Collaborate with governments and healthcare providers
+                </p>
               </div>
-
             </div>
             {/* first caard */}
 
@@ -181,9 +204,10 @@ export default function Pharmaceuticals() {
               <div className="flex flex-col gap-2 items-center mb-4">
                 <MdOutlineMonitorHeart className="text-xl font-semibold text-black" />
                 <p className="text-xl font-semibold text-black">Assessment</p>
-                <p className="text-sm text-center text-black">Analyze regional healthcare needs and gaps</p>
+                <p className="text-sm text-center text-black">
+                  Analyze regional healthcare needs and gaps
+                </p>
               </div>
-
             </div>
             {/* first caard */}
 
@@ -192,9 +216,10 @@ export default function Pharmaceuticals() {
               <div className="flex flex-col gap-2 items-center mb-4">
                 <BiInjection className="text-xl font-semibold text-black" />
                 <p className="text-xl font-semibold text-black">Distribution</p>
-                <p className="text-sm text-center text-black">Implement efficient supply chain solutions</p>
+                <p className="text-sm text-center text-black">
+                  Implement efficient supply chain solutions
+                </p>
               </div>
-
             </div>
             {/* first caard */}
 
@@ -203,12 +228,11 @@ export default function Pharmaceuticals() {
               <div className="flex flex-col gap-2 items-center mb-4">
                 <HiOutlineUsers className="text-xl font-semibold text-black" />
                 <p className="text-xl font-semibold text-black">Impact</p>
-                <p className="text-sm text-center text-black">Monitor and measure healthcare outcomes</p>
+                <p className="text-sm text-center text-black">
+                  Monitor and measure healthcare outcomes
+                </p>
               </div>
-
             </div>
-
-
           </div>
         </div>
       </div>
@@ -216,13 +240,19 @@ export default function Pharmaceuticals() {
       {/* Join Our Mission */}
       <div className="py-16">
         <div className="flex flex-col gap-24 ">
-          <div 
-                 data-aos="fade-up"
-               data-aos-duration="400"
-          className="flex flex-col justify-center items-center gap-5 max-w-2xl mx-auto">
-            <h3 className="text-center text-3xl font-semibold text-black"> Join Our Mission </h3>
+          <div
+            data-aos="fade-up"
+            data-aos-duration="400"
+            className="flex flex-col justify-center items-center gap-5 max-w-2xl mx-auto"
+          >
+            <h3 className="text-center text-3xl font-semibold text-black">
+              {" "}
+              Join Our Mission{" "}
+            </h3>
             <p className="text-center text-sm md:text-base text-black">
-              Together, we can make a significant impact on global healthcare accessibility. Partner with us to bring essential medicines to those who need them most.
+              Together, we can make a significant impact on global healthcare
+              accessibility. Partner with us to bring essential medicines to
+              those who need them most.
             </p>
 
             <div className="bg-[#4a90e2] rounded-3xl py-2 px-4">
@@ -233,51 +263,43 @@ export default function Pharmaceuticals() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md: gap-6 w-full">
             {/* first caard */}
 
-            <div 
-                   data-aos="fade-up"
-               data-aos-duration="800"
-            className="border rounded-lg w-full">
+            <div
+              data-aos="fade-up"
+              data-aos-duration="800"
+              className="border rounded-lg w-full"
+            >
               {/* Header */}
               <div className="flex p-12 flex-col justify-center gap-2 items-center mb-4">
-
-                 <CountUp  endValue={50} finalText="50+"/>
+                <CountUp endValue={50} finalText="50+" />
                 <p className="text-[#727a85]">Countries Served</p>
               </div>
-
-
             </div>
             {/* Second caard */}
 
-            <div 
-                   data-aos="fade-up"
-               data-aos-duration="1200"
-            className="border rounded-lg w-full">
+            <div
+              data-aos="fade-up"
+              data-aos-duration="1200"
+              className="border rounded-lg w-full"
+            >
               {/* Header */}
               <div className="flex p-12 flex-col justify-center gap-2 items-center mb-4">
-
-                 <CountUp  endValue={1000000} finalText="1M+"/>
+                <CountUp endValue={1000000} finalText="1M+" />
                 <p className="text-[#727a85]">Lives Impacted</p>
               </div>
-
-
             </div>
             {/* Third caard */}
 
             <div
-                   data-aos="fade-up"
-               data-aos-duration="1600"
-            className="border rounded-lg w-full">
+              data-aos="fade-up"
+              data-aos-duration="1600"
+              className="border rounded-lg w-full"
+            >
               {/* Header */}
               <div className="flex p-12 flex-col justify-center gap-2 items-center mb-4">
-
-                <CountUp  endValue={200} finalText="200+"/>
+                <CountUp endValue={200} finalText="200+" />
                 <p className="text-[#727a85]">Medicine Types</p>
               </div>
-
-
             </div>
-
-
           </div>
         </div>
       </div>

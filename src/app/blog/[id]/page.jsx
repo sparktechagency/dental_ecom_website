@@ -1,17 +1,23 @@
-"use client"
+"use client";
 import BreadCrumb from "@/components/shared/BreadCrumb";
 import { useFetchBlogByIdQuery } from "@/redux/feature/blog/blogApi";
 import { getBaseUrl } from "@/utils/getBaseUrl";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 import { MdOutlineDateRange } from "react-icons/md";
-
+import "aos/dist/aos.css";
+import AOS from "aos";
 
 const BlogDetails = () => {
   const { id } = useParams();
-  const { data: { data: blogDetails } = {}, isLoading } = useFetchBlogByIdQuery(id);
+  const { data: { data: blogDetails } = {}, isLoading } =
+    useFetchBlogByIdQuery(id);
   const navigate = useRouter();
+
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
   if (isLoading) {
     return <div className="text-white text-center py-10">Loading...</div>;
@@ -39,7 +45,11 @@ const BlogDetails = () => {
       </div>
 
       {/* Title & Meta */}
-      <div className="flex justify-between items-center my-10">
+      <div
+        data-aos="fade-up"
+        data-aos-duration="800"
+        className="flex justify-between items-center my-10"
+      >
         <h2 className="text-3xl font-semibold mb-3">{blogDetails?.title}</h2>
         <div className="text-[#9F9C96] text-sm mt-2 flex items-center gap-2">
           <MdOutlineDateRange className="text-[#9F9C96] text-lg" />
@@ -48,10 +58,16 @@ const BlogDetails = () => {
       </div>
 
       {/* Description */}
-      <p className="text-[#CFCFCF] mb-6">{blogDetails?.content}</p>
+      <p
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        className="text-[#CFCFCF] mb-6"
+      >
+        {blogDetails?.content}
+      </p>
 
       {/* Go Back Button */}
-      <div className="text-center">
+      <div data-aos="fade-up" data-aos-duration="1200" className="text-center">
         <Link
           href="/blog"
           className="px-6 py-2 bg-blue-600 hover:bg-blue-700 transition rounded-md text-white font-bold cursor-pointer"
