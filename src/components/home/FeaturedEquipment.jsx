@@ -27,10 +27,11 @@ const FeaturedEquipment = () => {
   return (
     <div className="bg-[#e3edf9]">
       <div className="container mx-auto py-24">
-        <div 
-            data-aos="fade-up"
-       data-aos-duration="400"
-        className="flex justify-center mb-8">
+        <div
+          data-aos="fade-up"
+          data-aos-duration="400"
+          className="flex justify-center mb-8"
+        >
           <div className="bg-[#f2fce2] rounded-3xl py-2 px-4">
             <p className="text-[#89bc69] text-sm md:font-semibold">
               Featured Equipment
@@ -39,9 +40,10 @@ const FeaturedEquipment = () => {
         </div>
 
         <div
-            data-aos="fade-up"
-       data-aos-duration="400"
-        className="flex justify-center items-center text-center flex-col gap-4">
+          data-aos="fade-up"
+          data-aos-duration="400"
+          className="flex justify-center items-center text-center flex-col gap-4"
+        >
           <p className="text-[#347fd4] text-4xl font-bold">
             Premium Dental Solutions
           </p>
@@ -56,10 +58,7 @@ const FeaturedEquipment = () => {
         <div className="flex flex-col gap-24">
           {/* products images */}
           {/* dental chair */}
-          <div 
-              data-aos="fade-up"
-       data-aos-duration="800"
-          >
+          <div data-aos="fade-up" data-aos-duration="800">
             <p className="text-[#4a90e2] text-2xl font-semibold text-center pb-12">
               Dental Chairs
             </p>
@@ -75,9 +74,10 @@ const FeaturedEquipment = () => {
                 className=" bg-white p-5 rounded-3xl flex flex-col  "
               >
                 <p className="text-[#4a90e2] font-bold text-xl">Dental Chair</p>
-                <div className="flex flex-col items-center">
-                  <Image src={bed} 
-                  className="transition-transform duration-300 hover:scale-105"
+                <div className="flex flex-col rounded-2xl overflow-hidden items-center">
+                  <Image
+                    src={bed}
+                    className="transition-transform duration-300 hover:scale-105"
                   />
                 </div>
                 <p className="text-[#5f6061]">
@@ -88,10 +88,7 @@ const FeaturedEquipment = () => {
           </div>
 
           {/* dental chair */}
-          <div
-              data-aos="fade-up"
-       data-aos-duration="800"
-          >
+          <div data-aos="fade-up" data-aos-duration="800">
             <p className="text-[#4a90e2] text-2xl font-semibold text-center pb-12">
               Restorative
             </p>
@@ -109,10 +106,11 @@ const FeaturedEquipment = () => {
                 <p className="text-[#4a90e2] font-bold text-xl pb-8">
                   Composite Filling
                 </p>
-                <div className="flex flex-col items-center pb-8">
+                <div className="flex flex-col rounded-2xl overflow-hidden items-center pb-8">
                   <Image
-                  className="transition-transform duration-300 hover:scale-105"
-                  src={teeth} />
+                    className="transition-transform duration-300 hover:scale-105 overflow-hidden rounded-xl"
+                    src={teeth}
+                  />
                 </div>
                 <p className="text-[#5f6061]">
                   Light-cure composite restorative material
@@ -121,10 +119,7 @@ const FeaturedEquipment = () => {
             </div>
           </div>
           {/* dental chair */}
-          <div
-              data-aos="fade-up"
-       data-aos-duration="800"
-          >
+          <div data-aos="fade-up" data-aos-duration="800">
             <p className="text-[#4a90e2] text-2xl font-semibold text-center pb-12">
               Handpieces
             </p>
@@ -142,10 +137,12 @@ const FeaturedEquipment = () => {
                 <p className="text-[#4a90e2] font-bold text-xl pb-8">
                   High-Speed Handpiece
                 </p>
-                <div className="items-center pb-8">
+                <div 
+                overflow-hidden rounded-xl
+                className="items-center pb-8">
                   <Image
                     src={screw}
-                    className="transition-transform duration-300 hover:scale-105"
+                    className="transition-transform duration-300 hover:scale-105 overflow-hidden rounded-xl"
                     alt="screw image"
                   />
                 </div>
