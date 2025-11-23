@@ -1,10 +1,20 @@
 "use client";
 import BreadCrumb from "@/components/shared/BreadCrumb";
-import React from "react";
+import React, { useEffect } from "react";
 import { useGetPageByKeyQuery } from "@/redux/feature/pages/pagesApi";
 import Subscribe from "@/components/home/Subscribe";
+import "aos/dist/aos.css";
+import AOS from 'aos';
 
 export default function AboutUs() {
+
+
+  
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
+
   const { data, isFetching, error } = useGetPageByKeyQuery("about");
   console.log(data);
   const title = data?.data?.title || data?.title || "About Us";
@@ -30,7 +40,10 @@ export default function AboutUs() {
         <div className="container mx-auto flex justify-start items-center">
           <BreadCrumb name="Home" title="About Us" />
         </div>
-        <div className="container mx-auto p-5 rounded-lg ">
+        <div
+               data-aos="fade-up"
+               data-aos-duration="800"
+        className="container mx-auto p-5 rounded-lg ">
           <section className="px-6 py-12 text-slate-700 leading-relaxed">
             <h1 className="text-2xl font-bold mb-5 text-black">{title}</h1>
             {error && <p className="text-red-400">Failed to load content.</p>}

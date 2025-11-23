@@ -1,16 +1,24 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { useFetchAllProcedureQuery } from "@/redux/feature/procedure/procedure";
 import PageHeading from "@/components/shared/PageHeading";
 import { getBaseUrl } from "@/utils/getBaseUrl";
 import Link from "next/link";
+import "aos/dist/aos.css";
+import AOS from 'aos';
 
 export default function ProcedureGuide() {
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
   const { data: procedure, isLoading, error } = useFetchAllProcedureQuery({});
+
+  
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
 
   if (isLoading) {
     return (
@@ -35,7 +43,10 @@ export default function ProcedureGuide() {
       </header>
 
       {/* Procedure Cards */}
-      <div className="space-y-5 flex flex-col gap-5">
+      <div
+      data-aos="fade-up"
+      data-aos-duration="800"
+      className="space-y-5 flex flex-col gap-5 ">
         {procedure?.map((procedure) => (
           <div
             key={procedure._id}
@@ -48,11 +59,17 @@ export default function ProcedureGuide() {
                 alt={procedure.title}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-transparent"></div>
 
               <div className="absolute inset-0 flex flex-col justify-between p-8">
-                <div className="flex-1">
-                  <h3 className="text-3xl font-bold text-white mb-3">
+                <div 
+                       data-aos="fade-up"
+               data-aos-duration="800"
+                
+                className="flex-1">
+                  <h3 
+           
+                  className="text-3xl font-bold text-white mb-3">
                     {procedure.title}
                   </h3>
                   <p className="text-white/90 text-lg mb-4 max-w-2xl leading-relaxed">

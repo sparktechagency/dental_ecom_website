@@ -1,22 +1,32 @@
-import React from "react";
+"use client"
+import React, { useEffect } from "react";
 import { BiInjection } from "react-icons/bi";
 import { FaRegHeart } from "react-icons/fa";
 import { FaMicroscope } from "react-icons/fa";
 import { FaEarthAmericas } from "react-icons/fa6";
 import { HiOutlineUsers } from "react-icons/hi2";
 import { MdOutlineMonitorHeart } from "react-icons/md";
-import CountUpOnScroll from "../../components/Counter 1M/CountUpOnScroll"
 import CountUp from "../../components/Counter 1M/CountUp"
-
+import "aos/dist/aos.css";
+import AOS from 'aos';
 
 export default function Pharmaceuticals() {
   const items = ["Diabetes Management", "Cardiovascular Health", "Respiratory Care", "Mental Health"];
+
+  
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
 
   return (
     <div className="flex flex-col gap-24 justify-between items-center container mx-auto py-10 px-5 md:px-0">
 
       {/* tag */}
-      <div className="pt-10 flex flex-col justify-center items-center w-full gap-10">
+      <div
+             data-aos="fade-up"
+               data-aos-duration="800"
+      className="pt-10 flex flex-col justify-center items-center w-full gap-10">
         <div className="bg-[#f2fce2] rounded-3xl py-2 px-4">
           <p className="text-[#639f49]">Pharmaceutical Division</p>
         </div>
@@ -40,7 +50,10 @@ export default function Pharmaceuticals() {
         <div className="absolute inset-0 bg-blue-600/40"></div>
 
         {/* Content */}
-        <div className="relative text-center flex flex-col gap-4 p-6 rounded-lg max-w-2xl mx-auto">
+        <div
+               data-aos="fade-up"
+               data-aos-duration="1200"
+        className="relative text-center flex flex-col gap-4 p-6 rounded-lg max-w-2xl mx-auto">
           <h2 className="text-6xl font-bold text-white">Our Vision</h2>
 
           <p className="text-center leading-8 text-white">
@@ -55,12 +68,18 @@ export default function Pharmaceuticals() {
       {/* key focus area */}
       <div className="py-16">
         <div className="flex flex-col gap-12 ">
-          <h3 className="text-center text-3xl font-semibold text-black"> Key Focus Areas </h3>
+          <h3
+                 data-aos="fade-up"
+               data-aos-duration="400"
+          className="text-center text-3xl font-semibold text-black"> Key Focus Areas </h3>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md: gap-6 w-full">
             {/* first caard */}
 
-            <div className="border border-[#d3e4fd] pl-4 pr-12 pt-4 pb-6 rounded-lg w-full">
+            <div
+                   data-aos="fade-up"
+               data-aos-duration="800"
+            className="border border-[#d3e4fd] pl-4 pr-12 pt-4 pb-6 rounded-lg w-full">
               {/* Header */}
               <div className="flex gap-4 items-center mb-4">
                 <FaRegHeart className="text-xl font-semibold text-[#7ac142]" />
@@ -81,7 +100,10 @@ export default function Pharmaceuticals() {
             </div>
             {/* second caard */}
 
-            <div className="border pl-4 pr-12 pt-4 pb-6 rounded-lg w-full">
+            <div
+                   data-aos="fade-up"
+               data-aos-duration="1200"
+            className="border pl-4 pr-12 pt-4 pb-6 rounded-lg w-full">
               <div className="flex gap-4 items-center mb-4">
                 <FaMicroscope className="text-xl font-semibold text-[#4a90e2]" />
                 <p className="text-xl font-semibold text-black">Rare Diseases</p>
@@ -101,7 +123,10 @@ export default function Pharmaceuticals() {
             </div>
             {/* first caard */}
 
-            <div className="border pl-4 pr-12 pt-4 pb-6 rounded-lg w-full">
+            <div
+                   data-aos="fade-up"
+               data-aos-duration="1600"
+            className="border pl-4 pr-12 pt-4 pb-6 rounded-lg w-full">
               {/* Header */}
               <div className="flex gap-4 items-center mb-4">
                 <FaEarthAmericas className="text-xl font-semibold text-[#7ac142]" />
@@ -129,9 +154,15 @@ export default function Pharmaceuticals() {
       {/* Our Process */}
       <div className="border p-4 rounded-2xl py-16">
         <div className="flex flex-col gap-12 ">
-          <h3 className="text-center text-3xl font-semibold text-black"> Our Process</h3>
+          <h3 
+                 data-aos="fade-up"
+               data-aos-duration="400"
+          className="text-center text-3xl font-semibold text-black"> Our Process</h3>
 
-          <div className="flex flex-wrap md: gap-6 w-full">
+          <div
+                 data-aos="fade-up"
+               data-aos-duration="800"
+          className="flex flex-wrap md: gap-6 w-full">
             {/* first caard */}
 
             <div className="w-64">
@@ -185,7 +216,10 @@ export default function Pharmaceuticals() {
       {/* Join Our Mission */}
       <div className="py-16">
         <div className="flex flex-col gap-24 ">
-          <div className="flex flex-col justify-center items-center gap-5 max-w-2xl mx-auto">
+          <div 
+                 data-aos="fade-up"
+               data-aos-duration="400"
+          className="flex flex-col justify-center items-center gap-5 max-w-2xl mx-auto">
             <h3 className="text-center text-3xl font-semibold text-black"> Join Our Mission </h3>
             <p className="text-center text-sm md:text-base text-black">
               Together, we can make a significant impact on global healthcare accessibility. Partner with us to bring essential medicines to those who need them most.
@@ -199,7 +233,10 @@ export default function Pharmaceuticals() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md: gap-6 w-full">
             {/* first caard */}
 
-            <div className="border rounded-lg w-full">
+            <div 
+                   data-aos="fade-up"
+               data-aos-duration="800"
+            className="border rounded-lg w-full">
               {/* Header */}
               <div className="flex p-12 flex-col justify-center gap-2 items-center mb-4">
 
@@ -211,7 +248,10 @@ export default function Pharmaceuticals() {
             </div>
             {/* Second caard */}
 
-            <div className="border rounded-lg w-full">
+            <div 
+                   data-aos="fade-up"
+               data-aos-duration="1200"
+            className="border rounded-lg w-full">
               {/* Header */}
               <div className="flex p-12 flex-col justify-center gap-2 items-center mb-4">
 
@@ -223,7 +263,10 @@ export default function Pharmaceuticals() {
             </div>
             {/* Third caard */}
 
-            <div className="border rounded-lg w-full">
+            <div
+                   data-aos="fade-up"
+               data-aos-duration="1600"
+            className="border rounded-lg w-full">
               {/* Header */}
               <div className="flex p-12 flex-col justify-center gap-2 items-center mb-4">
 
