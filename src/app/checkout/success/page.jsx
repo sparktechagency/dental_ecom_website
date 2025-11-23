@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react'
-import CheckoutSuccessContent from './CheckoutSuccessContent'
+import CheckoutSuccessContent from '../../../components/checkout/CheckoutSuccessContent'
 
 const page = () => {
   return (

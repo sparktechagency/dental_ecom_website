@@ -1,6 +1,6 @@
 // app/checkout/success/page.jsx
 "use client";
-import CheckoutSuccessContent from "@/app/checkout/success/CheckoutSuccessContent";
+import CheckoutSuccessContent from "@/components/checkout/CheckoutSuccessContent";
 import { Suspense } from "react";
 
 export default function CheckoutSuccessPage() {

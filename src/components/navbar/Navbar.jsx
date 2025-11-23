@@ -71,7 +71,7 @@ export default function Navbar() {
   // Clear cart on success pages
   useEffect(() => {
     if (!pathname) return;
-    const isSuccess = pathname.startsWith("/checkout/success") || pathname === "/congratulations";
+    const isSuccess = pathname.startsWith("/congratulations") || pathname === "/congratulations";
     const oid = searchParams?.get?.("orderId");
     if (isSuccess || oid) {
       dispatch(clearCartLocal());

@@ -1,20 +1,14 @@
 import Image from 'next/image'
 import React from 'react'
-import image from "/public/cards.png"
-import { FaCcVisa } from "react-icons/fa6";
-import { SiAmericanexpress } from "react-icons/si";
-import { FaCcApplePay } from "react-icons/fa";
-import { FaCcPaypal } from "react-icons/fa";
-import { FaCcMastercard } from "react-icons/fa";
-import { FaGooglePay } from "react-icons/fa";
-import imagefirst from "../../../public/visaa.png"
-import american from "../../../public/american.png"
-import visa from "../../../public/vissa.png"
-import applepay from "../../../public/apple_pay.png"
-import paypal from "../../../public/pyl.png"
-import maestro from "../../../public/maestro.png"
-import master from "../../../public/master.png"
-import gpay from "../../../public/g_pay.png"
+
+// import imagefirst from "../../../public/visaa.png"
+// import american from "../../../public/american.png"
+// import visa from "../../../public/vissa.png"
+// import applepay from "../../../public/apple_pay.png"
+// // import paypal from "../../../public/pyl.png"
+// import maestro from "../../../public/maestro.png"
+// import master from "../../../public/master.png"
+// import gpay from "../../../public/g_pay.png"
 
 
 
@@ -37,20 +31,20 @@ const PaymentCards = () => {
              /> */}
 
            <div className='grid grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-12 pt-8'>
-           <div className=' w-12 md:w-24 lg:w-32'> 
+           {/* <div className=' w-12 md:w-24 lg:w-32'> 
             <Image
             
             src={imagefirst}/>
-             </div>
-             <div className='w-12 md:w-24 lg:w-32 '> <Image 
+             </div> */}
+             {/* <div className='w-12 md:w-24 lg:w-32 '> <Image 
              className='w-24'
              src={american}/> </div>
              <div className='w-12 md:w-24 lg:w-32 '> <Image src={visa}/> </div>
-             <div className='w-12 md:w-24 lg:w-32 '> <Image src={applepay}/> </div>
-             <div className='w-12 md:w-24 lg:w-32 '> <Image src={paypal}/> </div>
-             <div className='w-12 md:w-24 lg:w-32 '> <Image src={maestro}/> </div>
+             <div className='w-12 md:w-24 lg:w-32 '> <Image src={applepay}/> </div> */}
+             {/* <div className='w-12 md:w-24 lg:w-32 '> <Image src={paypal}/> </div> */}
+             {/* <div className='w-12 md:w-24 lg:w-32 '> <Image src={maestro}/> </div>
              <div className='w-12 md:w-24 lg:w-32 '> <Image src={master}/> </div>
-             <div className='w-12 md:w-24 lg:w-32'> <Image src={gpay}/> </div>
+             <div className='w-12 md:w-24 lg:w-32'> <Image src={gpay}/> </div> */}
 
 
           

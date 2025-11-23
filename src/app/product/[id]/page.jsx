@@ -1,10 +1,9 @@
 "use client"
 import BreadCrumb from "@/components/shared/BreadCrumb";
 import SectionHeading from "@/components/shared/SectionHeading";
-import { addToCart, setItemQuantity, setCartFromServer } from "@/redux/feature/cart/cartSlice";
+import { addToCart, setCartFromServer } from "@/redux/feature/cart/cartSlice";
 import { useAddToCartMutation, useGetCartQuery, useUpdateCartItemMutation, useRemoveCartItemMutation } from "@/redux/feature/cart/cartApi";
 import { useFetchProductbyIdQuery } from "@/redux/feature/products/productsApi";
-import { getBaseUrl } from "@/utils/getBaseUrl";
 import { useParams,useRouter } from "next/navigation";
 
 import React, { useState, useEffect, Suspense } from "react";

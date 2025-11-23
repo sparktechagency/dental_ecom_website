@@ -8,9 +8,13 @@ const ordersApi = createApi({
     credentials: "include",
     prepareHeaders: (headers, { getState }) => {
       try {
-        const token = getState()?.auth?.token || (typeof window !== 'undefined' ? localStorage.getItem('token') : null);
+        const token =
+          getState()?.auth?.token ||
+          (typeof window !== "undefined"
+            ? localStorage.getItem("token")
+            : null);
         if (token) {
-          headers.set('authorization', `Bearer ${token}`);
+          headers.set("authorization", `Bearer ${token}`);
         }
       } catch {}
       return headers;
@@ -20,10 +24,9 @@ const ordersApi = createApi({
     getMyOrders: builder.query({
       query: ({ page = 1, limit = 10 } = {}) => ({
         url: `/orders/my-orders`,
-        method: 'GET',
+        method: "GET",
         params: { page, limit },
       }),
-      // Keep old data during pagination transitions
       keepUnusedDataFor: 60,
     }),
     createOrder: builder.mutation({
@@ -33,8 +36,19 @@ const ordersApi = createApi({
         body: payload,
       }),
     }),
+    checkout: builder.mutation({
+      query: (orderId) => ({
+        url: "/checkout/success",
+        method: "POST",
+        params: orderId,
+      }),
+    }),
   }),
 });
 
-export const { useCreateOrderMutation, useGetMyOrdersQuery } = ordersApi;
+export const {
+  useCreateOrderMutation,
+  useGetMyOrdersQuery,
+  useCheckoutMutation,
+} = ordersApi;
 export default ordersApi;
