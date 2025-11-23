@@ -10,7 +10,7 @@ export default function AddressSection() {
   const [deleteAddress, { isLoading: isDeleting }] = useDeleteAddressMutation();
   const [deletingId, setDeletingId] = useState(null);
   
-  console.log("API Response:", addresses);
+ 
 
   const handleEdit = (id) => {
     console.log("Edit address:", id);
@@ -20,7 +20,7 @@ export default function AddressSection() {
   const handleDelete = async (id) => {
     try {
       setDeletingId(id);
-      console.log("Deleting address ID:", id);
+      
       
       // Confirm deletion
       const isConfirmed = window.confirm("Are you sure you want to delete this address?");
@@ -30,7 +30,7 @@ export default function AddressSection() {
       }
       
       const result = await deleteAddress(id).unwrap();
-      console.log("Address deleted successfully:", result);
+      
       
       // Auto refetch addresses after delete
       refetch();

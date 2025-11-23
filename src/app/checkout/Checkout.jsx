@@ -28,7 +28,7 @@ export default function Checkout() {
     const cart = useSelector(state => state.cart || {})
     const selectedProducts = cart.products?.filter(p => p.selected) || []
 
-    console.log("select productsss",selectedProducts)
+
     
     const subtotal = selectedProducts.reduce((total, product) => {
         return total + (product.price * product.quantity)

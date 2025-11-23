@@ -16,7 +16,7 @@ export default function AboutUs() {
 
 
   const { data, isFetching, error } = useGetPageByKeyQuery("about");
-  console.log(data);
+
   const title = data?.data?.title || data?.title || "About Us";
   const content = data?.data?.content || data?.content || data?.data || "";
 

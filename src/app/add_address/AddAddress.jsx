@@ -52,7 +52,7 @@ export default function AddNewAddress() {
             // Call API
             const result = await addAddress(addressData).unwrap()
             
-            console.log("Address added successfully:", result)
+           
             
             // Redirect to profile page after success
             router.push("/profile")
@@ -63,7 +63,7 @@ export default function AddNewAddress() {
     }
 
     const handleCancel = () => {
-        console.log("Form cancelled")
+     
         router.back()
     }
 

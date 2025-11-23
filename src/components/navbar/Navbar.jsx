@@ -30,7 +30,7 @@ export default function Navbar() {
   const [logoutApi, { isLoading: isLoggingOut }] = useLogoutMutation();
   const { data, isLoading, isFetching, error } = useGetMyProfileQuery();
   const profile = data?.data || data || {};
-  console.log("pfofiledata", profile.imageUrl)
+
 
 
   // Active link checker

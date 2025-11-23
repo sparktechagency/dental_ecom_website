@@ -26,7 +26,7 @@ export default function ForgetPassword() {
     e.preventDefault();
     try {
       const result = await forgotPassword(formData.email).unwrap();
-      console.log("OTP sent successfully:", result);
+     
       
       // Email local storage e save koro ar OTP page e navigate koro
       localStorage.setItem("forgotPasswordEmail", formData.email);

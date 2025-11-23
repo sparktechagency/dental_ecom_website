@@ -25,7 +25,6 @@ export default function Otp() {
     const queryEmail = searchParams?.get("email");
     if (queryEmail) {
       setEmail(queryEmail);
-      console.log("Email from query:", queryEmail);
       return;
     }
     try {
@@ -84,7 +83,7 @@ export default function Otp() {
         code: otpCode,
       }).unwrap();
 
-      // console.log("OTP verified successfully:", result);
+      
       toast.success("OTP verified successfully!", {
         style: {
           background: "#dcfce7",
@@ -104,17 +103,17 @@ export default function Otp() {
           );
         } else if (result.resetToken) {
           localStorage.setItem("resetToken", result.resetToken);
-          console.log(" Reset token saved (resetToken):", result.resetToken);
+         
         } else if (result.data) {
           localStorage.setItem("resetToken", result.data);
-          console.log(" Reset token saved (data):", result.data);
+          
         } else {
           console.log(" Verification successful, no reset token needed");
         }
 
         navigate.push("/sign_in");
       } else {
-        console.log(" Unexpected response:", result);
+        
         toast.error(result.message || "Something went wrong", {
           style: {
             background: "#fef2f2",
@@ -149,11 +148,11 @@ export default function Otp() {
     }
 
     setResendMsg("");
-    console.log("📨 Resending code to:", email);
+
 
     try {
       const result = await forgotPassword(email).unwrap();
-      console.log(" Resend successful:", result);
+      
       setResendMsg("A new verification code has been sent to your email.");
     } catch (e) {
       console.error(" Resend failed:", e);
@@ -164,7 +163,7 @@ export default function Otp() {
   };
 
   useEffect(() => {
-    console.log("🔍 Component State:", {
+    console.log(" Component State:", {
       email,
       code,
       isLoading,

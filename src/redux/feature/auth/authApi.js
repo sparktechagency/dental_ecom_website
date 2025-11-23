@@ -45,11 +45,10 @@ const authApi = createApi({
         body: otpData,
       }),
       transformResponse: (response) => {
-        console.log(' verifyOtp transformResponse:', response);
+       
         return response;
       },
       transformErrorResponse: (response) => {
-        console.log(' verifyOtp transformErrorResponse:', response);
         return response;
       }
     }),

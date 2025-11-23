@@ -27,7 +27,7 @@ export default function ProfilePage() {
   const authUser = useSelector((state) => state?.auth?.user);
   const { data, isLoading, isFetching, error } = useGetMyProfileQuery();
   const profile = data?.data || data || {};
-  console.log("pfofiledata", profile.imageUrl)
+
 
   if (isLoading || isFetching) {
     return (

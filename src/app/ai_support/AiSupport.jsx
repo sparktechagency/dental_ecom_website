@@ -24,7 +24,7 @@ export default function AiSupport() {
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
   const user = useSelector((state) => state?.auth?.user);
-  // console.log("UUUSSSEEERRR",user)
+
   const userImage = user?.image
     ? `${user.image}`
     : "/default-avatar.png";

@@ -8,7 +8,7 @@ import { useFetchAllCategoriesQuery } from "@/redux/feature/category/CategoriesA
 
 const AllCategory = () => {
   const { data: categories, isLoading, error } = useFetchAllCategoriesQuery({});
-  console.log(categories)
+  
 
   if (isLoading) {
     return (

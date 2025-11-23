@@ -5,23 +5,6 @@ import teeth from "../../../public/teeth.png";
 import screw from "../../../public/screw.png";
 import Link from "next/link";
 
-// const productsInfo =[
-//     {
-//         "name": "Dental Chairs",
-//         "img": bed,
-//         "des": "Modern dental chair with advanced features"
-//     },
-//     {
-//         "name": "Dental Chairs",
-//         "img": screw,
-//         "des": "Modern dental chair with advanced features"
-//     },
-//     {
-//         "name": "Dental Chairs",
-//         "img": screw,
-//         "des": "Modern dental chair with advanced features"
-//     },
-// ]
 
 const FeaturedEquipment = () => {
   return (

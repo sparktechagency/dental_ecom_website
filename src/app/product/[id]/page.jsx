@@ -28,7 +28,7 @@ const ProductDetails = () => {
   const [removeCartItem] = useRemoveCartItemMutation();
   const [isAddingToCart, setIsAddingToCart] = useState(false);
   const { data: procedure } = useFetchAllProcedureQuery({});
-  console.log("product details procedure--->", procedure);
+ 
 
   const { data, isLoading, isError } = useFetchProductbyIdQuery(id);
   const product = data?.data;
@@ -87,7 +87,7 @@ const ProductDetails = () => {
       await refetch();
 
     } catch (e) {
-      console.log("Cart API Error:", e);
+    
       toast.error("Failed to add to cart", {
         description: "Please try again"
       });

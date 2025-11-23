@@ -89,7 +89,6 @@ const ShoppingCart = () => {
     const currentQty = productQuantities[productId] || 1;
     const newQty = currentQty + 1;
 
-    console.log("🔄 Increment:", productId, currentQty, "→", newQty);
 
     // Set loading state
     setLoadingItems(prev => ({ ...prev, [productId]: true }));
@@ -106,7 +105,7 @@ const ShoppingCart = () => {
         quantity: newQty,
       }).unwrap();
 
-      console.log("Quantity updated successfully:");
+     
     } catch (error) {
       // Revert on error
       setProductQuantities((prev) => ({
@@ -124,7 +123,6 @@ const ShoppingCart = () => {
     const currentQty = productQuantities[productId] || 1;
     const newQty = Math.max(1, currentQty - 1);
 
-    console.log("🔄 Decrement:", productId, currentQty, "→", newQty);
 
     // Set loading state
     setLoadingItems(prev => ({ ...prev, [productId]: true }));
@@ -141,7 +139,7 @@ const ShoppingCart = () => {
         quantity: newQty,
       }).unwrap();
 
-      console.log("Quantity updated successfully:");
+      
     } catch (error) {
       // Revert on error
       setProductQuantities((prev) => ({
@@ -159,7 +157,6 @@ const ShoppingCart = () => {
     const validQuantity = Math.max(1, parseInt(newQuantity) || 1);
     const currentQty = productQuantities[productId] || 1;
 
-    console.log("🔄 Direct change:", productId, currentQty, "→", validQuantity);
 
     // Set loading state
     setLoadingItems(prev => ({ ...prev, [productId]: true }));
@@ -176,7 +173,6 @@ const ShoppingCart = () => {
         quantity: validQuantity,
       }).unwrap();
 
-      console.log("Quantity updated successfully:");
     } catch (error) {
       // Revert on error
       setProductQuantities((prev) => ({
@@ -204,11 +200,11 @@ const ShoppingCart = () => {
   };
 
   const handleDeleteItem = async (productId) => {
-    console.log("🗑️ Deleting product:", productId);
+    console.log(" Deleting product:", productId);
 
     try {
       const result = await removeCartItem(productId).unwrap();
-      console.log(" Item deleted successfully:", result);
+      
     } catch (error) {
       console.error(" Failed to delete item:", error);
     }
