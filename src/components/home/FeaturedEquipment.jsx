@@ -27,7 +27,10 @@ const FeaturedEquipment = () => {
   return (
     <div className="bg-[#e3edf9]">
       <div className="container mx-auto py-24">
-        <div className="flex justify-center mb-8">
+        <div 
+            data-aos="fade-up"
+       data-aos-duration="400"
+        className="flex justify-center mb-8">
           <div className="bg-[#f2fce2] rounded-3xl py-2 px-4">
             <p className="text-[#89bc69] text-sm md:font-semibold">
               Featured Equipment
@@ -35,7 +38,10 @@ const FeaturedEquipment = () => {
           </div>
         </div>
 
-        <div className="flex justify-center items-center text-center flex-col gap-4">
+        <div
+            data-aos="fade-up"
+       data-aos-duration="400"
+        className="flex justify-center items-center text-center flex-col gap-4">
           <p className="text-[#347fd4] text-4xl font-bold">
             Premium Dental Solutions
           </p>
@@ -50,7 +56,10 @@ const FeaturedEquipment = () => {
         <div className="flex flex-col gap-24">
           {/* products images */}
           {/* dental chair */}
-          <div>
+          <div 
+              data-aos="fade-up"
+       data-aos-duration="800"
+          >
             <p className="text-[#4a90e2] text-2xl font-semibold text-center pb-12">
               Dental Chairs
             </p>
@@ -79,7 +88,10 @@ const FeaturedEquipment = () => {
           </div>
 
           {/* dental chair */}
-          <div>
+          <div
+              data-aos="fade-up"
+       data-aos-duration="800"
+          >
             <p className="text-[#4a90e2] text-2xl font-semibold text-center pb-12">
               Restorative
             </p>
@@ -109,7 +121,10 @@ const FeaturedEquipment = () => {
             </div>
           </div>
           {/* dental chair */}
-          <div>
+          <div
+              data-aos="fade-up"
+       data-aos-duration="800"
+          >
             <p className="text-[#4a90e2] text-2xl font-semibold text-center pb-12">
               Handpieces
             </p>

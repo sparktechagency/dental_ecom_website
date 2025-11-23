@@ -14,23 +14,38 @@ const Buttonsgradiants = () => {
       className="bg-fixed"
     >
       <div className="container mx-auto text-white p-8 relative z-10">
-        <div className="flex gap-12 flex-wrap justify-center">
+        <div 
+            data-aos="fade-up"
+       data-aos-duration="400"
+        className="flex gap-12 flex-wrap justify-center">
           {/* first button */}
-          <div className="bg-gradient-to-r from-[#f77029] to-[#db49e3] py-3 rounded-lg ">
+          <div 
+              data-aos="fade-up"
+       data-aos-duration="300"
+          className="bg-gradient-to-r from-[#f77029] to-[#db49e3] py-3 rounded-lg ">
             <p className="text-white font-medium px-8">Dental Chairs</p>
           </div>
           {/* second button */}
-          <div className="bg-gradient-to-r from-[#895df6] to-[#179fea] py-3 rounded-lg ">
+          <div
+              data-aos="fade-up"
+       data-aos-duration="800"
+          className="bg-gradient-to-r from-[#895df6] to-[#179fea] py-3 rounded-lg ">
             <p className="text-white font-medium px-8">
               Sterilization Equipment
             </p>
           </div>
           {/* third button */}
-          <div className="bg-gradient-to-r from-[#f77029] to-[#db49e3] py-3 rounded-lg ">
+          <div
+              data-aos="fade-up"
+       data-aos-duration="1200"
+          className="bg-gradient-to-r from-[#f77029] to-[#db49e3] py-3 rounded-lg ">
             <p className="text-white font-medium px-8">Consumables</p>
           </div>
           {/* foruth button */}
-          <div className="bg-gradient-to-r from-[#895df6] to-[#179fea] py-3 rounded-lg ">
+          <div
+              data-aos="fade-up"
+       data-aos-duration="1400"
+          className="bg-gradient-to-r from-[#895df6] to-[#179fea] py-3 rounded-lg ">
             <p className="text-white font-medium px-8">Dental Instruments</p>
           </div>
         </div>

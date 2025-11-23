@@ -2,16 +2,16 @@
   "name": "dental",
   "version": "0.1.0",
   "private": true,
-"scripts": {
-  "dev": "next dev -p 3004",
-  "build": "next build",
-  "start": "next start -p 3004",
-  "lint": "next lint"
-},
-
+  "scripts": {
+    "dev": "next dev -p 3004",
+    "build": "next build",
+    "start": "next start -p 3004",
+    "lint": "next lint"
+  },
   "dependencies": {
     "@reduxjs/toolkit": "^2.9.0",
     "antd": "^5.27.4",
+    "aos": "^2.3.4",
     "jwt-decode": "^4.0.0",
     "next": "15.5.4",
     "react": "19.1.0",

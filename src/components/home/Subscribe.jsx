@@ -65,7 +65,10 @@ export default function Subscribe() {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <div className="relative rounded-xl p-8 md:p-20 mx-auto w-full">
+      <div
+          data-aos="fade-up"
+       data-aos-duration="800"
+      className="relative rounded-xl p-8 md:p-20 mx-auto w-full">
     
 
       <div className="relative z-10">

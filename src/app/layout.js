@@ -7,6 +7,7 @@ import ReduxProvider from "@/redux/ReduxProvider";
 import { Toaster } from "sonner";
 import { Suspense } from "react";
 
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],

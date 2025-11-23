@@ -8,25 +8,37 @@ const FreeShipping = () => {
   return (
     <div className='container mx-auto'>
         <div className='flex  gap-24 justify-center items-center py-12 flex-wrap'>
-            <div className='flex text-center gap-4 text-black items-center
+            <div
+                data-aos="fade-up"
+       data-aos-duration="400"
+            className='flex text-center gap-4 text-black items-center
             font-semibold text-base
             ' >
                 <MdLocalShipping />
                 <p>Free Shipping</p>
             </div>
-            <div className='flex text-center gap-4 text-black items-center
+            <div
+                data-aos="fade-up"
+       data-aos-duration="800"
+            className='flex text-center gap-4 text-black items-center
             font-semibold text-base
             ' >
                 <IoShieldCheckmarkSharp />
                 <p>100% Secure Payment</p>
             </div>
-            <div className='flex text-center gap-4 text-black items-center
+            <div
+                data-aos="fade-up"
+       data-aos-duration="1200"
+            className='flex text-center gap-4 text-black items-center
             font-semibold text-base
             ' >
                <FaClock />
                 <p>24/7 Support</p>
             </div>
-            <div className='flex text-center gap-4 text-black items-center
+            <div
+                data-aos="fade-up"
+       data-aos-duration="1200"
+            className='flex text-center gap-4 text-black items-center
             font-semibold text-base
             ' >
                 <BiSolidPackage />

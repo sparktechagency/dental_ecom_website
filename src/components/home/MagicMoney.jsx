@@ -1,11 +1,22 @@
-import React, { Suspense } from "react";
+"use client"
+import React, { Suspense, useEffect } from "react";
+import AOS from 'aos';
 import SaveOverTime from "./SaveOverTime";
 import { IoMdTrendingUp } from "react-icons/io";
+import "aos/dist/aos.css";
 
 export default function MagicMoney() {
+
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <div className="w-full min-h-screen relative ">
+      <div
+      data-aos="fade-up"
+       data-aos-duration="800"
+        className="w-full min-h-screen relative ">
         {/* Blue shadow/glow effect at center */}
         {/* <div className="absolute inset-0 flex items-center justify-center">
           <div className="w-[500px] h-[800px] bg-[#136BFB] opacity-20 blur-3xl rounded-full"></div>

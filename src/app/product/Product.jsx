@@ -10,6 +10,8 @@ import { getBaseUrl } from "@/utils/getBaseUrl";
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { BiSolidDownArrow } from "react-icons/bi";
+import "aos/dist/aos.css";
+import AOS from 'aos';
 
 export default function Product() {
   const searchParams = useSearchParams();
@@ -30,6 +32,12 @@ export default function Product() {
   // Query
   const term = (urlSearch || '').trim().toLowerCase();
   const isSearching = term.length > 0;
+
+
+
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
   const { data, isLoading } = useFetchAllProductsQuery({
     category: selectedCategories.join(","),
@@ -317,7 +325,10 @@ export default function Product() {
             </div>
           ) : (
             <>
-              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-5 w-full items-stretch">
+              <div
+               data-aos="fade-up"
+               data-aos-duration="800"
+              className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-5 w-full items-stretch">
                 {viewProducts.map((product) => (
                   <HotSellingCard
                     key={product._id}

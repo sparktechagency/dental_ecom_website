@@ -10,6 +10,7 @@ const Hero = () => {
 
 
       <div
+
         className="relative bg-cover bg-center bg-no-repeat py-12 md:py-20 lg:py-64 px-4 overflow-hidden w-full"
         style={{ backgroundImage: "url('/doctors_image.jpeg')" }}
       >
@@ -17,7 +18,10 @@ const Hero = () => {
         <div className="absolute inset-0 bg-[#86a6c6]/60"></div>
 
         {/* Content */}
-        <div className="relative text-center flex flex-col gap-4 p-6 rounded-lg max-w-2xl mx-auto">
+        <div 
+            data-aos="fade-up"
+       data-aos-duration="800"
+        className="relative text-center flex flex-col gap-4 p-6 rounded-lg max-w-2xl mx-auto">
           <div className="flex justify-center">
             <div className="bg-[#f2fce2] rounded-3xl py-2 px-4">
               <p className="text-blue-600 text-sm md:font-semibold">Premium Dental Supplies</p>
