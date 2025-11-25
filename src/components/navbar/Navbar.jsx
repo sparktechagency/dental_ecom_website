@@ -120,7 +120,7 @@ export default function Navbar() {
         </Link>
 
         {/* Search Bar - Always visible */}
-        <div className="flex-1 max-w-xl mx-4">
+        <div className="hidden md:block flex-1 max-w-xl mx-4">
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <CiSearch className="h-5 w-5 text-gray-500" />

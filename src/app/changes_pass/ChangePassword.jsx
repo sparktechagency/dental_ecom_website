@@ -3,6 +3,7 @@ import BreadCrumb from '@/components/shared/BreadCrumb';
 import React, { useState } from 'react'; // Suspense remove koro
 import { useChangePasswordMutation } from '@/redux/feature/auth/authApi';
 import Swal from 'sweetalert2';
+import { toast } from 'sonner';
 
 export default function ChangePassword() {
     const [form, setForm] = useState({ currentPassword: '', newPassword: '' });
@@ -16,15 +17,37 @@ export default function ChangePassword() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!form.currentPassword || !form.newPassword) {
-            Swal.fire({ icon: 'warning', title: 'Current and New password are required' });
+            toast.error("Current and New password are required", {
+              style: {
+                background: "#fef2f2",
+                color: "#dc2626",
+                border: "1px solid #fecaca",
+              },
+            });
             return;
-        }
+          }
         try {
             const res = await changePassword({ currentPassword: form.currentPassword, newPassword: form.newPassword }).unwrap();
-            Swal.fire({ icon: 'success', title: res?.message || 'Password changed successfully' });
+            toast.success( "Password changed successfully", {
+                
+                style: {
+                  background: "#dcfce7",
+                  color: "#166534",
+                  border: "1px solid #bbf7d0",
+                },
+              });
+            
             setForm({ currentPassword: '', newPassword: '' });
         } catch (err) {
-            Swal.fire({ icon: 'error', title: 'Failed to change password', text: err?.data?.message || 'Please try again' });
+               
+            toast.error(err?.data?.message || "Failed to change password", {
+                style: {
+                  background: "#fef2f2",
+                  color: "#dc2626",
+                  border: "1px solid #fecaca",
+                },
+              });
+              
         }
     };
     

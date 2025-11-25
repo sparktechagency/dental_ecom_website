@@ -29,8 +29,15 @@ export default function LogIn() {
       const decodedUser = jwtDecode(accessToken);
 
       dispatch(setUser({ user: decodedUser, token: accessToken }));
-
-      toast.success("Login successful!");
+      toast.success( "Login successful!", {
+                
+        style: {
+          background: "#dcfce7",
+          color: "#166534",
+          border: "1px solid #bbf7d0",
+        },
+      });
+      
       router.push("/");
     } catch (error) {
       toast.error(error?.data?.message || "Login failed. Please try again.");

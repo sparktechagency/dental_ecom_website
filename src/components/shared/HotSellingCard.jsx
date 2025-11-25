@@ -8,7 +8,13 @@ import { useAddToCartMutation } from "@/redux/feature/cart/cartApi";
 import Swal from "sweetalert2";
 import { toast } from "sonner";
 
-export default function HotSellingCard({ product, image, title, description, id }) {
+export default function HotSellingCard({
+  product,
+  image,
+  title,
+  description,
+  id,
+}) {
   const router = useRouter();
   const dispatch = useDispatch();
   const user = useSelector((state) => state?.auth?.user);
@@ -63,10 +69,10 @@ export default function HotSellingCard({ product, image, title, description, id 
         });
         router.push("/sign_in");
       } else {
-        toast.error("Failed to add to cart", {
+        toast.warning("Stock out!", {
           style: {
             background: "#fef2f2",
-            color: "#dc2626",
+            color: "#f05e26",
             border: "1px solid #fecaca",
           },
         });
@@ -88,9 +94,7 @@ export default function HotSellingCard({ product, image, title, description, id 
   const productId = product?._id || product?._id;
 
   return (
-    <div 
-    
-    className="border border-[#d3e4fd] rounded-lg p-4 shadow-sm flex flex-col h-full transition-all duration-300 hover:shadow-xl hover:shadow-[#136BFB]/20 hover:-translate-y-1">
+    <div className="border border-[#d3e4fd] rounded-lg p-4 shadow-sm flex flex-col h-full transition-all duration-300 hover:shadow-xl hover:shadow-[#136BFB]/20 hover:-translate-y-1">
       <div className="relative rounded-md overflow-hidden cursor-pointer aspect-square flex items-center justify-center group">
         <img
           src={productImage}
