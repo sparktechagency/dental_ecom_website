@@ -38,9 +38,9 @@ const ordersApi = createApi({
     }),
     checkout: builder.mutation({
       query: (orderId) => ({
-        url: "/checkout/success",
-        method: "POST",
-        params: orderId,
+        url: `/checkout/success`,
+        method: "GET",
+        params: { orderId },
       }),
     }),
   }),

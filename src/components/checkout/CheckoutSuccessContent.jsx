@@ -16,28 +16,29 @@ export default function CheckoutSuccessContent() {
       try {
         const orderId = searchParams.get("orderId");
         console.log("orderId", orderId);
-
+  
         if (!orderId) {
           throw new Error("Order ID not found");
         }
-
+  
         const res = await checkOut(orderId).unwrap();
+  
         if (!res?.success) {
           throw new Error(
-            res?.data?.message || res?.message || "something went wrong!"
+            res?.data?.message || res?.message || "Something went wrong!"
           );
         }
-        if (res?.success) {
-          setStatus("success");
-        }
+  
+        setStatus("success");
       } catch (error) {
         console.error("Order processing failed:", error);
-        setStatus('error')
+        setStatus("error");
       }
     };
-
+  
     processSuccess();
-  }, [dispatch, router, searchParams]);
+  }, [searchParams]);
+  
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#171717]">

@@ -10,6 +10,7 @@ import { getBaseUrl } from '@/utils/getBaseUrl'
 import { useFetchMyAddressesQuery, useDeleteAddressMutation } from '@/redux/feature/address/addressApi'
 import { useCreateOrderMutation } from '@/redux/feature/orders/ordersApi'
 import { RiDeleteBinLine } from "react-icons/ri"
+import { toast } from "sonner"
 
 export default function Checkout() {
     const [isSelected, setIsSelected] = useState("")
@@ -51,7 +52,14 @@ export default function Checkout() {
 
     const handlePlaceOrder = async () => {
         if (!isSelected) {
-            alert("Please select a shipping address")
+            toast.error("Please select a shipping address", {
+                icon: "⚠️",
+                style: {
+                  background: "#fff7ed",
+                  color: "#c2410c",
+                  border: "1px solid #fed7aa",
+                },
+              });
             return
         }
         if (!selectedPayment) {
@@ -59,7 +67,15 @@ export default function Checkout() {
             return
         }
         if (selectedProducts.length === 0) {
-            alert("Please add products to cart first")
+            toast.error("Please add products to cart first", {
+                icon: "⚠️",
+                style: {
+                  background: "#fff7ed",
+                  color: "#c2410c",
+                  border: "1px solid #fed7aa",
+                },
+              });
+           
             return
         }
 
@@ -117,7 +133,7 @@ export default function Checkout() {
                     <div className="flex items-center justify-between">
                         <h2 className="text-xl text-black font-semibold">Select Shipping Address</h2>
                         <button 
-                            onClick={() => router.push("/profile")} 
+                            onClick={() => router.push("/add_address")} 
                             className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm"
                         >
                             Add New Address
