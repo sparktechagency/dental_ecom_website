@@ -3,9 +3,8 @@ import BreadCrumb from "@/components/shared/BreadCrumb";
 import SectionHeading from "@/components/shared/SectionHeading";
 import { addToCart, setCartFromServer } from "@/redux/feature/cart/cartSlice";
 import { useAddToCartMutation, useGetCartQuery, useUpdateCartItemMutation, useRemoveCartItemMutation } from "@/redux/feature/cart/cartApi";
-import { useFetchProductbyIdQuery } from "@/redux/feature/products/productsApi";
-import { useParams,useRouter } from "next/navigation";
-
+import {  useFetchProductByProductIdQuery } from "@/redux/feature/products/productsApi";
+import { useParams, useRouter } from "next/navigation";
 import React, { useState, useEffect, Suspense } from "react";
 import { FaTruck, FaUndo, FaMedal } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,9 +12,8 @@ import { useFetchAllProcedureQuery } from "@/redux/feature/procedure/procedure";
 import Link from "next/link";
 import { toast } from "sonner";
 
-
 const ProductDetails = () => {
-  const { id } = useParams();
+  const params = useParams();
   const navigate = useRouter();
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -27,10 +25,23 @@ const ProductDetails = () => {
   const [removeCartItem] = useRemoveCartItemMutation();
   const [isAddingToCart, setIsAddingToCart] = useState(false);
   const { data: procedure } = useFetchAllProcedureQuery({});
- 
 
-  const { data, isLoading, isError } = useFetchProductbyIdQuery(id);
+  // Debugging: check what's in params
+  console.log("All params:", params);
+  
+  // Fix: Get productId from params properly
+  const productId = params?.id;
+  console.log("Extracted productId:", productId);
+
+  const { data, isLoading, isError } = useFetchProductByProductIdQuery(productId, {
+    skip: !productId, // Skip query if productId is not available
+  });
+
+  console.log("orers",data)
+  
   const product = data?.data;
+  console.log("Product data:", data);
+  
   const user = useSelector((state) => state?.auth?.user);
   const IsLogin = !!user;
 
@@ -41,7 +52,6 @@ const ProductDetails = () => {
   }, [product]);
 
   useEffect(() => {
-    // Always reset quantity to 1 when product changes
     setQuantity(1);
   }, [product]);
 
@@ -60,11 +70,9 @@ const ProductDetails = () => {
     
     try {
       setIsAddingToCart(true);
-      
-      // Always add the current quantity (from +/- buttons or manual input)
       await addToCartMutation({
         productId: product._id,
-        quantity: quantity, // Use the current quantity state
+        quantity: quantity,
       }).unwrap();
 
       dispatch(addToCart({
@@ -74,19 +82,15 @@ const ProductDetails = () => {
         quantity: quantity,
       }));
       
-      // Show success toast
       toast.success("Product added to cart", {
         description: `${quantity} ${product.name} has been added to your cart`
       });
 
-      // Reset quantity to 1 after successful add
       setQuantity(1);
-
-      // Refetch cart data to ensure sync
       await refetch();
 
     } catch (e) {
-    
+      console.error("Add to cart error:", e);
       toast.error("Failed to add to cart", {
         description: "Please try again"
       });
@@ -95,20 +99,32 @@ const ProductDetails = () => {
     }
   }
 
-  if (isLoading)
+  // Show loading only when we have a productId but data is loading
+  if (!productId) {
+    return (
+      <div className="min-h-screen flex justify-center items-center text-red-500 text-2xl">
+        Product ID not found in URL.
+      </div>
+    );
+  }
+
+  if (isLoading) {
     return (
       <div className="min-h-screen flex justify-center items-center text-white text-2xl">
         Loading...
       </div>
     );
+  }
 
-  if (isError || !product)
+  if (isError || !product) {
     return (
       <div className="min-h-screen flex justify-center items-center text-red-500 text-2xl">
-        Product not found.
+        Product not found or error loading product.
       </div>
     );
+  }
 
+  // ... rest of your component remains the same
   const incrementQuantity = () => {
     setQuantity(prev => prev + 1);
   };
@@ -125,208 +141,201 @@ const ProductDetails = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <div className="mx-auto container text-white py-6 sm:py-8 md:py-10">
-      {/* Breadcrumb */}
-      <div className="container mx-auto flex justify-start items-center px-2 sm:px-5">
-        <BreadCrumb name="Home" title={product.name} />
-      </div>
-
-      {/* Main Section */}
-      <div className="flex flex-col lg:flex-row gap-8 md:gap-10 mt-6 md:mt-10 px-2 sm:px-5 md:px-0">
-        {/* Image Section */}
-        <div className="flex flex-col gap-3 md:gap-4 w-full lg:w-[40%] xl:w-[35%]">
-          {selectedImage && (
-            <div
-              onClick={() => setShowModal(true)}
-              className="rounded-md overflow-hidden w-full h-[150px] sm:h-[180px] md:h-[200px] lg:h-[250px] xl:h-[300px] cursor-pointer"
-            >
-              <img
-                src={selectedImage}
-                alt="Main"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          )}
-
-          {/* Thumbnails */}
-          <div className="flex gap-2 sm:gap-3 md:gap-4 flex-wrap">
-            {product.images &&
-              product.images.map((img, i) => (
-                <img
-                  key={i}
-                  src={`${img}`}
-                  alt={`thumb-${i}`}
-                  onClick={() => setSelectedImage(`${img}`)}
-                  className={`w-10 h-10 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-md cursor-pointer object-cover ${
-                    selectedImage === `${img}`
-                      ? "ring-2 ring-blue-500"
-                      : ""
-                  }`}
-                />
-              ))}
-          </div>
+        {/* Your existing JSX content */}
+        <div className="container mx-auto flex justify-start items-center px-2 sm:px-5">
+          <BreadCrumb name="Home" title={product.name} />
         </div>
 
-        {/* Product Info */}
-        <div className="flex flex-col space-y-4 md:space-y-5 text-[#9F9C96] text-base sm:text-lg md:text-xl w-full lg:w-[35%] xl:w-[32%]">
-          <div className="space-y-3">
-            <h1 className="text-xl sm:text-2xl text-white font-semibold break-words">
-              {product.name}
-            </h1>
-            <p>
-              Availability:{" "}
-              <span
-                className={
-                  product.availability === "In Stock"
-                    ? "text-[#2ECC71]"
-                    : "text-red-600"
-                }
+        <div className="flex flex-col lg:flex-row gap-8 md:gap-10 mt-6 md:mt-10 px-2 sm:px-5 md:px-0">
+          {/* Image Section */}
+          <div className="flex flex-col gap-3 md:gap-4 w-full lg:w-[40%] xl:w-[35%]">
+            {selectedImage && (
+              <div
+                onClick={() => setShowModal(true)}
+                className="rounded-md overflow-hidden w-full h-[150px] sm:h-[180px] md:h-[200px] lg:h-[250px] xl:h-[300px] cursor-pointer"
               >
-                {product.availability}
-              </span>
-            </p>
-            <p className="text-[#9F9C96] text-base">{product.description}</p>
+                <img
+                  src={selectedImage}
+                  alt="Main"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            )}
 
-            <div className="space-y-1 text-base">
-              <p>
-                Brand:{" "}
-                <span className="text-[#136BFB] cursor-pointer hover:underline">
-                  {product.brand?.name || "-"}
-                </span>
-              </p>
-              <p>
-                Procedure:{" "}
-                {product.procedure ? (
-                  <Link href={`/procedure_guide/${product.procedure._id}`}>
-                    <span className="text-[#136BFB] cursor-pointer hover:underline">
-                      {product.procedure.name}
-                    </span>
-                  </Link>
-                ) : (
-                  <span>Not specified</span>
-                )}
-              </p>
+            {/* Thumbnails */}
+            <div className="flex gap-2 sm:gap-3 md:gap-4 flex-wrap">
+              {product.images &&
+                product.images.map((img, i) => (
+                  <img
+                    key={i}
+                    src={`${img}`}
+                    alt={`thumb-${i}`}
+                    onClick={() => setSelectedImage(`${img}`)}
+                    className={`w-10 h-10 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-md cursor-pointer object-cover ${
+                      selectedImage === `${img}`
+                        ? "ring-2 ring-blue-500"
+                        : ""
+                    }`}
+                  />
+                ))}
             </div>
-
-            <p className="pt-1 text-base">
-              {IsLogin ? (
-                <span className="text-white font-medium text-base">
-                  ${product.price}
-                </span>
-              ) : (
-                <span
-                  className="text-[#136BFB] font-medium cursor-pointer hover:underline"
-                  onClick={() => navigate("/sign_in")}
-                >
-                  Log In or Sign Up to view price
-                </span>
-              )}
-            </p>
-
-            <div className="border-b border-[#3a3a3a] pt-2 w-full" />
           </div>
 
-          {/* Quantity + Buttons */}
-          <div>
-            <div className="flex justify-between">
-              <label className="block mb-2 font-medium">
-                Quantity
-              </label>
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={decrementQuantity}
-                  className="w-8 h-8 flex font-bold items-center justify-center rounded-md bg-[#9F9C96] hover:bg-[#3a3a3a] text-white"
+          {/* Product Info */}
+          <div className="flex flex-col space-y-4 md:space-y-5 text-[#9F9C96] text-base sm:text-lg md:text-xl w-full lg:w-[35%] xl:w-[32%]">
+            <div className="space-y-3">
+              <h1 className="text-xl sm:text-2xl text-white font-semibold break-words">
+                {product.name}
+              </h1>
+              <p>
+                Availability:{" "}
+                <span
+                  className={
+                    product.availability === "In Stock"
+                      ? "text-[#2ECC71]"
+                      : "text-red-600"
+                  }
                 >
-                  -
-                </button>
-                <input
-                  type="number"
-                  min={1}
-                  value={quantity}
-                  onChange={handleQuantityChange}
-                  className="w-16 px-3 py-1 rounded-md bg-transparent border border-gray-500 text-center"
-                />
+                  {product.availability}
+                </span>
+              </p>
+              <p className="text-[#9F9C96] text-base">{product.description}</p>
+
+              <div className="space-y-1 text-base">
+                <p>
+                  Brand:{" "}
+                  <span className="text-[#136BFB] cursor-pointer hover:underline">
+                    {product.brand?.name || "-"}
+                  </span>
+                </p>
+                <p>
+                  Procedure:{" "}
+                  {product.procedure ? (
+                    <Link href={`/procedure_guide/${product.procedure._id}`}>
+                      <span className="text-[#136BFB] cursor-pointer hover:underline">
+                        {product.procedure.name}
+                      </span>
+                    </Link>
+                  ) : (
+                    <span>Not specified</span>
+                  )}
+                </p>
+              </div>
+
+              <p className="pt-1 text-base">
+                {IsLogin ? (
+                  <span className="text-white font-medium text-base">
+                    ${product.price}
+                  </span>
+                ) : (
+                  <span
+                    className="text-[#136BFB] font-medium cursor-pointer hover:underline"
+                    onClick={() => navigate.push("/sign_in")}
+                  >
+                    Log In or Sign Up to view price
+                  </span>
+                )}
+              </p>
+
+              <div className="border-b border-[#3a3a3a] pt-2 w-full" />
+            </div>
+
+            {/* Quantity + Buttons */}
+            <div>
+              <div className="flex justify-between">
+                <label className="block mb-2 font-medium">
+                  Quantity
+                </label>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={decrementQuantity}
+                    className="w-8 h-8 flex font-bold items-center justify-center rounded-md bg-[#9F9C96] hover:bg-[#3a3a3a] text-white"
+                  >
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    min={1}
+                    value={quantity}
+                    onChange={handleQuantityChange}
+                    className="w-16 px-3 py-1 rounded-md bg-transparent border border-gray-500 text-center"
+                  />
+                  <button
+                    onClick={incrementQuantity}
+                    className="w-8 h-8 flex font-bold items-center justify-center rounded-md bg-[#9F9C96] hover:bg-[#3a3a3a] text-white"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-3 md:pt-4">
                 <button
-                  onClick={incrementQuantity}
-                  className="w-8 h-8 flex font-bold items-center justify-center rounded-md bg-[#9F9C96] hover:bg-[#3a3a3a] text-white"
+                  onClick={() => handleAddToCart(product)}
+                  disabled={isAddingToCart}
+                  aria-busy={isAddingToCart}
+                  className={`px-6 md:px-8 py-2.5 md:py-3 rounded-md font-medium w-full sm:w-auto whitespace-nowrap text-center flex items-center justify-center gap-2 transition border
+                    ${isAddingToCart ? 'bg-blue-700 border-blue-700 text-white opacity-80 cursor-not-allowed' : 'border-[#136BFB] text-[#136BFB] hover:bg-[#136BFB] hover:text-white'}`}
                 >
-                  +
+                  {isAddingToCart && (
+                    <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+                    </svg>
+                  )}
+                  <span>{isAddingToCart ? 'Adding...' : 'Add To Cart'}</span>
                 </button>
               </div>
             </div>
+          </div>
 
-            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-3 md:pt-4">
-              <button
-                onClick={() => handleAddToCart(product)}
-                disabled={isAddingToCart}
-                aria-busy={isAddingToCart}
-                className={`px-6 md:px-8 py-2.5 md:py-3 rounded-md font-medium w-full sm:w-auto whitespace-nowrap text-center flex items-center justify-center gap-2 transition border
-                  ${isAddingToCart ? 'bg-blue-700 border-blue-700 text-white opacity-80 cursor-not-allowed' : 'border-[#136BFB] text-[#136BFB] hover:bg-[#136BFB] hover:text-white'}`}
-              >
-                {isAddingToCart && (
-                  <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M21 12a9 9 0 1 1-6.219-8.56" />
-                  </svg>
-                )}
-                <span>{isAddingToCart ? 'Adding...' : 'Add To Cart'}</span>
-              </button>
+          {/* Right Side Info */}
+          <div className="text-white space-y-3 md:space-y-4 w-full max-w-md mx-auto lg:w-[25%] xl:w-[23%] mt-8 lg:mt-0">
+            <div className="flex items-center gap-4 p-4 border border-gray-700 rounded-md">
+              <FaTruck className="text-gray-400 text-2xl" />
+              <div>
+                <h3 className="font-semibold text-black">Fast Delivery</h3>
+                <p className="text-sm text-gray-400">
+                  Enter your Delivery Address
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-4 p-4 border border-gray-700 rounded-md">
+              <FaUndo className="text-gray-400 text-2xl" />
+              <div>
+                <h3 className="font-semibold text-black">Return Delivery</h3>
+                <p className="text-sm text-gray-400">
+                  Free 30 Days Delivery Returns.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-4 p-4 border border-gray-700 rounded-md">
+              <FaMedal className="text-gray-400 text-2xl" />
+              <div>
+                <h3 className="font-semibold text-black">Best Product Quality</h3>
+                <p className="text-sm text-gray-400">Customer Service Product</p>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Right Side Info */}
-        <div className="text-white space-y-3 md:space-y-4 w-full max-w-md mx-auto lg:w-[25%] xl:w-[23%] mt-8 lg:mt-0">
-          <div className="flex items-center gap-4 p-4 border border-gray-700 rounded-md">
-            <FaTruck className="text-gray-400 text-2xl" />
-            <div>
-              <h3 className="font-semibold text-black">Fast Delivery</h3>
-              <p className="text-sm text-gray-400">
-                Enter your Delivery Address
-              </p>
-            </div>
+        {/* Modal */}
+        {showModal && (
+          <div
+            className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+            onClick={() => setShowModal(false)}
+          >
+            <img
+              src={selectedImage}
+              alt="Enlarged"
+              className="max-w-[90%] max-h-[90%] rounded-lg"
+            />
           </div>
+        )}
 
-          <div className="flex items-center gap-4 p-4 border border-gray-700 rounded-md">
-            <FaUndo className="text-gray-400 text-2xl" />
-            <div>
-              <h3 className="font-semibold text-black">Return Delivery</h3>
-              <p className="text-sm text-gray-400">
-                Free 30 Days Delivery Returns.
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-4 p-4 border border-gray-700 rounded-md">
-            <FaMedal className="text-gray-400 text-2xl" />
-            <div>
-              <h3 className="font-semibold text-black">Best Product Quality</h3>
-              <p className="text-sm text-gray-400">Customer Service Product</p>
-            </div>
-          </div>
-        </div>
+      
       </div>
-
-      {/* Modal */}
-      {showModal && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
-          onClick={() => setShowModal(false)}
-        >
-          <img
-            src={selectedImage}
-            alt="Enlarged"
-            className="max-w-[90%] max-h-[90%] rounded-lg"
-          />
-        </div>
-      )}
-
-      {/* Product Details Section */}
-      <div className="mt-8 md:mt-10">
-        <SectionHeading title="Product Details:" showButton={false} />
-        <p className="text-[#9F9C96] mt-3 md:mt-4 leading-7 px-2 sm:px-5 md:px-0 break-words">
-          {product.description}
-        </p>
-      </div>
-    </div>
     </Suspense>
   );
 };

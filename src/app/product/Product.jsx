@@ -49,7 +49,7 @@ export default function Product() {
     page: isSearching ? 1 : currentPage,
     limit: isSearching ? 1000 : productPerPage,
   });
-
+ 
   const products = data?.data || [];
   const viewProducts = term
     ? products.filter((p) =>

@@ -20,6 +20,8 @@ export default function HotSellingCard({
   const user = useSelector((state) => state?.auth?.user);
   const [addToCartApi, { isLoading }] = useAddToCartMutation();
 
+  console.log("dfaffsafsdfsdfsdfscv",product)
+
   const handleAddToCart = async () => {
     try {
       if (!user) {
@@ -91,7 +93,7 @@ export default function HotSellingCard({
   const productTitle = title || product?.name || "Default Title";
   const productDescription =
     description || product?.description || "Default Description";
-  const productId = product?._id || product?._id;
+  const productId = product?.productId ;
 
   return (
     <div className="border border-[#d3e4fd] rounded-lg p-4 shadow-sm flex flex-col h-full transition-all duration-300 hover:shadow-xl hover:shadow-[#136BFB]/20 hover:-translate-y-1">

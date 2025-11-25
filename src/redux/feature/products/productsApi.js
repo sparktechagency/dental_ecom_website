@@ -14,18 +14,32 @@ const productsApi = createApi({
         const queryParams = new URLSearchParams();
         if (params.category) {
           if (Array.isArray(params.category)) {
-            params.category.forEach((cat) => queryParams.append("category", cat));
-          } else if (typeof params.category === "string" && params.category.includes(",")) {
-            params.category.split(",").forEach((cat) => queryParams.append("category", cat));
+            params.category.forEach((cat) =>
+              queryParams.append("category", cat)
+            );
+          } else if (
+            typeof params.category === "string" &&
+            params.category.includes(",")
+          ) {
+            params.category
+              .split(",")
+              .forEach((cat) => queryParams.append("category", cat));
           } else {
             queryParams.append("category", params.category);
           }
         }
         if (params.procedureType) {
           if (Array.isArray(params.procedureType)) {
-            params.procedureType.forEach((prc) => queryParams.append("procedureType", prc));
-          } else if (typeof params.procedureType === "string" && params.procedureType.includes(",")) {
-            params.procedureType.split(",").forEach((prc) => queryParams.append("procedureType", prc));
+            params.procedureType.forEach((prc) =>
+              queryParams.append("procedureType", prc)
+            );
+          } else if (
+            typeof params.procedureType === "string" &&
+            params.procedureType.includes(",")
+          ) {
+            params.procedureType
+              .split(",")
+              .forEach((prc) => queryParams.append("procedureType", prc));
           } else {
             queryParams.append("procedureType", params.procedureType);
           }
@@ -33,8 +47,13 @@ const productsApi = createApi({
         if (params.brand) {
           if (Array.isArray(params.brand)) {
             params.brand.forEach((b) => queryParams.append("brand", b));
-          } else if (typeof params.brand === "string" && params.brand.includes(",")) {
-            params.brand.split(",").forEach((b) => queryParams.append("brand", b));
+          } else if (
+            typeof params.brand === "string" &&
+            params.brand.includes(",")
+          ) {
+            params.brand
+              .split(",")
+              .forEach((b) => queryParams.append("brand", b));
           } else {
             queryParams.append("brand", params.brand);
           }
@@ -58,13 +77,17 @@ const productsApi = createApi({
       providesTags: ["Products"],
     }),
 
-    fetchProductbyId: builder.query({
-      query: (productId) => `${productId}`,
-      providesTags: (result, error, id) => [{ type: "Products", id }],
+  
+
+    // Option 2: If you specifically need /byid/:productId format
+    fetchProductByProductId: builder.query({
+      query: (productId) => `/byid/${productId}`,
+      providesTags: (result, error, productId) => [{ type: "Products", productId }],
     }),
   }),
 });
 
-export const { useFetchAllProductsQuery, useFetchProductbyIdQuery } =
+export const { useFetchAllProductsQuery, useFetchProductByProductIdQuery } =
   productsApi;
+
 export default productsApi;
