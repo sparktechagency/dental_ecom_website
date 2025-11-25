@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react"; // Suspense remove koro
+import React, { useState, useEffect, useRef } from "react"; 
 import { VscRobot } from "react-icons/vsc";
 import { useSelector } from "react-redux";
 import BreadCrumb from "@/components/shared/BreadCrumb";

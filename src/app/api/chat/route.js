@@ -11,7 +11,7 @@ export async function POST(request) {
       },
       body: JSON.stringify({ message }),
     });
-
+     
     if (!response.ok) {
       throw new Error('Failed to get response from AI service');
     }

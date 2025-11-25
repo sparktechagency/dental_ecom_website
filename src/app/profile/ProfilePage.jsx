@@ -7,19 +7,13 @@ import React, { useEffect } from "react"; // Suspense remove koro
 import { useSelector } from "react-redux";
 import { useGetMyProfileQuery } from "@/redux/feature/users/usersApi";
 import "aos/dist/aos.css";
-import AOS from 'aos';
+import AOS from "aos";
 
 // Direct export koro, alada component er dorkar nai
 export default function ProfilePage() {
-
-
-  
   useEffect(() => {
     AOS.init();
   }, []);
-
-
-
 
   const handleChangePassword = () => {
     console.log("Change password clicked");
@@ -27,7 +21,6 @@ export default function ProfilePage() {
   const authUser = useSelector((state) => state?.auth?.user);
   const { data, isLoading, isFetching, error } = useGetMyProfileQuery();
   const profile = data?.data || data || {};
-
 
   if (isLoading || isFetching) {
     return (
@@ -57,16 +50,29 @@ export default function ProfilePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Profile Section */}
             <div className="flex justify-center lg:justify-end">
-              <div 
-                     data-aos="fade-up"
-               data-aos-duration="800"
-              className="w-full max-w-md">
+              <div
+                data-aos="fade-up"
+                data-aos-duration="800"
+                className="w-full max-w-md"
+              >
                 <ProfileCard
-                  name={profile?.name || `${profile?.firstName || ''} ${profile?.lastName || ''}`.trim() || authUser?.name || '—'}
-                  email={profile?.email || authUser?.email || '—'}
-                  phone={profile?.phone || profile?.mobile || '—'}
-                  gdc={profile?.gdcNumber || profile?.gdc || '—'}
-                  avatar={profile?.imageUrl || profile?.image || profile?.profileImage || "https://images.pexels.com/photos-2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400"}
+                  name={
+                    profile?.name ||
+                    `${profile?.firstName || ""} ${
+                      profile?.lastName || ""
+                    }`.trim() ||
+                    authUser?.name ||
+                    "—"
+                  }
+                  email={profile?.email || authUser?.email || "—"}
+                  phone={profile?.phone || profile?.mobile || "—"}
+                  gdc={profile?.gdcNumber || profile?.gdc || "—"}
+                  avatar={
+                    profile?.imageUrl ||
+                    profile?.image ||
+                    profile?.profileImage ||
+                    "https://images.pexels.com/photos-2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400"
+                  }
                   onChangePassword={handleChangePassword}
                 />
               </div>
@@ -75,9 +81,10 @@ export default function ProfilePage() {
             {/* Address Section */}
             <div className="flex justify-center lg:justify-start">
               <div
-                     data-aos="fade-up"
-               data-aos-duration="1400"
-              className="w-full max-w-md">
+                data-aos="fade-up"
+                data-aos-duration="1400"
+                className="w-full max-w-md"
+              >
                 <AddressSection />
               </div>
             </div>
