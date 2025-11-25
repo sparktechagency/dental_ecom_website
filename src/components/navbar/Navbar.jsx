@@ -180,7 +180,7 @@ export default function Navbar() {
                   {/* Navigation Links */}
                   {[
                     { href: "/", label: "Home" },
-                    { href: "/product", label: "Dental Products Shop" },
+                    { href: "/allcategory", label: "Dental Products Shop" },
                     { href: "/procedure_guide", label: "Dental Procedure" },
                     { href: "/about_us", label: "About Us" },
                     { href: "/contact_us", label: "Contact Us" },

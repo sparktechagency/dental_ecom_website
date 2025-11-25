@@ -17,10 +17,7 @@ export default function MagicMoney() {
       data-aos="fade-up"
        data-aos-duration="800"
         className="w-full min-h-screen relative ">
-        {/* Blue shadow/glow effect at center */}
-        {/* <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-[500px] h-[800px] bg-[#136BFB] opacity-20 blur-3xl rounded-full"></div>
-        </div> */}
+      
         <div className="container mx-auto text-white p-8 min-h-screen relative z-10">
           {/* Header Section */}
           <div className="text-center mb-12">

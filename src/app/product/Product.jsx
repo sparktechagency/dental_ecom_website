@@ -109,11 +109,11 @@ export default function Product() {
 
       <div className="flex flex-col md:flex-row gap-4 sm:gap-5 md:gap-6 min-h-screen px-2 sm:px-4 md:px-0 pb-16 md:pb-24">
         {/* Filter Sidebar */}
-        <div className="border border-[#d3e4fd] px-3 sm:px-4 rounded-lg w-full md:w-1/4 lg:w-1/5 xl:w-1/5 md:h-[90vh] h-auto mb-6 md:mb-0 overflow-y-auto no-scrollbar">
+        <div className="border border-[#d3e4fd] px-3 sm:px-4 rounded-lg w-full md:w-1/4 lg:w-1/5 xl:w-1/5 md:h-[20vh] h-auto mb-6 md:mb-0 overflow-y-auto no-scrollbar">
           <div className="space-y-5">
 
             {/* Price Filter */}
-            <div className="p-4 w-full max-w-xs border-b border-[#DBDBDB]">
+            {/* <div className="p-4 w-full max-w-xs border-b border-[#DBDBDB]">
               <h3 className="text-white text-sm font-semibold mb-3">Price Filter</h3>
               <div className="flex items-center gap-2 mb-4">
                 <input
@@ -150,10 +150,10 @@ export default function Product() {
                   <BiSolidDownArrow className="-rotate-90"></BiSolidDownArrow>
                 </button>
               </div>
-            </div>
+            </div> */}
 
             {/* Category Filter */}
-            <div className="border-b border-[#DBDBDB] pb-4">
+            <div className="border-b p-4 border-[#DBDBDB] pb-4">
               <div
                 className="flex items-center justify-between cursor-pointer"
                 onClick={() => setShowCategory(!showCategory)}
@@ -189,7 +189,7 @@ export default function Product() {
             </div>
 
             {/* Procedure Filter */}
-            <div className="border-b border-[#DBDBDB] pb-4">
+            {/* <div className="border-b border-[#DBDBDB] pb-4">
               <div
                 className="flex items-center justify-between cursor-pointer"
                 onClick={() => setShowProcedure(!showProcedure)}
@@ -222,10 +222,10 @@ export default function Product() {
                   )}
                 </ul>
               )}
-            </div>
+            </div> */}
 
             {/* Brand Filter */}
-            <div className="border-b border-[#DBDBDB] pb-4">
+            {/* <div className="border-b border-[#DBDBDB] pb-4">
               <div
                 className="flex items-center justify-between cursor-pointer"
                 onClick={() => setShowBrand(!showBrand)}
@@ -258,10 +258,10 @@ export default function Product() {
                   )}
                 </ul>
               )}
-            </div>
+            </div> */}
 
             {/* Availability Filter */}
-            <div>
+            {/* <div>
               <div
                 className="flex items-center justify-between cursor-pointer"
                 onClick={() => setShowAvailability(!showAvailability)}
@@ -303,7 +303,7 @@ export default function Product() {
                   </li>
                 </ul>
               )}
-            </div>
+            </div> */}
           </div>
         </div>
 

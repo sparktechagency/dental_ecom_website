@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import BreadCrumb from "@/components/shared/BreadCrumb";
 import CategoryCard from "@/components/shared/CategoryCard";
@@ -8,7 +8,6 @@ import { useFetchAllCategoriesQuery } from "@/redux/feature/category/CategoriesA
 
 const AllCategory = () => {
   const { data: categories, isLoading, error } = useFetchAllCategoriesQuery({});
-  
 
   if (isLoading) {
     return (
@@ -25,7 +24,7 @@ const AllCategory = () => {
 
   if (error) {
     return (
-      <div className="mx-auto container text-white py-10">
+      <div className="mx-auto container text-white pt-10">
         <div className="container mx-auto flex justify-start items-center px-5 md:px-0">
           <BreadCrumb name="Home" title="Category" />
         </div>
@@ -37,25 +36,39 @@ const AllCategory = () => {
   }
 
   return (
-    <div>
+    <div className="bg-[#f1f6fc]">
       <div className="mx-auto container text-white py-10">
         <div className="container mx-auto flex justify-start items-center px-5 md:px-0">
           <BreadCrumb name="Home" title="Category" />
         </div>
 
-        <SectionHeading
-          title="All Category"
-          showButton={false}
-        ></SectionHeading>
+        <div className="text-center">
+          <h1
+            className=" text-2xl md:text-4xl lg:text-6xl font-bold mb-4 
+                bg-gradient-to-r from-[#2373c8] to-[#79c047] 
+                bg-clip-text text-transparent "
+          >
+            Dental Products
+          </h1>
+          <h1 className="text-2xl md:text-4xl lg:text-6xl text-[#3389b2] font-bold">
+            Catalogue
+          </h1>
+        </div>
+
+        <div>
+            <p className="text-[#4a4b8a] text-center mt-8">Browse our comprehensive range of high-quality dental supplies and equipment</p>
+        </div>
 
         {/* cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-5 container mx-auto px-5 md:px-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-5 container mx-auto px-5 md:px-0 my-20">
           {categories?.map((category, idx) => (
             <CategoryCard
               key={idx}
               title={category?.name}
-              image={`${getBaseUrl()}${category.imageUrl}`}
-              link={`/product?category=${encodeURIComponent(category?._id || '')}`}
+              image={category.imageUrl}
+              link={`/product?category=${encodeURIComponent(
+                category?._id || ""
+              )}`}
             />
           ))}
         </div>

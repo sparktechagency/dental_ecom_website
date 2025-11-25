@@ -122,13 +122,11 @@ export default function HotSellingCard({
         <p className=" text-base sm:text-lg font-semibold line-clamp-2 min-h-[2.5rem] sm:min-h-[2.75rem] group-hover:text-[#136BFB] transition-colors">
           {productTitle}
         </p>
-        <p className="text-gray-400 text-xs sm:text-sm line-clamp-2 min-h-[2.5rem]">
-          {productDescription}
-        </p>
-        <div className="mt-auto flex flex-col md:flex-row items-stretch md:items-center gap-2">
+       
+        <div className="mt-auto flex flex-col items-stretch md:items-center gap-2">
           <Link
             href={`/product/${productId}`}
-            className="flex-1 min-w-0 px-3 py-2 md:px-3 md:py-2 lg:px-3 lg:py-2 rounded-md text-[#136BFB] border border-[#136BFB] cursor-pointer hover:bg-[#136BFB] hover:text-white transition-colors text-sm md:text-sm lg:text-base text-center truncate"
+            className="w-full min-w-0 px-3 py-2 md:px-3 md:py-2 lg:px-3 lg:py-2 rounded-md text-[#136BFB] border border-[#136BFB] cursor-pointer hover:bg-[#136BFB] hover:text-white transition-colors text-sm md:text-sm lg:text-base text-center truncate"
           >
             View Details
           </Link>
@@ -136,7 +134,7 @@ export default function HotSellingCard({
             onClick={handleAddToCart}
             disabled={isLoading}
             aria-busy={isLoading}
-            className={`flex-1 min-w-0 px-3 py-2 md:px-3 md:py-2 lg:px-3 lg:py-2 rounded-md text-white border transition-colors text-sm md:text-sm lg:text-base truncate flex items-center justify-center gap-2 ${
+            className={`w-full min-w-0 px-3 py-2 md:px-3 md:py-2 lg:px-3 lg:py-2 rounded-md text-white border transition-colors text-sm md:text-sm lg:text-base truncate flex items-center justify-center gap-2 ${
               isLoading
                 ? "bg-blue-700 border-blue-700 opacity-80 cursor-not-allowed"
                 : "bg-[#136BFB] border-[#136BFB] hover:bg-blue-700"
