@@ -1,6 +1,6 @@
-"use client"
-import React from 'react';
-import { useRouter } from "next/navigation"
+"use client";
+import React from "react";
+import { useRouter } from "next/navigation";
 
 const CategoryCard = ({ image, title, link, onClick }) => {
   const navigate = useRouter();
@@ -16,22 +16,37 @@ const CategoryCard = ({ image, title, link, onClick }) => {
   return (
     <div
       onClick={handleClick}
-      className="border border-[#d3e4fd] shadow-xl rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:shadow-[#136BFB]/20 hover:-translate-y-1 group"
+      className="group cursor-pointer border border-[#d3e4fd] shadow-md rounded-2xl overflow-hidden bg-white transition-all duration-300 hover:shadow-lg hover:shadow-[#136BFB]/20 hover:-translate-y-1"
     >
-      <div className="rounded-2xl overflow-hidden">
+      {/* Image container */}
+      <div className="relative w-full aspect-[4/3] overflow-hidden">
         <img
           src={image}
           alt={title}
-          className="w-full rounded-2xl overflow-hidden object-cover transition-transform duration-500 group-hover:scale-105"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           onError={(e) => {
             e.target.onerror = null;
-            e.target.src = 'https://placehold.co/300x300/171717/ffffff?text=No+Image';
+            e.target.src =
+              "https://placehold.co/400x300/171717/ffffff?text=No+Image";
           }}
         />
+
+        {/* Gradient overlay */}
+        <div
+          className="
+            absolute inset-0 
+            bg-gradient-to-b from-black/30 via-transparent to-black/80
+            opacity-70 group-hover:opacity-0
+            transition-opacity duration-500 ease-in-out
+          "
+        ></div>
       </div>
-      <div className=" p-5 items-center bg-white transition-colors duration-300">
-        <p className="text-[#5194e3] text-base font-semibold text-center">{title}</p>
-       
+
+      {/* Text content */}
+      <div className="p-4 md:p-5 text-center flex flex-col justify-center items-center">
+        <p className="text-[#5194e3] text-base md:text-lg font-semibold">
+          {title}
+        </p>
       </div>
     </div>
   );
