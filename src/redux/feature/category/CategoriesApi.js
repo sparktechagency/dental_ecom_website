@@ -10,9 +10,12 @@ const categoriesApi = createApi({
   tagTypes: ["Category"],
   endpoints: (builder) => ({
     fetchAllCategories: builder.query({
-      query: () => "/", 
+      query: (params = {}) => {
+        const { page = 1, limit = 20 } = params;
+        return `/?page=${page}&limit=${limit}`;
+      },
       providesTags: ["Category"],
-      transformResponse: (response) => response.data, 
+      transformResponse: (response) => response, 
     }),
   }),
 });

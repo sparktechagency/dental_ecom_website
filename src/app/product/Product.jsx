@@ -3,7 +3,6 @@ import BreadCrumb from "@/components/shared/BreadCrumb";
 import HotSellingCard from "@/components/shared/HotSellingCard";
 import SectionHeading from "@/components/shared/SectionHeading";
 import { useFetchAllBrandsQuery } from "@/redux/feature/brand/brandApi";
-import { useFetchAllCategoriesQuery } from "@/redux/feature/category/CategoriesApi";
 import { useFetchAllProcedureQuery } from "@/redux/feature/procedure/procedure";
 import { useFetchAllProductsQuery } from "@/redux/feature/products/productsApi";
 import { getBaseUrl } from "@/utils/getBaseUrl";
@@ -12,6 +11,7 @@ import { useSearchParams } from "next/navigation";
 import { BiSolidDownArrow } from "react-icons/bi";
 import "aos/dist/aos.css";
 import AOS from 'aos';
+import { useFetchAllCategoriesQuery } from "@/redux/feature/category/CategoriesApi";
 
 export default function Product() {
   const searchParams = useSearchParams();
@@ -71,6 +71,7 @@ export default function Product() {
 
   // Fetch all filter options
   const { data: categories } = useFetchAllCategoriesQuery({});
+  console.log("product page",categories?.data)
   const { data: brands } = useFetchAllBrandsQuery({});
   const { data: procedure } = useFetchAllProcedureQuery({});
 
@@ -109,11 +110,11 @@ export default function Product() {
 
       <div className="flex flex-col md:flex-row gap-4 sm:gap-5 md:gap-6 min-h-screen px-2 sm:px-4 md:px-0 pb-16 md:pb-24">
         {/* Filter Sidebar */}
-        <div className="border border-[#d3e4fd] px-3 sm:px-4 rounded-lg w-full md:w-1/4 lg:w-1/5 xl:w-1/5 md:h-[20vh] h-auto mb-6 md:mb-0 overflow-y-auto no-scrollbar">
+        {/* <div className="border border-[#d3e4fd] px-3 sm:px-4 rounded-lg w-full md:w-1/4 lg:w-1/5 xl:w-1/5 md:h-[20vh] h-auto mb-6 md:mb-0 overflow-y-auto no-scrollbar">
           <div className="space-y-5">
 
-            {/* Price Filter */}
-            {/* <div className="p-4 w-full max-w-xs border-b border-[#DBDBDB]">
+    
+            <div className="p-4 w-full max-w-xs border-b border-[#DBDBDB]">
               <h3 className="text-white text-sm font-semibold mb-3">Price Filter</h3>
               <div className="flex items-center gap-2 mb-4">
                 <input
@@ -150,9 +151,9 @@ export default function Product() {
                   <BiSolidDownArrow className="-rotate-90"></BiSolidDownArrow>
                 </button>
               </div>
-            </div> */}
+            </div>
 
-            {/* Category Filter */}
+            
             <div className="border-b p-4 border-[#DBDBDB] pb-4">
               <div
                 className="flex items-center justify-between cursor-pointer"
@@ -167,8 +168,8 @@ export default function Product() {
               </div>
               {showCategory && (
                 <ul className="space-y-2 mt-2">
-                  {(Array.isArray(categories) && categories.length > 0) ? (
-                    categories.map((cat) => (
+                  {
+                    categories?.data?.map((cat) => (
                       <li key={cat._id} className="flex justify-between items-center">
                         <label className="flex items-center space-x-2 cursor-pointer">
                           <input
@@ -181,15 +182,14 @@ export default function Product() {
                         </label>
                       </li>
                     ))
-                  ) : (
-                    <li className="text-gray-400 text-sm">No categories found</li>
-                  )}
+                  }
+                
                 </ul>
               )}
             </div>
 
-            {/* Procedure Filter */}
-            {/* <div className="border-b border-[#DBDBDB] pb-4">
+           
+            <div className="border-b border-[#DBDBDB] pb-4">
               <div
                 className="flex items-center justify-between cursor-pointer"
                 onClick={() => setShowProcedure(!showProcedure)}
@@ -222,10 +222,10 @@ export default function Product() {
                   )}
                 </ul>
               )}
-            </div> */}
+            </div>
 
-            {/* Brand Filter */}
-            {/* <div className="border-b border-[#DBDBDB] pb-4">
+        
+            <div className="border-b border-[#DBDBDB] pb-4">
               <div
                 className="flex items-center justify-between cursor-pointer"
                 onClick={() => setShowBrand(!showBrand)}
@@ -258,10 +258,10 @@ export default function Product() {
                   )}
                 </ul>
               )}
-            </div> */}
+            </div>
 
-            {/* Availability Filter */}
-            {/* <div>
+       
+            <div>
               <div
                 className="flex items-center justify-between cursor-pointer"
                 onClick={() => setShowAvailability(!showAvailability)}
@@ -303,9 +303,9 @@ export default function Product() {
                   </li>
                 </ul>
               )}
-            </div> */}
+            </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Product Cards */}
         <div className="w-full flex flex-col">

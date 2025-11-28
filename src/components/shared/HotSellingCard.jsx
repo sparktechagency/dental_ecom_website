@@ -20,7 +20,6 @@ export default function HotSellingCard({
   const user = useSelector((state) => state?.auth?.user);
   const [addToCartApi, { isLoading }] = useAddToCartMutation();
 
-  console.log("dfaffsafsdfsdfsdfscv",product)
 
   const handleAddToCart = async () => {
     try {
