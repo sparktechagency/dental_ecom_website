@@ -106,7 +106,7 @@ export default function Product() {
         <BreadCrumb title="Product" name="Home" />
       </div>
 
-      <SectionHeading title="All Products" showButton={false}  className="text-black"/>
+      {/* <SectionHeading title="All Products" showButton={false}  className="text-black"/> */}
 
       <div className="flex flex-col md:flex-row gap-4 sm:gap-5 md:gap-6 min-h-screen px-2 sm:px-4 md:px-0 pb-16 md:pb-24">
         {/* Filter Sidebar */}
