@@ -37,7 +37,7 @@ const Hero = () => {
           <div className="flex flex-col gap-4 md:flex-row gap-8 items-center justify-center">
            <div>
            <Link
-              href="/product"
+              href="/allcategory"
               className="flex items-center gap-4 
              bg-[#4a90e2] 
               px-6 py-3 rounded-3xl cursor-pointer
@@ -54,7 +54,7 @@ const Hero = () => {
 
                 <div> 
                    <Link
-                    href="/product"
+                    href="/allcategory"
                    > <CustomButton 
   icon={<FaCartArrowDown className="text-xl" />}
   text="Shop Now"
