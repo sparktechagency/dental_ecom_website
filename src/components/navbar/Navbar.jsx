@@ -180,12 +180,18 @@ export default function Navbar() {
                   {/* Navigation Links */}
                   {[
                     { href: "/", label: "Home" },
-                    { href: "/allcategory", label: "Dental Products Shop" },
-                    { href: "/procedure_guide", label: "Dental Procedure" },
                     { href: "/about_us", label: "About Us" },
-                    { href: "/contact_us", label: "Contact Us" },
-                    { href: "/pharmaceuticals", label: "Pharmaceuticals" },
+
+
+                    { href: "/allcategory", label: "Dental Products Shop" },
+                    { href: "/procedure_guide", label: "Dental Procedures" },
+
                     { href: "/blog", label: "Blog" },
+                     { href: "/pharmaceuticals", label: "Pharmaceuticals" },
+                    
+                    { href: "/contact_us", label: "Contact Us" },
+                   
+                    
                   ].map((item) => (
                     <Link
                       key={item.href}
@@ -193,8 +199,8 @@ export default function Navbar() {
                       onClick={closeMenu}
                       className={`block px-4 py-3 text-sm transition-colors ${
                         isLinkActive(item.href)
-                          ? "text-[#136BFB] font-medium bg-blue-50"
-                          : "text-gray-700 hover:bg-gray-50 hover:text-[#136BFB]"
+                          ? "text-[#29A366] font-medium bg-blue-50"
+                          : "text-gray-700 hover:bg-[#29A366] hover:text-white"
                       }`}
                     >
                       {item.label}

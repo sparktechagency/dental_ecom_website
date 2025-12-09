@@ -8,13 +8,14 @@ const AllCategory = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(20);
 
-  const { data: response, isLoading, error } = useFetchAllCategoriesQuery({
-    page: currentPage,
-    limit: itemsPerPage,
-  });
+const { data: response, isLoading, error } = useFetchAllCategoriesQuery({
+  page: currentPage,
+  limit: itemsPerPage,
+});
 
-  // Extract categories and pagination info from response
-  const categories = response?.data || [];
+const categories = [...(response?.data || [])].sort(
+  (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+);
   const pagination = response?.meta || {};
 
   console.log("Categories:", categories);
@@ -62,12 +63,14 @@ const AllCategory = () => {
         <div className="text-center">
           <h1
             className=" text-2xl md:text-5xl lg:text-6xl font-bold mb-4 
-                bg-gradient-to-r from-[#2373c8] to-[#79c047] 
-                bg-clip-text text-transparent "
+                 text-[#2372c8]
+                 "
           >
-            Dental Products
+            Dental <span className="bg-gradient-to-r from-[#2372c8] to-[#79c047] text-2xl md:text-5xl lg:text-6xl font-bold mb-4 
+                 
+                bg-clip-text text-transparent"> Products</span>
           </h1>
-          <h1 className="text-2xl md:text-5xl lg:text-6xl text-[#3389b2] font-bold">
+          <h1 className="text-2xl md:text-5xl lg:text-6xl text-[#2372c8] font-bold">
             Catalogue
           </h1>
         </div>
@@ -83,7 +86,7 @@ const AllCategory = () => {
         </div>
 
         {/* Category Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 container mx-auto px-12 md:px-0 my-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-5 container mx-auto px-12 md:px-0 my-20">
           {categories.map((category, idx) => (
             <CategoryCard
               key={category._id}
