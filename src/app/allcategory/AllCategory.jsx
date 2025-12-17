@@ -21,7 +21,7 @@ const categories = [...(response?.data || [])].sort(
   console.log("Categories:", categories);
   console.log("Pagination:", pagination);
 
-  // Handle page change
+  // Handle page change 
   const handlePageChange = (page) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: "smooth" });
