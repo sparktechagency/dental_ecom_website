@@ -13,9 +13,13 @@ const { data: response, isLoading, error } = useFetchAllCategoriesQuery({
   limit: itemsPerPage,
 });
 
-const categories = [...(response?.data || [])].sort(
-  (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-);
+// const categories = [...(response?.data || [])].sort(
+//   (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+// );
+
+const categories = [...(response?.data || [])];
+
+
   const pagination = response?.meta || {};
 
   console.log("Categories:", categories);
