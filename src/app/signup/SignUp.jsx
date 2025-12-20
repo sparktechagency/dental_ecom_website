@@ -185,14 +185,14 @@ export default function SignUp() {
 
             <div>
               <label className="block text-white font-bold text-lg mb-2">
-                GDC No <span className="text-gray-400 text-sm">(optional)</span>
+                GDC No 
               </label>
               <input
                 type="text"
                 name="gdcNo"
                 value={formData.gdcNo}
                 onChange={handleChange}
-                placeholder="Enter your GDC number (optional)"
+                placeholder="Enter your GDC number"
                 className="w-full px-4 py-3 bg-[#2D2D2D] text-white rounded-lg border border-gray-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none"
               />
             </div>

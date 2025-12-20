@@ -51,7 +51,7 @@ export default function AddressSection() {
             Address information
           </h2>
         </div>
-        <p className="text-white text-center">Loading addresses...</p>
+        <p className="text-black text-center">Loading addresses...</p>
       </div>
     );
   }
@@ -97,7 +97,7 @@ export default function AddressSection() {
             />
           ))
         ) : (
-          <p className="text-white text-center py-4">
+          <p className="text-black text-center py-4">
             {addresses?.length === 0 
               ? "No addresses found. Add your first address!" 
               : "No address data available"}

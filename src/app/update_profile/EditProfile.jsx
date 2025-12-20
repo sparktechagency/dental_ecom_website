@@ -10,6 +10,8 @@ import usersApi from "@/redux/feature/users/usersApi";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import { toast } from "sonner";
+import Image from "next/image";
+import defaultProfile from "../../../public/placeholder.svg";
 
 export default function EditProfile() {
   const navigate = useRouter();
@@ -85,13 +87,13 @@ export default function EditProfile() {
       // Validate file size (max 5MB)
       if (file.size > 5 * 1024 * 1024) {
         toast.error("File too large. Please select image smaller than 5MB", {
-            style: {
-              background: "#fef2f2",
-              color: "#dc2626",
-              border: "1px solid #fecaca",
-            },
-          });
-          
+          style: {
+            background: "#fef2f2",
+            color: "#dc2626",
+            border: "1px solid #fecaca",
+          },
+        });
+
         return;
       }
 
@@ -232,17 +234,22 @@ export default function EditProfile() {
           {/* Profile Image Upload */}
           <div className="flex flex-col items-center mb-6">
             <div className="relative">
-              <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-[#136BFB] bg-gray-700">
+              <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-[#136BFB] bg-gray-700 relative">
                 {imagePreview ? (
-                  <img
+                  <Image
                     src={imagePreview}
+                    alt="Profile preview"
+                    fill
+                    className="object-cover"
+                  />
+                ) : (
+                  <Image
+                    src={defaultProfile}
+                    width={100}
+                    height={100}
                     alt="Profile preview"
                     className="w-full h-full object-cover"
                   />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center text-white text-4xl">
-                    {formData.firstName?.charAt(0) || "U"}
-                  </div>
                 )}
               </div>
 
@@ -305,7 +312,7 @@ export default function EditProfile() {
           </div>
 
           {/* Clinic Name Field */}
-          <div>
+          {/* <div>
             <label className="block text-gray-300 text-lg font-bold mb-2">
               Clinic Name
             </label>
@@ -317,7 +324,7 @@ export default function EditProfile() {
               className="w-full px-4 py-3 border-2 border-[#136BFB] rounded-lg text-white placeholder-gray-400 bg-transparent"
               placeholder="Enter clinic name"
             />
-          </div>
+          </div> */}
 
           {/* Mobile with Country Code */}
           <div>
@@ -330,10 +337,10 @@ export default function EditProfile() {
                 onChange={(e) => setCountryCode(e.target.value)}
                 className="px-3 py-3 border-2 border-[#136BFB] rounded-lg bg-[#171717] text-white min-w-[110px]"
               >
+                <option value="+44">+44 (UK)</option>
                 <option value="+880">+880 (BD)</option>
                 <option value="+91">+91 (IN)</option>
                 <option value="+1">+1 (US)</option>
-                <option value="+44">+44 (UK)</option>
                 <option value="+971">+971 (AE)</option>
                 <option value="+61">+61 (AU)</option>
               </select>
@@ -346,10 +353,10 @@ export default function EditProfile() {
                 placeholder="Enter mobile number"
               />
             </div>
-            <p className="text-xs text-gray-400 mt-1">
+            {/* <p className="text-xs text-gray-400 mt-1">
               Your number will be saved as E.164, e.g., {countryCode}
               {formData.mobile?.replace(/\D/g, "")}
-            </p>
+            </p> */}
           </div>
 
           {/* GDC No Field */}

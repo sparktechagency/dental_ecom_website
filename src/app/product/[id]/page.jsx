@@ -187,7 +187,7 @@ const ProductDetails = () => {
               <h1 className="text-xl sm:text-2xl text-white font-semibold break-words">
                 {product.name}
               </h1>
-              <p>
+              <p className="text-black">
                 Availability:{" "}
                 <span
                   className={
@@ -202,13 +202,13 @@ const ProductDetails = () => {
               <p className="text-[#9F9C96] text-base">{product.description}</p>
 
               <div className="space-y-1 text-base">
-                <p>
+                <p className="text-black">
                   Brand:{" "}
                   <span className="text-[#136BFB] cursor-pointer hover:underline">
                     {product.brand?.name || "-"}
                   </span>
                 </p>
-                <p>
+                <p className="text-black">
                   Procedure:{" "}
                   {product.procedure ? (
                     <Link href={`/procedure_guide/${product.procedure._id}`}>
@@ -222,9 +222,9 @@ const ProductDetails = () => {
                 </p>
               </div>
 
-              <p className="pt-1 text-base">
+              <p className="pt-1 text-base text-black ">
                 {IsLogin ? (
-                  <span className="text-white font-medium text-base">
+                  <span className=" font-medium text-xl">
                     ${product.price}
                   </span>
                 ) : (

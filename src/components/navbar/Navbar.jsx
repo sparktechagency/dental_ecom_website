@@ -7,12 +7,13 @@ import { CiSearch } from "react-icons/ci";
 import { FaRegUser, FaTimes, FaBars } from "react-icons/fa";
 import { FiUserPlus } from "react-icons/fi";
 import { RiShoppingCart2Line } from "react-icons/ri";
-import { VscSettings } from "react-icons/vsc";
 import { useDispatch, useSelector } from "react-redux";
 import { useLogoutMutation } from "@/redux/feature/auth/authApi";
 import { logout as authLogout } from "@/redux/feature/auth/authSlice";
 import { clearCartLocal } from "@/redux/feature/cart/cartSlice";
 import { useGetMyProfileQuery } from "@/redux/feature/users/usersApi";
+import defaultProfile from "../../../public/placeholder.svg";
+import Image from "next/image";
 
 export default function Navbar() {
   const products = useSelector((state) => state.cart);
@@ -98,7 +99,7 @@ export default function Navbar() {
   const handleLogout = async () => {
     try {
       await logoutApi().unwrap();
-    } catch (e) {}
+    } catch (e) { }
     dispatch(authLogout());
     dispatch(clearCartLocal());
     navigate.push("/sign_in");
@@ -167,7 +168,7 @@ export default function Navbar() {
               {isMenuOpen ? (
                 <><FaTimes className="h-5 w-5 sm:h-6 sm:w-6" /></>
               ) : (
-                
+
                 <><div className="flex items-center gap-2 ">
                   <FaBars className="w-4 " /> <h1>Menu</h1></div></>
               )}
@@ -187,21 +188,20 @@ export default function Navbar() {
                     { href: "/procedure_guide", label: "Dental Procedures" },
 
                     { href: "/blog", label: "Blog" },
-                     { href: "/pharmaceuticals", label: "Pharmaceuticals" },
-                    
+                    { href: "/pharmaceuticals", label: "Pharmaceuticals" },
+
                     { href: "/contact_us", label: "Contact Us" },
-                   
-                    
+
+
                   ].map((item) => (
                     <Link
                       key={item.href}
                       href={item.href}
                       onClick={closeMenu}
-                      className={`block px-4 py-3 text-sm transition-colors ${
-                        isLinkActive(item.href)
+                      className={`block px-4 py-3 text-sm transition-colors ${isLinkActive(item.href)
                           ? "text-[#29A366] font-medium bg-blue-50"
                           : "text-gray-700 hover:bg-[#29A366] hover:text-white"
-                      }`}
+                        }`}
                     >
                       {item.label}
                     </Link>
@@ -274,9 +274,10 @@ export default function Navbar() {
           {/* Profile Icon (only if logged in) */}
           {authUser && (
             <Link href="/profile">
-              <img
-                src={profile?.imageUrl || "https://i.ibb.co.com/RvFgZC8/aman.png"}
-             
+              <Image
+                src={profile?.imageUrl || defaultProfile}
+                width={40}
+                height={40}
                 alt="profile"
                 className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border-2 border-[#136BFB] object-cover"
               />
