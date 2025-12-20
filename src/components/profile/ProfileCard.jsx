@@ -22,22 +22,22 @@ export default function ProfileCard({
   const navigate = useRouter();
   const { data, isLoading, isFetching, error } = useGetMyProfileQuery();
   const profile = data?.data || data || {};
-  const imageUrl = profile?.imageUrl 
-  console.log("profile gdc",gdc);
-  
+  const imageUrl = profile?.imageUrl
+
+
 
   return (
     <div className=" border border-[#e2e8f0] rounded-lg p-5">
       <div className="flex flex-col items-start my-10">
         <div className="relative mb-5">
           <Image
-            src={ imageUrl||defaultProfile}          
+            src={imageUrl || defaultProfile}
             alt={name}
             width={100}
             height={100}
             className="w-32 h-32 rounded-full object-cover border-2"
           />
-        
+
         </div>
 
         <div className="flex items-center gap-2 mb-4 text-center">

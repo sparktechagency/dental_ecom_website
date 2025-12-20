@@ -29,7 +29,7 @@ export default function EditProfile() {
     gdc: "",
     clinicName: "",
   });
-  const [countryCode, setCountryCode] = useState("+880");
+  const [countryCode, setCountryCode] = useState("+44");
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState("");
   const [isUploading, setIsUploading] = useState(false);
@@ -275,9 +275,7 @@ export default function EditProfile() {
                   className="hidden"
                 />
               </label>
-              <p className="text-xs text-gray-400 mt-2 text-center">
-                JPEG, PNG, GIF, WebP • Max 5MB
-              </p>
+
             </div>
           </div>
 
@@ -311,20 +309,7 @@ export default function EditProfile() {
             </div>
           </div>
 
-          {/* Clinic Name Field */}
-          {/* <div>
-            <label className="block text-gray-300 text-lg font-bold mb-2">
-              Clinic Name
-            </label>
-            <input
-              type="text"
-              name="clinicName"
-              value={formData.clinicName}
-              onChange={handleChange}
-              className="w-full px-4 py-3 border-2 border-[#136BFB] rounded-lg text-white placeholder-gray-400 bg-transparent"
-              placeholder="Enter clinic name"
-            />
-          </div> */}
+
 
           {/* Mobile with Country Code */}
           <div>
@@ -337,12 +322,53 @@ export default function EditProfile() {
                 onChange={(e) => setCountryCode(e.target.value)}
                 className="px-3 py-3 border-2 border-[#136BFB] rounded-lg bg-[#171717] text-white min-w-[110px]"
               >
-                <option value="+44">+44 (UK)</option>
-                <option value="+880">+880 (BD)</option>
-                <option value="+91">+91 (IN)</option>
-                <option value="+1">+1 (US)</option>
-                <option value="+971">+971 (AE)</option>
-                <option value="+61">+61 (AU)</option>
+                {[
+                  { code: "+44", name: "UK" },
+                  { code: "+1", name: "USA/CA" },
+                  { code: "+880", name: "BD" },
+                  { code: "+91", name: "IN" },
+                  { code: "+92", name: "PK" },
+                  { code: "+971", name: "UAE" },
+                  { code: "+61", name: "AU" },
+                  { code: "+33", name: "FR" },
+                  { code: "+49", name: "DE" },
+                  { code: "+39", name: "IT" },
+                  { code: "+34", name: "ES" },
+                  { code: "+31", name: "NL" },
+                  { code: "+41", name: "CH" },
+                  { code: "+46", name: "SE" },
+                  { code: "+47", name: "NO" },
+                  { code: "+45", name: "DK" },
+                  { code: "+358", name: "FI" },
+                  { code: "+353", name: "IE" },
+                  { code: "+32", name: "BE" },
+                  { code: "+43", name: "AT" },
+                  { code: "+30", name: "GR" },
+                  { code: "+351", name: "PT" },
+                  { code: "+94", name: "LK" },
+                  { code: "+977", name: "NP" },
+                  { code: "+65", name: "SG" },
+                  { code: "+60", name: "MY" },
+                  { code: "+66", name: "TH" },
+                  { code: "+84", name: "VN" },
+                  { code: "+63", name: "PH" },
+                  { code: "+62", name: "ID" },
+                  { code: "+81", name: "JP" },
+                  { code: "+86", name: "CN" },
+                  { code: "+82", name: "KR" },
+                  { code: "+20", name: "EG" },
+                  { code: "+27", name: "ZA" },
+                  { code: "+234", name: "NG" },
+                  { code: "+254", name: "KE" },
+                  { code: "+90", name: "TR" },
+                  { code: "+966", name: "SA" },
+                  { code: "+965", name: "KW" },
+                  { code: "+974", name: "QA" },
+                ].map((country) => (
+                  <option key={country.code} value={country.code}>
+                    {country.code} ({country.name})
+                  </option>
+                ))}
               </select>
               <input
                 type="tel"
@@ -353,10 +379,7 @@ export default function EditProfile() {
                 placeholder="Enter mobile number"
               />
             </div>
-            {/* <p className="text-xs text-gray-400 mt-1">
-              Your number will be saved as E.164, e.g., {countryCode}
-              {formData.mobile?.replace(/\D/g, "")}
-            </p> */}
+
           </div>
 
           {/* GDC No Field */}
