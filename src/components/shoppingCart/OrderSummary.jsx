@@ -14,12 +14,12 @@ const OrderSummary = ({
             <div className="space-y-4 mb-8">
                 <div className="flex justify-between items-center">
                     <span className="text-black">Subtotal</span>
-                    <span className="text-black font-semibold">${subtotal.toFixed(2)}</span>
+                    <span className="text-black font-semibold">£ {subtotal.toFixed(2)}</span>
                 </div>
                 <div className="border-t border-gray-600 pt-4">
                     <div className="flex justify-between items-center">
                         <span className="text-black text-lg">Total :</span>
-                        <span className="text-blue-400 font-bold text-xl">${total.toFixed(2)}</span>
+                        <span className="text-blue-400 font-bold text-xl">£ {total.toFixed(2)}</span>
                     </div>
                 </div>
             </div>

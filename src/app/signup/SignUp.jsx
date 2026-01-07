@@ -14,7 +14,7 @@ export default function SignUp() {
     email: "",
     password: "",
     password: "",
-    gdcNumber: "",
+    gdcNo: "",
   });
   const [showPassword, setShowPassword] = useState(false);
   const [profileImage, setProfileImage] = useState(null);
@@ -57,8 +57,8 @@ export default function SignUp() {
       data.append("email", formData.email);
       data.append("password", formData.password);
 
-      if (formData.gdcNumber) {
-        data.append("gdcNumber", formData.gdcNumber);
+      if (formData.gdcNo) {
+        data.append("gdcNo", formData.gdcNo);
       }
 
       if (profileImage) {
@@ -190,8 +190,8 @@ export default function SignUp() {
               </label>
               <input
                 type="text"
-                name="gdcNumber"
-                value={formData.gdcNumber}
+                name="gdcNo"
+                value={formData.gdcNo}
                 onChange={handleChange}
                 placeholder="Enter your GDC number"
                 className="w-full px-4 py-3 bg-[#2D2D2D] text-white rounded-lg border border-gray-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none"

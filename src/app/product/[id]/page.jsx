@@ -225,7 +225,7 @@ const ProductDetails = () => {
               <p className="pt-1 text-base text-black ">
                 {IsLogin ? (
                   <span className=" font-medium text-xl">
-                    ${product.price}
+                    £ {product.price}
                   </span>
                 ) : (
                   <span

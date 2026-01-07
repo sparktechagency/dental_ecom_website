@@ -106,10 +106,10 @@ const CartItem = ({
               <h3 className="text-black font-medium text-base sm:text-sm mb-1 line-clamp-2">{name}</h3>
               <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
                 <p className="text-blue-300 text-sm font-semibold">
-                  ${price.toFixed(2)}
+                  £ {price.toFixed(2)}
                 </p>
                 <p className="text-white text-sm font-semibold">
-                  × {quantity} = <span className="text-green-400">${(price * quantity).toFixed(2)}</span>
+                  × {quantity} = <span className="text-green-400">£ {(price * quantity).toFixed(2)}</span>
                 </p>
               </div>
             </div>

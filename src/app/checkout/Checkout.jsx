@@ -274,7 +274,7 @@ export default function Checkout() {
                                                         {product.name}
                                                     </p>
                                                     <p className="text-xs text-black">
-                                                        ${product.price?.toFixed(2)} each
+                                                        £ {product.price?.toFixed(2)} each
                                                     </p>
                                                 </div>
                                             </div>
@@ -285,7 +285,7 @@ export default function Checkout() {
                                             </div>
                                             <div className="text-right">
                                                 <p className="text-black font-semibold">
-                                                    ${((product.price || 0) * (product.quantity || 1)).toFixed(2)}
+                                                    £ {((product.price || 0) * (product.quantity || 1)).toFixed(2)}
                                                 </p>
                                             </div>
                                         </div>
@@ -298,12 +298,12 @@ export default function Checkout() {
                         <div className="space-y-2 mt-6 pt-4 border-t border-[#d3e4fd]">
                             <div className="flex justify-between text-sm text-black">
                                 <span>Subtotal ({selectedProducts.length} items)</span>
-                                <span>${subtotal.toFixed(2)}</span>
+                                <span>£ {subtotal.toFixed(2)}</span>
                             </div>
                             
                             <div className="flex justify-between text-lg font-semibold text-black pt-2 border-t border-[#d3e4fd]">
                                 <span>Total Amount</span>
-                                <span className="text-black">${total.toFixed(2)}</span>
+                                <span className="text-black">£ {total.toFixed(2)}</span>
                             </div>
                         </div>
                     </div>

@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { FiDollarSign } from "react-icons/fi";
 import {
   Bar,
   BarChart,
@@ -45,9 +44,9 @@ const SaveOverTime = () => {
     <div className="rounded-2xl py-6 sm:py-8 md:py-12 border border-[#d3e4fd]">
       {/* Header */}
       <div className="flex items-center mb-4 sm:mb-6 ml-4 sm:ml-6 md:ml-8 px-2 sm:px-0">
-        <FiDollarSign className="text-[#4a90e2] text-2xl mr-2" />
+
         <h3 className="font-semibold text-base sm:text-lg md:text-xl text-black">
-          Monthly Cost Savings
+         <span className="text-[#4a90e2]">£</span> Monthly Cost Savings
         </h3>
       </div>
 
@@ -92,7 +91,7 @@ const SaveOverTime = () => {
             <Bar
               dataKey="value"
               fill="#017FF4"
-              radius={[8, 8, 0, 0]}  // smoother round top
+              radius={[8, 8, 0, 0]}  
             />
           </BarChart>
         </ResponsiveContainer>

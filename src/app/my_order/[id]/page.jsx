@@ -83,7 +83,7 @@ const OrderDetails = ({
                             {product.name}
                         </h3>
                         <p className="text-blue-400 text-sm font-medium">
-                            Price : ${product.price.toFixed(2)}
+                            Price : £ {product.price.toFixed(2)}
                         </p>
                     </div>
 
@@ -97,13 +97,13 @@ const OrderDetails = ({
                 <div className="space-y-3 mb-8">
                     <div className="flex justify-between items-center">
                         <span className="text-gray-400 text-sm">Subtotal</span>
-                        <span className="text-white text-sm">{subtotal.toFixed(2)}$</span>
+                        <span className="text-white text-sm">{subtotal.toFixed(2)} £ </span>
                     </div>
 
                     <div className="border-t border-gray-700 pt-3">
                         <div className="flex justify-between items-center">
                             <span className="text-gray-400 text-sm">Total :</span>
-                            <span className="text-blue-400 text-lg font-semibold">{total.toFixed(2)}$</span>
+                            <span className="text-blue-400 text-lg font-semibold">{total.toFixed(2)} £ </span>
                         </div>
                     </div>
                 </div>
