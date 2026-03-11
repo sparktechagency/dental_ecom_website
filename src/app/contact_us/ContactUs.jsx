@@ -83,46 +83,54 @@ export default function ContactUs() {
 
                     <div>
                       {isFetching && (
-                        <div className="text-white">Loading...</div>
-                      )}
-                      {error && (
-                        <div className="text-red-400">Failed to load</div>
-                      )}
-                      {!isFetching && !error && (
-                        <div className="flex flex-col">
-                          {emails.map((em) => (
-                            <span key={em} className="text-xl text-black">
-                              {em}
-                            </span>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  </div>
+                          <div className="text-white">Loading...</div>
+                       )}
+                        {error && (
+                              <div className="text-red-400">Failed to load</div>
+                        )}
+                                  {!isFetching && !error && (
+                               <div className="flex flex-col">
+                                   {emails.map((em) => (
+                                   <a
+                                     key={em}
+                                      href={`mailto:${em}`}
+                                       className="text-xl text-black hover:underline"
+                              >
+                                           {em}
+                                   </a>
+                                    ))}
+                                       </div>
+                                 )}
+  </div>
+</div>
 
                   {/* phone */}
 
-                  <div className="flex items-center gap-3 text-gray-300">
-                    <MdPhone className="text-xl text-black" />
+                 <div className="flex items-center gap-3 text-gray-300">
+                   <MdPhone className="text-xl text-black" />
 
-                    <div>
-                      {isFetching && (
-                        <div className="text-white">Loading...</div>
-                      )}
-                      {error && (
-                        <div className="text-red-400">Failed to load</div>
-                      )}
-                      {!isFetching && !error && (
+                 <div>
+                {isFetching && (
+                   <div className="text-white">Loading...</div>
+                    )}
+                  {error && (
+                  <div className="text-red-400">Failed to load</div>
+                    )}
+                       {!isFetching && !error && (
                         <div className="flex flex-col">
-                          {phones.map((ph) => (
-                            <span key={ph} className="text-black text-xl">
-                              {ph}
-                            </span>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  </div>
+                       {phones.map((ph) => (
+                            <a
+                            key={ph}
+                            href={`tel:${ph}`}
+                          className="text-black text-xl hover:underline"
+                               >
+                          {ph}
+                 </a>
+                  ))}
+      </div>
+    )}
+  </div>
+</div>
 
                   {/* map pin */}
                   <div className="flex items-center gap-3">
@@ -130,7 +138,8 @@ export default function ContactUs() {
                     <p className="text-black text-xl">London, United Kingdom</p>
                   </div>
                   <Link
-                    href="https://www.instagram.com/rnasupplies/#"
+                    href="https://www.instagram.com/rnasupplies"
+                    target="_blank"
                     isExternal
                     className="flex items-center gap-3"
                   >
